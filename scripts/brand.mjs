@@ -46,7 +46,8 @@ fs.writeFileSync(path.join(pub, 'site.webmanifest'), JSON.stringify({
 
 // ── OG cards ────────────────────────────────────────────────────────────────
 const font = path.resolve('node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
-const shot = (n) => path.join(pub, 'shots', `${n}-1600.webp`)
+// Shot files are content-hashed (see images.mjs): pick the current 1600px webp for each name.
+const shot = (n) => path.join(pub, 'shots', fs.readdirSync(path.join(pub, 'shots')).find((f) => new RegExp(`^${n}-1600\\.[0-9a-f]{8}\\.webp$`).test(f)))
 const cards = [
   { file: 'home.png', kicker: 'STDN Technologies', title: 'Intelligent software for the businesses that run India.', shot: 'md-dashboard' },
   { file: 'meddesk.png', kicker: 'MedDesk · Pharmacy ERP', title: 'Snap the supplier bill. Stock updates itself.', shot: 'md-scan' },

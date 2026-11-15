@@ -6,9 +6,12 @@ import { SITE } from './site'
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 
+const OG_V = '20261115'
+
 export function head(path: string, meta: Meta) {
   const url = `${SITE.url}${path === '/' ? '/' : path}`
-  const image = `${SITE.url}${meta.image ?? '/og/home.png'}`
+  // Bump OG_V when the OG cards are regenerated, so CDNs fetch the new image.
+  const image = `${SITE.url}${meta.image ?? '/og/home.png'}?v=${OG_V}`
   const tags = [
     `<title>${esc(meta.title)}</title>`,
     `<meta name="description" content="${esc(meta.description)}" />`,

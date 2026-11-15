@@ -65,22 +65,25 @@ export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }:
   )
 }
 
+// Shot files are content-hashed by scripts/images.mjs: /shots/<name>-<width>.<hash>.<ext>
+export const shotUrl = (base: string, w: number, v: string, ext: string) => `/shots/${base}-${w}.${v}.${ext}`
+// Each file is resized to min(width, source width), so describe it by its real width.
+export function shotSrcset(base: string, widths: number[], max: number, v: string, ext: string) {
+  const out: string[] = []
+  for (const w of widths) {
+    if (w < max) out.push(`${shotUrl(base, w, v, ext)} ${w}w`)
+    else { out.push(`${shotUrl(base, w, v, ext)} ${max}w`); break }
+  }
+  return out.join(', ')
+}
+
 export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = true, className = '' }: {
   name: string; alt: string; sizes?: string; zoom?: boolean; eager?: boolean; frame?: boolean; phoneCrop?: boolean; className?: string
 }) {
-  const dim = SHOTS[name] ?? { w: 1600, h: 1000 }
+  const dim = SHOTS[name] ?? { w: 1600, h: 1000, v: '' }
   const useCrop = phoneCrop && !!dim.mw
-  // Each file is resized to min(width, source width), so describe it by its real width.
-  const srcset = (base: string, widths: number[], max: number, ext: string) => {
-    const out: string[] = []
-    for (const w of widths) {
-      if (w < max) out.push(`/shots/${base}-${w}.${ext} ${w}w`)
-      else { out.push(`/shots/${base}-${w}.${ext} ${max}w`); break }
-    }
-    return out.join(', ')
-  }
-  const set = (ext: string) => srcset(name, [960, 1600, 2400], dim.w, ext)
-  const crop = (ext: string) => srcset(`${name}-m`, [800, 1200], dim.mw ?? 1200, ext)
+  const set = (ext: string) => shotSrcset(name, [960, 1600, 2400], dim.w, dim.v, ext)
+  const crop = (ext: string) => shotSrcset(`${name}-m`, [800, 1200], dim.mw ?? 1200, dim.mv ?? '', ext)
   const pic = (
     <picture>
       {useCrop && <source media="(max-width: 640px)" type="image/avif" srcSet={crop('avif')} sizes="100vw" width={dim.mw} height={dim.mh} />}
@@ -88,7 +91,7 @@ export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', z
       <source type="image/avif" srcSet={set('avif')} sizes={sizes} />
       <source type="image/webp" srcSet={set('webp')} sizes={sizes} />
       <img
-        src={`/shots/${name}-1600.webp`}
+        src={shotUrl(name, 1600, dim.v, 'webp')}
         alt={alt}
         width={dim.w}
         height={dim.h}

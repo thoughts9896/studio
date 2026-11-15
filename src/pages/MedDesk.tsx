@@ -1,4 +1,5 @@
-import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton } from '../components/ui'
+import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton, shotSrcset, shotUrl } from '../components/ui'
+import { SHOTS } from '../shots.gen'
 import { Story } from '../components/Story'
 import { PRICES } from '../site'
 
@@ -93,8 +94,8 @@ export default function MedDesk() {
               <figure>
                 <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_rgba(15,15,13,0.08),0_20px_50px_-15px_rgba(15,15,13,0.25)] [transform:rotate(-1.5deg)]">
                   <picture>
-                    <source type="image/avif" srcSet="/shots/bill-700.avif 700w, /shots/bill-1200.avif 1200w" sizes="(min-width: 1024px) 400px, 92vw" />
-                    <img src="/shots/bill-1200.webp" srcSet="/shots/bill-700.webp 700w, /shots/bill-1200.webp 1200w" sizes="(min-width: 1024px) 400px, 92vw" width={1200} height={823} loading="lazy" decoding="async" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" className="block h-auto w-full" />
+                    <source type="image/avif" srcSet={shotSrcset('bill', [700, 1200], SHOTS.bill.w, SHOTS.bill.v, 'avif')} sizes="(min-width: 1024px) 400px, 92vw" />
+                    <img src={shotUrl('bill', 1200, SHOTS.bill.v, 'webp')} srcSet={shotSrcset('bill', [700, 1200], SHOTS.bill.w, SHOTS.bill.v, 'webp')} sizes="(min-width: 1024px) 400px, 92vw" width={SHOTS.bill.w} height={SHOTS.bill.h} loading="lazy" decoding="async" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" className="block h-auto w-full" />
                   </picture>
                 </div>
                 <figcaption className="mt-4 text-[0.82rem] text-ink-3">The photo: a synthetic test bill.</figcaption>
