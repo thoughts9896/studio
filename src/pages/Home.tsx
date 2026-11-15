@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowLink, Badge, FinalCta, Mark, Reveal, SectionHead, Shot, WhatsAppButton } from '../components/ui'
 import { Story } from '../components/Story'
+import { BillScan, BillingCard, Detail, ExpiryCard, Phone, Rail, Tile } from '../components/mobile'
 
 const products = [
   {
@@ -80,8 +81,10 @@ const proof = [
 export default function Home() {
   return (
     <>
+      <MobileHome />
+
       {/* Hero: text, both actions and a product visual all sit above the fold */}
-      <section className="overflow-hidden pt-6 md:pt-12 lg:pt-14">
+      <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
         <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
           <div>
             <Reveal className="hidden sm:block"><p className="eyebrow">STDN Technologies</p></Reveal>
@@ -99,14 +102,14 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal delay={160}>
-            <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager />
+            <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
             <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
           </Reveal>
         </div>
       </section>
 
       {/* Products */}
-      <section id="products" className="pt-20 md:pt-28">
+      <section id="products" className="hidden md:block md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Products" title="Software we build, ship and support." lede="Three products, each made for one kind of business and the way it actually runs." />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -133,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* MedDesk sticky story */}
-      <section className="pt-20 md:pt-28">
+      <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <SectionHead
             eyebrow="Spotlight · MedDesk"
@@ -150,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* Built on demand */}
-      <section className="mt-20 bg-sand py-20 md:mt-28 md:py-28">
+      <section className="hidden bg-sand md:mt-28 md:block md:py-28">
         <div className="wrap">
           <div className="max-w-3xl">
             <Reveal><p className="eyebrow">Built on demand</p></Reveal>
@@ -191,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* How we work */}
-      <section className="pt-20 md:pt-28">
+      <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="How we work" title="Simple, from first message to launch." />
           <ol className="mt-12 grid gap-10 md:grid-cols-4">
@@ -212,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* Talk to STDN */}
-      <section className="pt-20 md:pt-28">
+      <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <div className="grid items-center gap-12 rounded-[28px] bg-sand p-8 md:grid-cols-[auto_1fr] md:gap-16 md:p-14">
             <Reveal>
@@ -236,5 +239,144 @@ export default function Home() {
 
       <FinalCta />
     </>
+  )
+}
+
+/* ── Phones (below 768px): phone-first hero, swipe rails, detail cards, the bill-scan story ── */
+
+const mProducts = [
+  { to: '/meddesk', tone: 'med' as const, name: 'MedDesk', kind: 'Pharmacy ERP', badge: <Badge tone="new">Launching now</Badge>, text: 'Billing, stock, expiry and GST. Snap a bill, stock fills itself.', visual: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" /> },
+  { to: '/school-erp', tone: 'sch' as const, name: 'School ERP', kind: 'Fees & students', badge: <Badge>Live</Badge>, text: 'Fee ledgers, online payments and a parent portal.', visual: <Detail name="d-school-dues" alt="School ERP tile: 57 pending dues (demo school)" /> },
+  { to: '/hotel-erp', tone: 'htl' as const, name: 'Hotel ERP', kind: 'Rooms & restaurant', badge: <Badge>Live</Badge>, text: 'Room board, table orders, KOT and GST bills.', visual: <Detail name="d-hotel-room-top" alt="Hotel ERP room tile: Room 101, occupied, ₹1,200 a night (demo data)" /> },
+]
+
+function MobileHome() {
+  return (
+    <div className="md:hidden">
+      {/* Hero: one message, one button, and the owner's phone */}
+      <section className="overflow-hidden pt-7">
+        <div className="wrap">
+          
+            <span className="inline-flex items-center gap-2 rounded-full bg-sand px-3 py-1.5 text-[0.8rem] font-semibold text-ink-2"><Mark size={14} /> STDN Technologies</span>
+          
+          <h1 className="m-display mt-4">Intelligent software for the businesses that run India.</h1>
+          <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">AI products for pharmacies, schools and hotels. Custom software too.</p>
+          <div className="mt-6"><WhatsAppButton label="Talk to STDN" className="!h-[52px] w-full justify-center" /></div>
+        </div>
+        <div className="relative mt-12 flex justify-center">
+          <div aria-hidden="true" className="absolute left-1/2 top-[18%] h-[70%] w-[120%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(15,118,110,0.2),rgba(15,118,110,0))]" />
+          <div className="relative w-[min(68vw,264px)]">
+            <Phone name="ov-today" eager className="float" alt="MedDesk Owner View on a phone: today’s net sales, bills, how customers paid and stock alerts for a demo shop" />
+          </div>
+        </div>
+        <div className="wrap mt-6 text-center">
+          <Badge tone="soon">Coming soon</Badge>
+          <p className="mx-auto mt-2 max-w-[30ch] text-[0.95rem] leading-snug text-ink-2"><span className="font-semibold text-ink">MedDesk Owner View.</span> Your shop’s sales, bills and stock alerts, on your phone.</p>
+        </div>
+      </section>
+
+      {/* Products */}
+      <section id="products-m" className="pt-16">
+        <div className="wrap">
+          <p className="eyebrow">Products</p>
+          <h2 className="h2 mt-3">Software we build, ship and support.</h2>
+          <div className="mt-7">
+            <Rail label="Products">
+              {mProducts.map((p) => (
+                <Link key={p.to} to={p.to} className="block h-full">
+                  <Tile tone={p.tone} kicker={p.kind} title={<span className="flex items-center justify-between gap-2">{p.name}{p.badge}</span>} text={p.text}>
+                    {p.visual}
+                    <span className="link-arrow mt-auto pt-3 !text-ember-2">Learn more <span aria-hidden="true">→</span></span>
+                  </Tile>
+                </Link>
+              ))}
+            </Rail>
+          </div>
+        </div>
+      </section>
+
+      {/* Spotlight: the bill-scan story, then a swipe through the rest of the day */}
+      <section className="pt-16">
+        <div className="wrap">
+          <p className="eyebrow">Spotlight · MedDesk</p>
+          <h2 className="h2 mt-3">Photo in. Stock up.</h2>
+          <p className="mt-3 text-[1.02rem] leading-snug text-ink-2">Scroll to watch MedDesk read a supplier bill.</p>
+          <div className="mt-4"><BillScan /></div>
+          <h3 className="mt-6 text-[1.4rem] font-semibold tracking-[-0.025em]">The rest of the day, sorted.</h3>
+          <div className="mt-5">
+            <Rail label="MedDesk features">
+              <Tile tone="med" kicker="Billing" title="Counter speed." text="Strips or loose. Cash, UPI or udhaar."><BillingCard /></Tile>
+              <Tile tone="med" kicker="Expiry" title="See it before it costs you." text="Near-expiry and dead stock, every morning."><ExpiryCard /></Tile>
+              <Tile tone="med" kicker="Profit" title="Know your margin. Daily." text="Revenue, cost and profit for any period."><Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,316.97, margin 23.84% (demo shop)" /></Tile>
+            </Rail>
+          </div>
+          <div className="mt-6"><ArrowLink to="/meddesk">Everything MedDesk does</ArrowLink></div>
+        </div>
+      </section>
+
+      {/* Built on demand */}
+      <section className="mt-16 bg-sand py-14">
+        <div className="wrap">
+          <p className="eyebrow !text-ember-2">Built on demand</p>
+          <h2 className="h2 mt-3">Nothing off the shelf fits? We build it.</h2>
+          <p className="mt-3 text-[1.02rem] leading-snug text-ink-2">The team behind MedDesk’s bill reader builds yours.</p>
+          <div className="mt-7">
+            <Rail label="What we build" width="w-[72%]">
+              {buildTiles.map((t, i) => (
+                <div key={t.title} className="tile flex h-full flex-col bg-paper p-5">
+                  <p className="text-[0.8rem] font-semibold text-ink-3">0{i + 1}</p>
+                  <h3 className="mt-6 text-[1.25rem] font-semibold tracking-[-0.02em]">{t.title}</h3>
+                  <p className="mt-2 text-[0.95rem] leading-snug text-ink-2">{t.text}</p>
+                </div>
+              ))}
+            </Rail>
+          </div>
+          <ul className="mt-8 grid gap-3">
+            {proof.map(([t]) => (
+              <li key={t} className="flex items-center gap-3 text-[0.98rem] font-medium"><span className="grid h-6 w-6 place-items-center rounded-full bg-ink text-[0.75rem] text-paper" aria-hidden="true">✓</span>{t}</li>
+            ))}
+          </ul>
+          <div className="mt-8 grid gap-3">
+            <WhatsAppButton label="Discuss your project" message="Hi STDN, I want to build" className="w-full justify-center" />
+            <Link to="/services" className="btn btn-ghost w-full justify-center">How we build</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section className="pt-16">
+        <div className="wrap">
+          <p className="eyebrow">How we work</p>
+          <h2 className="h2 mt-3">First message to launch.</h2>
+          <div className="mt-7">
+            <Rail label="How we work" width="w-[62%]">
+              {[
+                ['Talk', 'WhatsApp us, in English or Hindi.'],
+                ['Plan', 'A clear scope, timeline and quote.'],
+                ['Build', 'Working software early, shaped by you.'],
+                ['Launch', 'We go live with you and stay reachable.'],
+              ].map(([t, d], i) => (
+                <div key={t} className="h-full rounded-[24px] border border-line p-5">
+                  <p className="text-[2rem] font-semibold leading-none tracking-[-0.04em] text-ink-3">0{i + 1}</p>
+                  <h3 className="mt-5 text-[1.2rem] font-semibold">{t}</h3>
+                  <p className="mt-1.5 text-[0.95rem] leading-snug text-ink-2">{d}</p>
+                </div>
+              ))}
+            </Rail>
+          </div>
+        </div>
+      </section>
+
+      {/* Talk to STDN */}
+      <section className="pt-16">
+        <div className="wrap">
+          <div className="rounded-[28px] bg-sand p-6">
+            <Mark size={52} />
+            <h2 className="mt-5 text-[1.7rem] font-semibold leading-tight tracking-[-0.03em]">Real people, one message away.</h2>
+            <p className="mt-3 text-[1rem] leading-snug text-ink-2">Message us in English or Hindi. An STDN expert will call and show you a demo.</p>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

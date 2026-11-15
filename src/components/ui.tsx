@@ -1,8 +1,9 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties, ReactNode, SyntheticEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { waLink } from '../site'
-import { SHOTS } from '../shots.gen'
+import { SHOTS, type ShotFile } from '../shots.gen'
+import { shotSrcset, shotUrl } from '../shots'
 
 /** The STDN mark: a balanced taijitu (yin-yang). */
 export function Mark({ size = 28, className = '' }: { size?: number; className?: string }) {
@@ -35,7 +36,7 @@ export function WhatsAppIcon({ size = 18 }: { size?: number }) {
 
 export function WhatsAppButton({ label = 'Talk to STDN on WhatsApp', short, message, className = '' }: { label?: string; short?: string; message?: string; className?: string }) {
   return (
-    <a href={waLink(message)} target="_blank" rel="noopener" className={`btn btn-ink ${className}`}>
+    <a href={waLink(message)} target="_blank" rel="noopener" data-cta="" className={`btn btn-ink ${className}`}>
       <WhatsAppIcon />
       {short ? <><span className="sm:hidden">{short}</span><span className="hidden sm:inline">{label}</span></> : label}
     </a>
@@ -65,42 +66,56 @@ export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }:
   )
 }
 
-// Shot files are content-hashed by scripts/images.mjs: /shots/<name>-<width>.<hash>.<ext>
-export const shotUrl = (base: string, w: number, v: string, ext: string) => `/shots/${base}-${w}.${v}.${ext}`
-// Each file is resized to min(width, source width), so describe it by its real width.
-export function shotSrcset(base: string, widths: number[], max: number, v: string, ext: string) {
-  const out: string[] = []
-  for (const w of widths) {
-    if (w < max) out.push(`${shotUrl(base, w, v, ext)} ${w}w`)
-    else { out.push(`${shotUrl(base, w, v, ext)} ${max}w`); break }
-  }
-  return out.join(', ')
+// Fade-in marker. index.html catches images that load before React hydrates; these two catch
+// the rest (an image React creates can finish loading before it is attached to the page).
+const markLoaded = (e: SyntheticEvent<HTMLImageElement>) => e.currentTarget.classList.add('ok')
+const markIfLoaded = (img: HTMLImageElement | null) => { if (img?.complete) img.classList.add('ok') }
+const MISSING: ShotFile = { w: 1600, h: 1000, v: '', ws: [1600], ph: '' }
+const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+// Below / above the md breakpoint (768px). A hidden copy of an image gets a 1px blank source,
+// so phones never download desktop-only images and the reverse.
+const ONLY = { mobile: '(min-width: 768px)', desktop: '(max-width: 767px)' }
+
+/**
+ * A responsive picture: AVIF + WebP at every built width, a tiny blurred placeholder underneath
+ * (never a white box while loading) and fixed width/height (no layout shift). The image fades in
+ * once loaded (see the load listener in index.html).
+ */
+export function Pic({ name, alt, sizes, eager = false, only, phoneCrop = false, className = '' }: {
+  name: string; alt: string; sizes: string; eager?: boolean; only?: 'mobile' | 'desktop'; phoneCrop?: boolean; className?: string
+}) {
+  const f = SHOTS[name] ?? MISSING
+  const m = phoneCrop ? f.m : undefined
+  const style = { '--ph': f.ph ? `url(${f.ph})` : 'none', ...(m ? { '--mph': `url(${m.ph})` } : {}) } as CSSProperties
+  return (
+    <span className={`pic ${m ? 'pic-m' : ''} ${className}`} style={style}>
+      <picture>
+        {only && <source media={ONLY[only]} srcSet={BLANK} />}
+        {m && <source media="(max-width: 640px)" type="image/avif" srcSet={shotSrcset(`${name}-m`, m, 'avif')} sizes="100vw" width={m.w} height={m.h} />}
+        {m && <source media="(max-width: 640px)" type="image/webp" srcSet={shotSrcset(`${name}-m`, m, 'webp')} sizes="100vw" width={m.w} height={m.h} />}
+        <source type="image/avif" srcSet={shotSrcset(name, f, 'avif')} sizes={sizes} />
+        <source type="image/webp" srcSet={shotSrcset(name, f, 'webp')} sizes={sizes} />
+        <img
+          src={shotUrl(name, f.ws[Math.min(1, f.ws.length - 1)], f.v, 'webp')}
+          alt={alt}
+          width={f.w}
+          height={f.h}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          {...(eager ? { fetchPriority: 'high' as const } : {})}
+          ref={markIfLoaded}
+          onLoad={markLoaded}
+          onError={markLoaded}
+        />
+      </picture>
+    </span>
+  )
 }
 
-export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = true, className = '' }: {
-  name: string; alt: string; sizes?: string; zoom?: boolean; eager?: boolean; frame?: boolean; phoneCrop?: boolean; className?: string
+export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = true, only, className = '' }: {
+  name: string; alt: string; sizes?: string; zoom?: boolean; eager?: boolean; frame?: boolean; phoneCrop?: boolean; only?: 'mobile' | 'desktop'; className?: string
 }) {
-  const dim = SHOTS[name] ?? { w: 1600, h: 1000, v: '' }
-  const useCrop = phoneCrop && !!dim.mw
-  const set = (ext: string) => shotSrcset(name, [960, 1600, 2400], dim.w, dim.v, ext)
-  const crop = (ext: string) => shotSrcset(`${name}-m`, [800, 1200], dim.mw ?? 1200, dim.mv ?? '', ext)
-  const pic = (
-    <picture>
-      {useCrop && <source media="(max-width: 640px)" type="image/avif" srcSet={crop('avif')} sizes="100vw" width={dim.mw} height={dim.mh} />}
-      {useCrop && <source media="(max-width: 640px)" type="image/webp" srcSet={crop('webp')} sizes="100vw" width={dim.mw} height={dim.mh} />}
-      <source type="image/avif" srcSet={set('avif')} sizes={sizes} />
-      <source type="image/webp" srcSet={set('webp')} sizes={sizes} />
-      <img
-        src={shotUrl(name, 1600, dim.v, 'webp')}
-        alt={alt}
-        width={dim.w}
-        height={dim.h}
-        loading={eager ? 'eager' : 'lazy'}
-        decoding="async"
-        {...(eager ? { fetchPriority: 'high' as const } : {})}
-      />
-    </picture>
-  )
+  const pic = <Pic name={name} alt={alt} sizes={sizes} eager={eager} only={only} phoneCrop={phoneCrop} />
   return (
     <div {...(zoom ? { 'data-zoom': '' } : {})} className={className}>
       {frame ? (

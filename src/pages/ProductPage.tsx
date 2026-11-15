@@ -1,12 +1,18 @@
 import type { ReactNode } from 'react'
 import { FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton } from '../components/ui'
 import { Story, type StoryStep } from '../components/Story'
+import { FeatureRail } from '../components/mobile'
+import { TONE, type Tone } from '../tones'
 
 export type ProductProps = {
   name: string
   badge: ReactNode
+  tone: Tone
   title: string
   lede: string
+  /** Phones: a shorter lede and a readable detail instead of the full screenshot. */
+  shortLede: string
+  heroDetail: ReactNode
   heroShot: string
   heroAlt: string
   heroNote?: ReactNode
@@ -25,7 +31,24 @@ export type ProductProps = {
 export function ProductPage(p: ProductProps) {
   return (
     <>
-      <section className="overflow-hidden pt-6 md:pt-12 lg:pt-14">
+      {/* Phones: one message, one button, then a zoomed-in detail on the product's colour */}
+      <section className="overflow-hidden pt-7 md:hidden">
+        <div className="wrap">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className={`text-[0.95rem] font-semibold ${TONE[p.tone].accent}`}>{p.name}</span>
+            {p.badge}
+          </div>
+          <h1 className="m-display mt-3">{p.title}</h1>
+          <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">{p.shortLede}</p>
+          <div className="mt-6"><WhatsAppButton label="Ask for a demo" message={p.waMessage} className="!h-[52px] w-full justify-center" /></div>
+          <Reveal delay={220} className={`tile mt-9 ${TONE[p.tone].soft} px-5 py-7`}>
+            {p.heroDetail}
+          </Reveal>
+          {p.heroNote && <p className="mt-3 text-[0.8rem] text-ink-3">{p.heroNote}</p>}
+        </div>
+      </section>
+
+      <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
         <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
           <div>
             <Reveal className="flex flex-wrap items-center gap-3">
@@ -40,30 +63,31 @@ export function ProductPage(p: ProductProps) {
             </Reveal>
           </div>
           <Reveal delay={160}>
-            <Shot name={p.heroShot} alt={p.heroAlt} sizes="(min-width: 1024px) 680px, 100vw" eager />
+            <Shot name={p.heroShot} alt={p.heroAlt} sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
             {p.heroNote && <p className="mt-3 text-[0.8rem] text-ink-3">{p.heroNote}</p>}
           </Reveal>
         </div>
       </section>
 
-      <section className="pt-20 md:pt-28">
+      <section className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Inside" title={p.storyTitle} />
-          <Story steps={p.steps} />
+          <Story steps={p.steps} tone={p.tone} />
         </div>
       </section>
 
-      <section id="features" className="pt-20 md:pt-28">
+      <section id="features" className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Features" title={p.featuresTitle} />
-          <div className="mt-12"><FeatureList items={p.features} /></div>
+          <div className="mt-7 md:hidden"><FeatureRail items={p.features} tone={p.tone} /></div>
+          <div className="mt-12 hidden md:block"><FeatureList items={p.features} /></div>
         </div>
       </section>
 
-      <section className="pt-20 md:pt-28">
+      <section className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Pricing" title="Talk to us for a quote." />
-          <Reveal className="mt-10 rounded-[22px] border border-line p-8 md:p-10">
+          <Reveal className="mt-8 rounded-[22px] border border-line p-6 md:mt-10 md:p-10">
             {p.price ? <p className="h3">{p.price}</p> : <Todo>{p.priceLabel}</Todo>}
             <p className="mt-4 max-w-xl text-ink-2">Tell us about your setup and we’ll show you a demo first.</p>
             <div className="mt-7"><WhatsAppButton label="Ask on WhatsApp" message={p.waMessage} /></div>

@@ -25,3 +25,8 @@ Everything here is marked `TODO` in the code. Nothing on the site is invented: n
 
 - **erp.stdn.in login page**: the left panel shows "500+ Active Students · 98% Collection Rate", and the form shows a "Demo credentials" box (admin / parent emails and passwords). Check whether these are still shown in production.
 - Old site content (the "Studio." name, projects JD & Dark, SPS Naguran, Research AI) was removed. Send the links if you want any of those builds listed on /services.
+
+## Mobile layer (phones under 768px)
+
+- **Owner View images** (`ov-today/stock/dues`) are the real phone page from the unreleased `feat/owner-view` branch, rendered with made-up data ("Shree Balaji Medical Store", "Demo Distributor A/B/C"). Retake them when Owner View ships, and keep the "Coming soon" label until then.
+- **Expiry, billing and bill-scan cards** are HTML redraws of the same demo rows shown in MedDesk (the real tables are too dense to crop readably on a phone). If MedDesk's screens change, update `src/components/mobile.tsx`.

@@ -13,6 +13,13 @@
   --color-ember: #c2410c;
   --color-ember-2: #9a3412;
   --color-wa: #15803d;
+  /* Product identities: soft tints on cards, a deeper tone for accents and text. */
+  --color-med: #0f766e;
+  --color-med-soft: #e5f2ef;
+  --color-sch: #2554c7;
+  --color-sch-soft: #e8eefb;
+  --color-htl: #9a4508;
+  --color-htl-soft: #faefdf;
 }
 
 :root {
@@ -75,7 +82,8 @@ body {
 .wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 20px; }
 @media (min-width: 768px) { .wrap { padding-inline: 32px; } }
 
-/* Buttons */
+/* Buttons (in the components layer, so utilities like `hidden` or `w-full` can override them) */
+@layer components {
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   height: 48px; padding: 0 22px; border-radius: 999px;
@@ -94,6 +102,7 @@ body {
 .btn-ghost:hover { background: var(--color-sand); }
 .link-arrow { color: var(--color-ember); font-weight: 560; display: inline-flex; align-items: center; gap: 0.25rem; min-height: 44px; }
 .link-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
+}
 
 /* Product window frame */
 .window {
@@ -110,6 +119,105 @@ body {
   .window-bar { height: 20px; gap: 5px; padding: 0 8px; }
   .window-bar i { width: 7px; height: 7px; }
 }
+
+/* Images: blurred placeholder underneath until the real image has loaded */
+.pic { display: block; background: var(--ph) center / cover no-repeat; }
+.pic img { display: block; width: 100%; height: auto; }
+@media (max-width: 640px) { .pic-m { background-image: var(--mph); } }
+html.js .pic img { opacity: 0; transition: opacity 0.45s var(--ease-out); animation: pic-show 0s 4s forwards; }
+html.js .pic img.ok { opacity: 1; animation: none; }
+@keyframes pic-show { to { opacity: 1; } }
+
+/* ── Mobile layer (below 768px) ─────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .h2 { font-size: clamp(2.1rem, 7.4vw, 2.6rem); line-height: 1.04; }
+  .lede { font-size: 1.06rem; }
+  .eyebrow { font-size: 0.8rem; }
+}
+.m-display { font-size: clamp(2.35rem, 11vw, 3rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 660; text-wrap: balance; }
+
+/* Swipe carousel: native scroll-snap, the next card peeks in */
+.rail {
+  display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: 20px; padding-inline: 20px;
+  margin-inline: -20px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { flex: 0 0 auto; scroll-snap-align: start; }
+.rail::after { content: ''; flex: 0 0 8px; }
+.rail-dots { display: flex; justify-content: center; gap: 6px; margin-top: 18px; }
+.rail-dots i { height: 6px; width: 6px; border-radius: 99px; background: var(--color-sand-2); transition: width 0.35s var(--ease-out), background-color 0.35s; }
+.rail-dots i[data-on='true'] { width: 22px; background: var(--color-ink); }
+
+/* Feature tile: Apple-style card with a zoomed-in detail */
+.tile { border-radius: 28px; overflow: hidden; position: relative; }
+.tile-img { border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px rgba(15, 15, 13, 0.06), 0 18px 40px -18px rgba(15, 15, 13, 0.35); background: #fff; }
+
+/* Phone mockup */
+.phone {
+  position: relative; border-radius: 46px; padding: 9px; background: #121211;
+  box-shadow: inset 0 0 0 1.5px #3a3936, 0 0 0 1px rgba(15, 15, 13, 0.08), 0 40px 80px -24px rgba(15, 66, 60, 0.45), 0 18px 30px -18px rgba(15, 15, 13, 0.4);
+}
+.phone-screen { border-radius: 37px; overflow: hidden; background: #efebe0; padding-top: 30px; }
+.phone::before { content: ''; position: absolute; z-index: 2; top: 17px; left: 50%; width: 30%; height: 22px; transform: translateX(-50%); border-radius: 99px; background: #121211; }
+html.js .float { animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { transform: translate3d(0, -8px, 0); } }
+
+/* Sticky WhatsApp bar (phones only): safe-area aware, slides in after the hero's own button */
+.cta-bar {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 35;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(251, 250, 247, 0.86); backdrop-filter: saturate(1.6) blur(18px); -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  box-shadow: 0 -1px 0 var(--color-line);
+  transition: transform 0.45s var(--ease-out), opacity 0.3s;
+}
+.cta-bar[data-show='false'] { transform: translate3d(0, 110%, 0); opacity: 0; pointer-events: none; }
+@media (min-width: 768px) { .cta-bar { display: none; } }
+@media (max-width: 767px) { .has-cta-bar { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } }
+
+/* ── Signature scroll: a bill photo becomes MedDesk's clean table ──────────
+   Default (no JS, or reduced motion): photo and result simply stack, nothing moves.
+   With JS the section is tall, the stage sticks, and the page sets one value, --p (0..1,
+   scroll progress). Every phase below is derived from it and drives transform/opacity only. */
+.scan-stage { display: grid; gap: 20px; }
+.scan-bill { position: relative; width: 100%; max-width: 300px; margin-inline: auto; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px rgba(15,15,13,.08), 0 24px 50px -20px rgba(15,15,13,.35); }
+.scan-line { display: none; }
+html.js .scan-run {
+  --p: 0;
+  --s: clamp(0, calc((var(--p) - 0.04) / 0.34), 1);   /* scan line sweeps the bill */
+  --a: clamp(0, calc((var(--p) - 0.34) / 0.2), 1);    /* bill steps back */
+  --b: clamp(0, calc((var(--p) - 0.44) / 0.16), 1);   /* result card arrives */
+  --t: clamp(0, calc((var(--p) - 0.8) / 0.08), 1);    /* total check */
+  height: 270vh;
+}
+html.js .scan-run .scan-sticky { position: sticky; top: 64px; height: calc(100svh - 64px - 76px - env(safe-area-inset-bottom)); display: flex; flex-direction: column; justify-content: center; gap: 22px; overflow: hidden; }
+html.js .scan-run .scan-stage { grid-template-areas: 'x'; place-items: center; gap: 0; }
+html.js .scan-run .scan-stage > * { grid-area: x; }
+html.js .scan-run .scan-bill {
+  width: 94%; max-width: 380px; will-change: transform, opacity;
+  transform: translate3d(0, calc(var(--a) * -30px), 0) rotate(calc(-2.5deg + var(--a) * 2.5deg)) scale(calc(1 - var(--a) * 0.22));
+  opacity: calc(1 - var(--b));
+}
+html.js .scan-run .scan-line {
+  display: block; position: absolute; inset-inline: 0; top: 0; height: 22%;
+  background: linear-gradient(180deg, rgba(20, 160, 130, 0) 0%, rgba(20, 160, 130, 0.28) 80%, rgba(15, 118, 110, 0.95) 100%);
+  transform: translate3d(0, calc(var(--s) * 455% - 100%), 0);
+  opacity: calc(clamp(0, calc(var(--s) * 10), 1) * (1 - var(--a)));
+}
+html.js .scan-run .scan-result {
+  width: 100%; will-change: transform, opacity; opacity: var(--b);
+  transform: translate3d(0, calc((1 - var(--b)) * 56px), 0) scale(calc(0.94 + var(--b) * 0.06));
+}
+html.js .scan-run .scan-row {
+  --r: clamp(0, calc((var(--p) - var(--st)) * 14), 1);
+  opacity: var(--r); transform: translate3d(calc((1 - var(--r)) * 18px), 0, 0);
+}
+html.js .scan-run .scan-total { opacity: var(--t); transform: scale(calc(0.9 + var(--t) * 0.1)); }
+html.js .scan-run .scan-caps { display: grid; grid-template-areas: 'x'; }
+html.js .scan-run .scan-caps > * { grid-area: x; }
+html.js .scan-run .cap-0 { opacity: calc(1 - clamp(0, calc((var(--p) - 0.26) * 14), 1)); }
+html.js .scan-run .cap-1 { opacity: min(clamp(0, calc((var(--p) - 0.3) * 14), 1), calc(1 - clamp(0, calc((var(--p) - 0.62) * 14), 1))); }
+html.js .scan-run .cap-2 { opacity: clamp(0, calc((var(--p) - 0.66) * 14), 1); }
 
 /* TODO chip: visible on purpose until the founder fills the value */
 .todo { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: #8a5a00; background: #fff6db; border: 1px dashed #e0b44c; padding: 3px 10px; border-radius: 999px; }
@@ -157,4 +265,20 @@ html.js [data-zoom].in { transform: none; opacity: 1; }
   html.js [data-reveal], html.js [data-zoom] { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
   .story-shot { transition: none !important; transform: none !important; }
   .btn { transition: none; }
+  html.js .pic img { transition: none; }
+  html.js .float { animation: none; }
+  .rail { scroll-behavior: auto; }
+  .cta-bar { transition: none; }
+}
+/* Reduced motion: the bill-scan section falls back to its static stacked layout. */
+@media (prefers-reduced-motion: reduce) {
+  html.js .scan-run { height: auto; }
+  html.js .scan-run .scan-sticky { position: static; height: auto; display: block; }
+  html.js .scan-run .scan-stage { display: grid; grid-template-areas: none; }
+  html.js .scan-run .scan-stage > * { grid-area: auto; }
+  html.js .scan-run .scan-stage { gap: 20px; }
+  html.js .scan-run .scan-bill, html.js .scan-run .scan-result, html.js .scan-run .scan-row, html.js .scan-run .scan-total, html.js .scan-run .scan-caps > * { opacity: 1; transform: none; }
+  html.js .scan-run .scan-line { display: none; }
+  html.js .scan-run .scan-caps { display: block; }
+  html.js .scan-run .scan-caps > :not(:last-child) { display: none; }
 }

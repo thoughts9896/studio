@@ -1,6 +1,6 @@
-import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton, shotSrcset, shotUrl } from '../components/ui'
-import { SHOTS } from '../shots.gen'
+import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton, Pic } from '../components/ui'
 import { Story } from '../components/Story'
+import { BillScan, BillingCard, Detail, ExpiryCard, FeatureRail, Phone, Rail } from '../components/mobile'
 import { PRICES } from '../site'
 
 const DEMO_MSG = 'Namaste STDN, mujhe MedDesk ka demo chahiye. Shop name:'
@@ -27,6 +27,8 @@ const steps = [
     text: 'Today’s sales, purchases, low stock and medicines expiring soon, all on the first screen you see.',
     shot: 'md-dashboard',
     alt: 'MedDesk dashboard (demo shop)',
+    short: 'Today’s sales, low stock and expiry, first thing.',
+    detail: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" />,
   },
   {
     kicker: 'Billing',
@@ -34,6 +36,8 @@ const steps = [
     text: 'Type a few letters, press Enter, set the quantity. The bill totals, GST and payment mode are on the same screen.',
     shot: 'md-billing',
     alt: 'MedDesk billing with three items in the bill',
+    short: 'Type a few letters, Enter, done.',
+    detail: <BillingCard />,
   },
   {
     kicker: 'Stock',
@@ -41,6 +45,8 @@ const steps = [
     text: 'Every batch with its expiry, plus near-expiry and dead-stock filters and stock value at cost and MRP.',
     shot: 'md-expiry',
     alt: 'MedDesk Expiring Soon list: medicine, batch, days left and status (demo shop)',
+    short: 'Every batch with its expiry, flagged early.',
+    detail: <ExpiryCard />,
   },
   {
     kicker: 'Reports',
@@ -48,14 +54,34 @@ const steps = [
     text: 'Sales, purchases, stock, expiry and GST reports, with Excel export for your CA.',
     shot: 'md-reports',
     alt: 'MedDesk sales report for this month',
+    short: 'Profit, GST and Excel for your CA.',
+    detail: <Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,316.97, margin 23.84% (demo shop)" />,
   },
 ]
 
 export default function MedDesk() {
   return (
     <>
+      {/* Phones: hero */}
+      <section className="overflow-hidden pt-7 md:hidden">
+        <div className="wrap">
+          <div className="flex items-center gap-2.5">
+            <span className="text-[0.95rem] font-semibold text-med">MedDesk</span>
+            <Badge tone="new">Now launching</Badge>
+          </div>
+          <h1 className="m-display mt-3">Your medical store, finally in order.</h1>
+          <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">Billing, stock, expiry and GST, plus AI that reads your supplier bills.</p>
+          <div className="mt-6"><WhatsAppButton label="WhatsApp pe demo book karein" message={DEMO_MSG} className="!h-[52px] w-full justify-center" /></div>
+          <div className="tile mt-9 bg-med-soft px-5 pb-7 pt-6">
+            <div className="mx-auto max-w-[250px] -rotate-2"><Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" /></div>
+            <div className="relative -mt-3"><ExpiryCard /></div>
+          </div>
+          <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk with a demo shop.</p>
+        </div>
+      </section>
+
       {/* Hero */}
-      <section className="overflow-hidden pt-6 md:pt-12 lg:pt-14">
+      <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
         <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
           <div>
             <Reveal className="flex items-center gap-3">
@@ -76,13 +102,23 @@ export default function MedDesk() {
             </Reveal>
           </div>
           <Reveal delay={160}>
-            <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager />
+            <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
           </Reveal>
         </div>
       </section>
 
+      {/* Phones: the bill-scan story */}
+      <section className="pt-16 md:hidden">
+        <div className="wrap">
+          <p className="eyebrow">AI bill scan</p>
+          <h2 className="h2 mt-3">Bill ki photo lo. Baaki MedDesk sambhaal lega.</h2>
+          <div className="mt-4"><BillScan /></div>
+          <p className="mt-6 text-[0.95rem] text-ink-2">Anything unclear is marked yellow for you to check. Also reads PDF, Excel and CSV.</p>
+        </div>
+      </section>
+
       {/* Bill scan */}
-      <section className="pt-20 md:pt-28">
+      <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <SectionHead
             eyebrow="AI bill scan"
@@ -93,10 +129,7 @@ export default function MedDesk() {
             <Reveal>
               <figure>
                 <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_rgba(15,15,13,0.08),0_20px_50px_-15px_rgba(15,15,13,0.25)] [transform:rotate(-1.5deg)]">
-                  <picture>
-                    <source type="image/avif" srcSet={shotSrcset('bill', [700, 1200], SHOTS.bill.w, SHOTS.bill.v, 'avif')} sizes="(min-width: 1024px) 400px, 92vw" />
-                    <img src={shotUrl('bill', 1200, SHOTS.bill.v, 'webp')} srcSet={shotSrcset('bill', [700, 1200], SHOTS.bill.w, SHOTS.bill.v, 'webp')} sizes="(min-width: 1024px) 400px, 92vw" width={SHOTS.bill.w} height={SHOTS.bill.h} loading="lazy" decoding="async" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" className="block h-auto w-full" />
-                  </picture>
+                  <Pic name="bill" sizes="(min-width: 1024px) 400px, 92vw" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" />
                 </div>
                 <figcaption className="mt-4 text-[0.82rem] text-ink-3">The photo: a synthetic test bill.</figcaption>
               </figure>
@@ -128,23 +161,43 @@ export default function MedDesk() {
       </section>
 
       {/* Story */}
-      <section className="pt-20 md:pt-28">
+      <section className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Inside MedDesk" title="Counter, shelf and books. Sorted." />
-          <Story steps={steps} />
+          <Story steps={steps} tone="med" />
         </div>
       </section>
 
       {/* Features */}
-      <section id="features" className="pt-20 md:pt-28">
+      <section id="features" className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Features" title="Built around a real medical store’s day." />
-          <div className="mt-12"><FeatureList items={features} /></div>
+          <div className="mt-7 md:hidden"><FeatureRail items={features} tone="med" /></div>
+          <div className="mt-12 hidden md:block"><FeatureList items={features} /></div>
+        </div>
+      </section>
+
+      {/* Phones: Owner View, the real phone screens (demo shop) */}
+      <section className="pt-16 md:hidden">
+        <div className="wrap">
+          <div className="tile bg-med-soft px-5 pb-7 pt-6">
+            <Badge tone="soon">Coming soon</Badge>
+            <h2 className="mt-4 text-[1.75rem] font-semibold leading-tight tracking-[-0.03em]">Owner View. Your shop, on your phone.</h2>
+            <p className="mt-2 text-[1rem] leading-snug text-ink-2">Sales, bills, stock and dues, from anywhere.</p>
+            <div className="mt-6">
+              <Rail label="Owner View screens" width="w-[66%]">
+                <Phone name="ov-today" alt="Owner View, Today: net sales, bills and how customers paid (demo shop)" />
+                <Phone name="ov-stock" alt="Owner View, Stock: medicines that need ordering (demo shop)" />
+                <Phone name="ov-dues" alt="Owner View, Dues: what the shop owes suppliers and is owed (demo shop)" />
+              </Rail>
+            </div>
+            <div className="mt-6"><WhatsAppButton label="Notify me" message="Hi STDN, please tell me when MedDesk Owner View is ready." className="w-full justify-center" /></div>
+          </div>
         </div>
       </section>
 
       {/* Owner view */}
-      <section className="pt-20 md:pt-28">
+      <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <Reveal>
             <div className="grid gap-8 rounded-[28px] bg-ink p-8 text-paper md:grid-cols-[1fr_auto] md:items-center md:p-14">
@@ -162,10 +215,10 @@ export default function MedDesk() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="pt-20 md:pt-28">
+      <section id="pricing" className="pt-16 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Pricing" title="Simple pricing for your store." />
-          <Reveal className="mt-10 rounded-[22px] border border-line p-8 md:p-10">
+          <Reveal className="mt-8 rounded-[22px] border border-line p-6 md:mt-10 md:p-10">
             {PRICES.meddesk ? (
               <p className="h3">{PRICES.meddesk}</p>
             ) : (

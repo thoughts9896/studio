@@ -9,7 +9,11 @@
     <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js');
+      // Fade images in over their blurred placeholder as each one finishes loading.
+      addEventListener('load', function (e) { var t = e.target; if (t.tagName === 'IMG') t.classList.add('ok') }, true);
+      addEventListener('error', function (e) { var t = e.target; if (t.tagName === 'IMG') t.classList.add('ok') }, true);
+      addEventListener('DOMContentLoaded', function () { document.querySelectorAll('img').forEach(function (i) { if (i.complete) i.classList.add('ok') }) })</script>
     <!--app-head-->
   </head>
   <body>

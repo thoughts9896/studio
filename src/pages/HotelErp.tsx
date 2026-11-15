@@ -1,4 +1,5 @@
 import { Badge } from '../components/ui'
+import { Detail } from '../components/mobile'
 import { PRICES } from '../site'
 import { ProductPage } from './ProductPage'
 
@@ -7,6 +8,9 @@ export default function HotelErp() {
     <ProductPage
       name="Hotel ERP"
       badge={<Badge>Live</Badge>}
+      tone="htl"
+      shortLede="Check-ins, the room board, table orders, kitchen tickets and GST bills."
+      heroDetail={<div className="mx-auto max-w-[260px]"><Detail name="d-hotel-room" alt="Hotel ERP room tile: Room 101 occupied, guest, nights and estimated bill (demo data)" /></div>}
       title="Rooms, restaurant and billing. One desk."
       lede="A Windows app for hotels with a restaurant: check-ins, the room board, table orders, kitchen tickets and GST-correct bills."
       heroShot="hotel-rooms"
@@ -14,10 +18,10 @@ export default function HotelErp() {
       heroNote="Shown with demo guests and bookings."
       storyTitle="Front desk to checkout."
       steps={[
-        { kicker: 'Front desk', title: 'Know every room at a glance.', text: 'Occupied, available or in maintenance. Each room shows the guest, the nights so far and the running bill.', shot: 'hotel-rooms', alt: 'Hotel ERP rooms with guest and estimated bill' },
+        { kicker: 'Front desk', title: 'Know every room at a glance.', text: 'Occupied, available or in maintenance. Each room shows the guest, the nights so far and the running bill.', shot: 'hotel-rooms', alt: 'Hotel ERP rooms with guest and estimated bill', short: 'Guest, nights and running bill on every room.', detail: <Detail name="d-hotel-room" alt="Hotel ERP room tile with guest and estimated bill (demo data)" /> },
         { kicker: 'Bookings', title: 'Check-in in a minute.', text: 'Record guests with their ID proof, take an advance and check out with the bill made for you.', shot: 'hotel-bookings', alt: 'Hotel ERP active bookings with advances' },
-        { kicker: 'Restaurant', title: 'Tables, orders, kitchen tickets.', text: 'A live floor plan of tables and room service. Orders go to the kitchen as tickets and can be moved to a guest’s room bill.', shot: 'hotel-restaurant', alt: 'Hotel ERP restaurant floor plan with occupied tables' },
-        { kicker: 'Dashboard', title: 'The day, in numbers.', text: 'Rooms, occupancy, today’s revenue and open orders, plus a day report when you close.', shot: 'hotel-dashboard', alt: 'Hotel ERP dashboard' },
+        { kicker: 'Restaurant', title: 'Tables, orders, kitchen tickets.', text: 'A live floor plan of tables and room service. Orders go to the kitchen as tickets and can be moved to a guest’s room bill.', shot: 'hotel-restaurant', alt: 'Hotel ERP restaurant floor plan with occupied tables', short: 'A live floor plan. Orders go to the kitchen.', detail: <Detail name="d-hotel-tables" alt="Hotel ERP restaurant tables: available and occupied, with open order counts (demo data)" /> },
+        { kicker: 'Dashboard', title: 'The day, in numbers.', text: 'Rooms, occupancy, today’s revenue and open orders, plus a day report when you close.', shot: 'hotel-dashboard', alt: 'Hotel ERP dashboard', short: 'Occupancy, revenue and open orders.', detail: <Detail name="d-hotel-occupied" alt="Hotel ERP: 7 rooms occupied, 54% occupancy (demo data)" /> },
       ]}
       featuresTitle="Made for the way a hotel actually runs."
       features={[

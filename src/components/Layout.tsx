@@ -4,6 +4,7 @@ import { ArrowRight, Menu, X } from 'lucide-react'
 import { Logo, WhatsAppIcon } from './ui'
 import { SITE, waLink } from '../site'
 import { useReveal } from '../hooks'
+import { MobileCtaBar } from './mobile'
 
 const NAV = [
   { to: '/meddesk', label: 'MedDesk' },
@@ -18,10 +19,12 @@ function LaunchBanner() {
     <Link to="/meddesk" className="group block bg-ink text-paper">
       <div className="wrap flex h-11 items-center justify-center gap-2 text-[0.85rem]">
         <span className="rounded-full bg-ember px-2 py-0.5 text-[0.75rem] font-semibold tracking-wide text-white">NEW</span>
-        <span className="truncate">
+        <span className="sm:hidden"><span className="font-semibold">MedDesk</span><span className="text-paper/75"> reads supplier bills</span></span>
+        <span className="hidden truncate sm:inline">
           <span className="font-semibold">MedDesk</span>
           <span className="text-paper/75"> — pharmacy software that reads your supplier bills.</span>
         </span>
+        <ArrowRight size={14} className="shrink-0 sm:hidden" aria-hidden="true" />
         <span className="hidden items-center gap-1 font-medium text-paper sm:inline-flex">
           See it <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
         </span>
@@ -60,7 +63,7 @@ function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink hidden !h-11 !px-4 text-[0.9rem] sm:inline-flex">
+          <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink hidden !h-11 !px-4 md:inline-flex">
             <WhatsAppIcon size={16} /> WhatsApp
           </a>
           <button
@@ -96,9 +99,9 @@ function Nav() {
 function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="border-t border-line bg-sand/60">
-      <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
+    <footer className="has-cta-bar border-t border-line bg-sand/60">
+      <div className="wrap grid grid-cols-2 gap-x-6 gap-y-8 py-12 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-12 md:py-16">
+        <div className="col-span-2 md:col-span-1">
           <Logo />
           <p className="mt-4 max-w-xs text-ink-2">Intelligent software for the businesses that run India.</p>
           <a href={waLink()} target="_blank" rel="noopener" className="mt-4 inline-flex min-h-11 items-center gap-2 font-medium text-ink hover:text-ember">
@@ -130,21 +133,6 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
   )
 }
 
-function WhatsAppFab() {
-  return (
-    <a
-      href={waLink()}
-      target="_blank"
-      rel="noopener"
-      aria-label="Chat with STDN on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-14 lg:hidden items-center gap-2 rounded-full bg-wa pl-4 pr-5 text-white shadow-[0_10px_30px_-6px_rgba(20,113,58,0.55)] transition-transform hover:scale-[1.03] active:scale-95"
-    >
-      <WhatsAppIcon size={24} />
-      <span className="text-[0.95rem] font-semibold">Chat</span>
-    </a>
-  )
-}
-
 export function Layout({ children }: { children: ReactNode }) {
   const { pathname, hash } = useLocation()
   useReveal(pathname)
@@ -162,7 +150,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <Nav />
       <main id="main">{children}</main>
       <Footer />
-      <WhatsAppFab />
+      <MobileCtaBar />
     </>
   )
 }

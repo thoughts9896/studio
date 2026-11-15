@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowLink, FinalCta, Reveal, SectionHead, Shot, WhatsAppButton } from '../components/ui'
+import { ScanResult } from '../components/mobile'
 
 const MSG = 'Hi STDN, I want to build'
 
@@ -75,7 +76,8 @@ export default function Services() {
       <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Proof" title="Our own products are the portfolio." lede="Each one solves a problem you may have too: reading documents, taking payments, running offline, automating reminders." />
-          <div className="mt-14">
+          <div className="tile mt-8 bg-med-soft p-5 md:hidden"><ScanResult /></div>
+          <div className="mt-14 hidden md:block">
             <Shot name="md-scan" alt="MedDesk reading a supplier bill with AI and matching it to the printed total" zoom />
           </div>
           <ul className="mt-12 grid gap-6 md:grid-cols-3">
