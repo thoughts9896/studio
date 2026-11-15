@@ -18,23 +18,23 @@ export function Story({ steps }: { steps: StoryStep[] }) {
             key={s.title}
             data-step={i}
             ref={(el) => { refs.current[i] = el }}
-            className="flex flex-col justify-center py-10 lg:min-h-[78vh] lg:py-0"
+            className="flex flex-col justify-center py-10 lg:min-h-[62vh] lg:py-0"
           >
             <p className="eyebrow mb-3">{s.kicker}</p>
             <h3 className={`h3 transition-colors duration-500 ${active === i ? 'text-ink' : 'lg:text-ink-3'}`}>{s.title}</h3>
             <p className="mt-4 max-w-md text-[1.05rem] leading-relaxed text-ink-2">{s.text}</p>
             <div className="mt-8 lg:hidden">
-              <Shot name={s.shot} alt={s.alt} sizes="100vw" zoom phoneCrop={s.shot === 'md-scan' || s.shot === 'md-dashboard'} />
+              <Shot name={s.shot} alt={s.alt} sizes="100vw" zoom />
             </div>
           </li>
         ))}
       </ol>
       <div className="hidden lg:block">
         <div className="sticky top-[calc(50vh-17rem)]">
-          <div className="relative" style={{ aspectRatio: '3024 / 1950' }}>
+          <div className="grid items-center">
             {steps.map((s, i) => (
-              <div key={s.shot} className="story-shot absolute inset-0" data-active={active === i ? 'true' : 'false'} aria-hidden={active !== i}>
-                <Shot name={s.shot} alt={s.alt} sizes="(min-width: 1200px) 680px, 58vw" />
+              <div key={s.shot} className="story-shot [grid-area:1/1]" data-active={active === i ? 'true' : 'false'} aria-hidden={active !== i}>
+                <Shot name={s.shot} alt={s.alt} sizes="(min-width: 1200px) 680px, 58vw" phoneCrop={false} />
               </div>
             ))}
           </div>

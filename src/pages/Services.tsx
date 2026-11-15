@@ -39,7 +39,7 @@ const work = [
 export default function Services() {
   return (
     <>
-      <section className="pt-14 md:pt-24">
+      <section className="pt-10 md:pt-16">
         <div className="wrap">
           <Reveal><p className="eyebrow">Custom software</p></Reveal>
           <Reveal delay={70}><h1 className="display mt-5 max-w-[14ch]">Your software, built properly.</h1></Reveal>
@@ -54,7 +54,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="pt-24 md:pt-36">
+      <section className="pt-16 md:pt-24">
         <div className="wrap divide-y divide-line border-y border-line">
           {offers.map((o) => (
             <div key={o.id} id={o.id} className="grid gap-6 py-12 md:grid-cols-[1fr_1.2fr] md:gap-16 md:py-16">
@@ -72,7 +72,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="pt-28 md:pt-40">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Proof" title="Our own products are the portfolio." lede="Each one solves a problem you may have too: reading documents, taking payments, running offline, automating reminders." />
           <div className="mt-14">
@@ -91,7 +91,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="pt-28 md:pt-40">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="How we work" title="Clear steps. No surprises." />
           <ol className="mt-14 grid gap-10 md:grid-cols-4">

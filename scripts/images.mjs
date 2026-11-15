@@ -1,63 +1,70 @@
-// Builds web-ready product shots from ../raw-captures (demo data only) into public/shots.
+// Builds web-ready product shots from ../raw-captures (demo data only) into public/shots,
+// and writes src/shots.gen.ts with each shot's pixel size (so <img> reserves space, no CLS).
 // Usage: node scripts/images.mjs
+//
+// Every shot is cropped to the app's content area: no sidebars (user names, versions,
+// client branding) and no dev-only panels. Raw captures are 3024x1890 (1512x945 @2x).
 import sharp from 'sharp'
 import fs from 'node:fs'
 import path from 'node:path'
 
 const RAW = path.resolve('../raw-captures')
 const OUT = path.resolve('public/shots')
+fs.rmSync(OUT, { recursive: true, force: true })
 fs.mkdirSync(OUT, { recursive: true })
 
+const box = (x0, y0, x1, y1) => ({ left: x0, top: y0, width: x1 - x0, height: y1 - y0 })
+
+// [source, name, desktop crop (null = full frame), phone crop (optional)]
 const shots = [
-  ['meddesk/dashboard.png', 'md-dashboard'],
-  ['meddesk/sale-cart.png', 'md-billing'],
-  ['meddesk/scan-3.png', 'md-scan'],
-  ['meddesk/stock.png', 'md-stock'],
-  ['meddesk/revenue.png', 'md-pnl'],
-  ['meddesk/reports.png', 'md-reports'],
-  ['meddesk/sales-history.png', 'md-history'],
-  ['ashoka/dashboard.png', 'hotel-dashboard', 'blurBrand'],
-  ['ashoka/rooms.png', 'hotel-rooms', 'blurBrand'],
-  ['ashoka/restaurant.png', 'hotel-restaurant', 'blurBrand'],
-  ['ashoka/bookings.png', 'hotel-bookings', 'blurBrand'],
-  ['school/dashboard.png', 'school-dashboard'],
-  ['school/ledgers.png', 'school-ledgers'],
-  ['school/payments.png', 'school-payments'],
-  ['school/students.png', 'school-students'],
-  ['school/reports.png', 'school-reports'],
+  // Hero: dashboard content (KPIs, low stock, expiring soon); phones get the expiry list.
+  ['meddesk/dashboard.png', 'md-dashboard', box(424, 90, 3024, 1230), box(1700, 560, 3000, 1205)],
+  ['meddesk/dashboard.png', 'md-expiry', box(1700, 560, 3000, 1205)],
+  // Scan result: the total check and the extracted table only (no stats banner, no debug panel).
+  ['meddesk/scan-3.png', 'md-scan', box(330, 441, 2690, 1436), box(330, 441, 1640, 1436)],
+  ['meddesk/sale-cart.png', 'md-billing', box(424, 90, 3024, 1290), box(424, 60, 1560, 800)],
+  ['meddesk/stock.png', 'md-stock', box(424, 90, 3024, 1300), box(424, 350, 2000, 1370)],
+  ['meddesk/revenue.png', 'md-pnl', box(424, 90, 3024, 1500), box(424, 270, 2000, 970)],
+  ['meddesk/reports.png', 'md-reports', box(424, 90, 3024, 1500)],
+  ['ashoka/dashboard.png', 'hotel-dashboard', box(450, 110, 3024, 1890)],
+  ['ashoka/rooms.png', 'hotel-rooms', box(450, 110, 3024, 1500), box(450, 250, 1750, 1270)],
+  ['ashoka/restaurant.png', 'hotel-restaurant', box(450, 110, 3024, 1500)],
+  ['ashoka/bookings.png', 'hotel-bookings', box(450, 110, 3024, 1100)],
+  ['school/dashboard.png', 'school-dashboard', box(450, 110, 3024, 1560), box(450, 150, 1780, 1170)],
+  ['school/ledgers.png', 'school-ledgers', box(450, 110, 3024, 1560)],
+  ['school/payments.png', 'school-payments', box(450, 110, 3024, 1560)],
+  ['school/students.png', 'school-students', box(450, 110, 3024, 1560)],
 ]
 
-async function brandBlur(input) {
-  // Heavily blur the hotel's name in the sidebar header (client name, not ours to show).
-  const region = { left: 20, top: 20, width: 400, height: 110 }
-  const patch = await sharp(input).extract(region).blur(18).toBuffer()
-  return sharp(input).composite([{ input: patch, left: region.left, top: region.top }]).toBuffer()
+async function emit(buf, base, widths) {
+  const { width } = await sharp(buf).metadata()
+  for (const w of widths) {
+    const img = sharp(buf).resize({ width: Math.min(w, width) })
+    await img.clone().avif({ quality: 58, effort: 6 }).toFile(path.join(OUT, `${base}-${w}.avif`))
+    await img.clone().webp({ quality: 82 }).toFile(path.join(OUT, `${base}-${w}.webp`))
+  }
 }
 
-for (const [src, name, fx] of shots) {
-  let buf = fs.readFileSync(path.join(RAW, src))
-  if (fx === 'blurBrand') buf = await brandBlur(buf)
-  for (const w of [960, 1600, 2400]) {
-    const img = sharp(buf).resize({ width: w })
-    await img.clone().avif({ quality: 55, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.avif`))
-    await img.clone().webp({ quality: 78 }).toFile(path.join(OUT, `${name}-${w}.webp`))
+const sizes = {}
+for (const [src, name, crop, phone] of shots) {
+  const raw = fs.readFileSync(path.join(RAW, src))
+  const desk = crop ? await sharp(raw).extract(crop).toBuffer() : raw
+  const m = await sharp(desk).metadata()
+  sizes[name] = { w: m.width, h: m.height }
+  await emit(desk, name, [960, 1600, 2400])
+  if (phone) {
+    const pb = await sharp(raw).extract(phone).toBuffer()
+    sizes[name].mw = phone.width
+    sizes[name].mh = phone.height
+    await emit(pb, `${name}-m`, [800, 1200])
   }
-  console.log('ok', name)
+  console.log('ok', name, sizes[name])
 }
 
-// Tighter crops for phones, where a full-width desktop screenshot is too small to read.
-const crops = [
-  ['meddesk/dashboard.png', 'md-dashboard', { left: 420, top: 110, width: 1600, height: 1000 }],
-  ['meddesk/scan-3.png', 'md-scan', { left: 330, top: 290, width: 1600, height: 1000 }],
-]
-for (const [src, name, region] of crops) {
-  const buf = await sharp(fs.readFileSync(path.join(RAW, src))).extract(region).toBuffer()
-  for (const w of [800, 1200]) {
-    await sharp(buf).resize({ width: w }).avif({ quality: 55, effort: 6 }).toFile(path.join(OUT, `${name}-m${w}.avif`))
-    await sharp(buf).resize({ width: w }).webp({ quality: 78 }).toFile(path.join(OUT, `${name}-m${w}.webp`))
-  }
-  console.log('ok crop', name)
-}
+fs.writeFileSync(
+  path.resolve('src/shots.gen.ts'),
+  `// Generated by scripts/images.mjs. Do not edit.\nexport const SHOTS: Record<string, { w: number; h: number; mw?: number; mh?: number }> = ${JSON.stringify(sizes, null, 2)}\n`,
+)
 
 // The synthetic test bill used for the scan demo (made-up supplier, marked "synthetic test data").
 const bill = '/Users/apple/MedDeskData/synthetic-bills/S01-busy-intra.jpg'

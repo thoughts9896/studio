@@ -38,8 +38,8 @@ const steps = [
     kicker: 'Stock',
     title: 'Expiry se pehle pata chalega.',
     text: 'Every batch with its expiry, plus near-expiry and dead-stock filters and stock value at cost and MRP.',
-    shot: 'md-stock',
-    alt: 'MedDesk stock health screen',
+    shot: 'md-expiry',
+    alt: 'MedDesk Expiring Soon list: medicine, batch, days left and status (demo shop)',
   },
   {
     kicker: 'Reports',
@@ -54,39 +54,41 @@ export default function MedDesk() {
   return (
     <>
       {/* Hero */}
-      <section className="overflow-hidden pt-14 md:pt-24">
-        <div className="wrap text-center">
-          <Reveal className="flex items-center justify-center gap-3">
-            <span className="text-[0.95rem] font-semibold">MedDesk</span>
-            <Badge tone="new">Now launching</Badge>
+      <section className="overflow-hidden pt-6 md:pt-12 lg:pt-14">
+        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
+          <div>
+            <Reveal className="flex items-center gap-3">
+              <span className="text-[0.95rem] font-semibold">MedDesk</span>
+              <Badge tone="new">Now launching</Badge>
+            </Reveal>
+            <Reveal delay={70}>
+              <h1 className="display mt-4 max-w-[13ch] !text-[clamp(2rem,2.6vw+1.35rem,4rem)]">Your medical store, finally in order.</h1>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-4 max-w-xl text-[1rem] leading-relaxed text-ink-2 sm:mt-5 sm:text-[1.06rem] md:text-[1.18rem]">
+                Billing, stock, expiry, purchases and GST in one fast Windows app, plus an AI that reads your supplier’s bill so you don’t have to type it.
+              </p>
+            </Reveal>
+            <Reveal delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
+              <WhatsAppButton label="WhatsApp pe demo book karein" short="Demo book karein" message={DEMO_MSG} />
+              <a href="#features" className="btn btn-ghost"><span className="sm:hidden">Explore</span><span className="hidden sm:inline">See features</span></a>
+            </Reveal>
+          </div>
+          <Reveal delay={160}>
+            <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager />
           </Reveal>
-          <Reveal delay={70}>
-            <h1 className="display mx-auto mt-5 max-w-[15ch]">Your medical store, finally in order.</h1>
-          </Reveal>
-          <Reveal delay={140}>
-            <p className="lede mx-auto mt-7 max-w-2xl">
-              Billing, stock, expiry, purchases and GST in one fast Windows app, plus an AI that reads your supplier’s bill so you don’t have to type it.
-            </p>
-          </Reveal>
-          <Reveal delay={210} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <WhatsAppButton label="WhatsApp pe demo book karein" message={DEMO_MSG} />
-            <a href="#features" className="btn btn-ghost">See features</a>
-          </Reveal>
-        </div>
-        <div className="wrap mt-16 md:mt-24">
-          <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" zoom eager phoneCrop />
         </div>
       </section>
 
       {/* Bill scan */}
-      <section className="pt-32 md:pt-44">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead
             eyebrow="AI bill scan"
             title={<>Bill ki photo lo.<br />Baaki MedDesk sambhaal lega.</>}
             lede="Typing a 30-line supplier bill takes time and invites mistakes. With MedDesk you take a photo and check the result."
           />
-          <div className="mt-16 grid items-center gap-8 lg:grid-cols-[minmax(0,4fr)_auto_minmax(0,7fr)]">
+          <div className="mt-12 grid items-center gap-8 lg:grid-cols-[minmax(0,3fr)_auto_minmax(0,8fr)]">
             <Reveal>
               <figure>
                 <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_rgba(15,15,13,0.08),0_20px_50px_-15px_rgba(15,15,13,0.25)] [transform:rotate(-1.5deg)]">
@@ -101,12 +103,12 @@ export default function MedDesk() {
             <Reveal delay={100} className="hidden text-[2rem] text-ink-3 lg:block" aria-hidden="true">→</Reveal>
             <Reveal delay={160}>
               <figure>
-                <Shot name="md-scan" alt="MedDesk Import Bill: 5 items found, lines add up to the bill’s printed grand total of ₹3291" sizes="(min-width: 1024px) 700px, 92vw" phoneCrop />
-                <figcaption className="mt-4 text-[0.82rem] text-ink-3">The result in MedDesk: 5 lines read in 5.8 seconds, totals matched.</figcaption>
+                <Shot name="md-scan" alt="MedDesk Import Bill: 5 items found, lines add up to the bill’s printed grand total of ₹3291" sizes="(min-width: 1024px) 780px, 92vw" />
+                <figcaption className="mt-4 text-[0.82rem] text-ink-3">The result in MedDesk: 5 lines read, and they add up to the printed total.</figcaption>
               </figure>
             </Reveal>
           </div>
-          <ul className="mt-16 grid gap-8 md:grid-cols-3">
+          <ul className="mt-12 grid gap-8 md:grid-cols-3">
             {[
               ['Reads every column', 'Medicine, batch, expiry, quantity, pack, free, MRP, rate, GST and discount, for every line.'],
               ['Checks the maths', 'The lines are matched against the bill’s printed grand total before you save.'],
@@ -125,7 +127,7 @@ export default function MedDesk() {
       </section>
 
       {/* Story */}
-      <section className="pt-28 md:pt-40">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Inside MedDesk" title="Counter, shelf and books. Sorted." />
           <Story steps={steps} />
@@ -133,15 +135,15 @@ export default function MedDesk() {
       </section>
 
       {/* Features */}
-      <section id="features" className="pt-28 md:pt-40">
+      <section id="features" className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Features" title="Built around a real medical store’s day." />
-          <div className="mt-16"><FeatureList items={features} /></div>
+          <div className="mt-12"><FeatureList items={features} /></div>
         </div>
       </section>
 
       {/* Owner view */}
-      <section className="pt-28 md:pt-40">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <Reveal>
             <div className="grid gap-8 rounded-[28px] bg-ink p-8 text-paper md:grid-cols-[1fr_auto] md:items-center md:p-14">
@@ -159,7 +161,7 @@ export default function MedDesk() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="pt-28 md:pt-40">
+      <section id="pricing" className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Pricing" title="Simple pricing for your store." />
           <Reveal className="mt-10 rounded-[22px] border border-line p-8 md:p-10">
@@ -175,7 +177,7 @@ export default function MedDesk() {
       </section>
 
       {/* FAQ */}
-      <section className="pt-28 md:pt-40">
+      <section className="pt-20 md:pt-28">
         <div className="wrap max-w-3xl">
           <SectionHead title="Questions" />
           <div className="mt-10 divide-y divide-line border-y border-line">
@@ -187,7 +189,7 @@ export default function MedDesk() {
               ['Which bills can it read?', 'Printed supplier invoices as a photo or PDF, plus Excel and CSV files. Anything unclear is marked for you to check.'],
             ].map(([q, a]) => (
               <details key={q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[1.08rem] font-semibold">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 text-[1.08rem] font-semibold">
                   {q}
                   <span className="text-ink-3 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                 </summary>

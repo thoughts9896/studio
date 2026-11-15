@@ -10,7 +10,7 @@ const items = [
 export default function Products() {
   return (
     <>
-      <section className="pt-14 md:pt-24">
+      <section className="pt-10 md:pt-16">
         <div className="wrap">
           <Reveal><p className="eyebrow">Products</p></Reveal>
           <Reveal delay={70}><h1 className="display mt-5 max-w-[14ch]">Software that runs real businesses.</h1></Reveal>
@@ -18,7 +18,7 @@ export default function Products() {
         </div>
       </section>
       <section className="pt-20 md:pt-28">
-        <div className="wrap space-y-24 md:space-y-36">
+        <div className="wrap space-y-16 md:space-y-24">
           {items.map((it) => (
             <div key={it.name} className="grid items-center gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
               <Reveal>

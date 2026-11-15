@@ -4,7 +4,7 @@ import { SITE } from '../site'
 export default function About() {
   return (
     <>
-      <section className="pt-14 md:pt-24">
+      <section className="pt-10 md:pt-16">
         <div className="wrap">
           <Reveal><p className="eyebrow">About</p></Reveal>
           <Reveal delay={70}><h1 className="display mt-5 max-w-[15ch]">Serious software for everyday business.</h1></Reveal>
@@ -16,7 +16,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="pt-24 md:pt-36">
+      <section className="pt-16 md:pt-24">
         <div className="wrap grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <Reveal><h2 className="h2">Products and people, together.</h2></Reveal>
           <Reveal delay={80}>
@@ -29,7 +29,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="pt-24 md:pt-36">
+      <section className="pt-16 md:pt-24">
         <div className="wrap">
           <div className="grid gap-px overflow-hidden rounded-[22px] bg-line md:grid-cols-3">
             {[

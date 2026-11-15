@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { waLink } from '../site'
+import { SHOTS } from '../shots.gen'
 
 /** The STDN mark: a balanced taijitu (yin-yang). */
 export function Mark({ size = 28, className = '' }: { size?: number; className?: string }) {
@@ -32,10 +33,11 @@ export function WhatsAppIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-export function WhatsAppButton({ label = 'Talk to STDN on WhatsApp', message, className = '' }: { label?: string; message?: string; className?: string }) {
+export function WhatsAppButton({ label = 'Talk to STDN on WhatsApp', short, message, className = '' }: { label?: string; short?: string; message?: string; className?: string }) {
   return (
     <a href={waLink(message)} target="_blank" rel="noopener" className={`btn btn-ink ${className}`}>
-      <WhatsAppIcon /> {label}
+      <WhatsAppIcon />
+      {short ? <><span className="sm:hidden">{short}</span><span className="hidden sm:inline">{label}</span></> : label}
     </a>
   )
 }
@@ -63,26 +65,33 @@ export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }:
   )
 }
 
-const SHOT_W = 3024
-const SHOT_H = 1890
-
-/** A product screenshot in a light window frame, AVIF/WebP, responsive. */
-export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = false, className = '' }: {
+export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = true, className = '' }: {
   name: string; alt: string; sizes?: string; zoom?: boolean; eager?: boolean; frame?: boolean; phoneCrop?: boolean; className?: string
 }) {
-  const set = (ext: string) => [960, 1600, 2400].map((w) => `/shots/${name}-${w}.${ext} ${w}w`).join(', ')
-  const crop = (ext: string) => [800, 1200].map((w) => `/shots/${name}-m${w}.${ext} ${w}w`).join(', ')
+  const dim = SHOTS[name] ?? { w: 1600, h: 1000 }
+  const useCrop = phoneCrop && !!dim.mw
+  // Each file is resized to min(width, source width), so describe it by its real width.
+  const srcset = (base: string, widths: number[], max: number, ext: string) => {
+    const out: string[] = []
+    for (const w of widths) {
+      if (w < max) out.push(`/shots/${base}-${w}.${ext} ${w}w`)
+      else { out.push(`/shots/${base}-${w}.${ext} ${max}w`); break }
+    }
+    return out.join(', ')
+  }
+  const set = (ext: string) => srcset(name, [960, 1600, 2400], dim.w, ext)
+  const crop = (ext: string) => srcset(`${name}-m`, [800, 1200], dim.mw ?? 1200, ext)
   const pic = (
     <picture>
-      {phoneCrop && <source media="(max-width: 640px)" type="image/avif" srcSet={crop('avif')} sizes="100vw" width={1600} height={1000} />}
-      {phoneCrop && <source media="(max-width: 640px)" type="image/webp" srcSet={crop('webp')} sizes="100vw" width={1600} height={1000} />}
+      {useCrop && <source media="(max-width: 640px)" type="image/avif" srcSet={crop('avif')} sizes="100vw" width={dim.mw} height={dim.mh} />}
+      {useCrop && <source media="(max-width: 640px)" type="image/webp" srcSet={crop('webp')} sizes="100vw" width={dim.mw} height={dim.mh} />}
       <source type="image/avif" srcSet={set('avif')} sizes={sizes} />
       <source type="image/webp" srcSet={set('webp')} sizes={sizes} />
       <img
         src={`/shots/${name}-1600.webp`}
         alt={alt}
-        width={SHOT_W}
-        height={SHOT_H}
+        width={dim.w}
+        height={dim.h}
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         {...(eager ? { fetchPriority: 'high' as const } : {})}
@@ -144,7 +153,7 @@ export function FeatureList({ items, cols = 3 }: { items: { title: string; text:
 
 export function FinalCta({ title = 'Have something to build?', text = 'Tell us on WhatsApp. The STDN team will get back to you.', message }: { title?: string; text?: string; message?: string }) {
   return (
-    <section className="py-28 md:py-40">
+    <section className="py-20 md:py-28">
       <div className="wrap text-center">
         <Reveal><Mark size={44} className="mx-auto mb-8" /></Reveal>
         <Reveal delay={60}><h2 className="h2 mx-auto max-w-3xl">{title}</h2></Reveal>

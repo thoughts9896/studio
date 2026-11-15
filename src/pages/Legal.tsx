@@ -4,7 +4,7 @@ import { SITE } from '../site'
 
 function Doc({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
   return (
-    <section className="pb-28 pt-14 md:pt-24">
+    <section className="pb-20 pt-10 md:pt-16">
       <div className="wrap max-w-3xl">
         <p className="eyebrow">Legal</p>
         <h1 className="h2 mt-4">{title}</h1>

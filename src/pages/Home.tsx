@@ -80,34 +80,36 @@ const proof = [
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="overflow-hidden pt-16 md:pt-28">
-        <div className="wrap text-center">
-          <Reveal><p className="eyebrow">STDN Technologies</p></Reveal>
-          <Reveal delay={70}>
-            <h1 className="display mx-auto mt-5 max-w-[16ch]">Intelligent software for the businesses that run India.</h1>
+      {/* Hero: text, both actions and a product visual all sit above the fold */}
+      <section className="overflow-hidden pt-6 md:pt-12 lg:pt-14">
+        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
+          <div>
+            <Reveal className="hidden sm:block"><p className="eyebrow">STDN Technologies</p></Reveal>
+            <Reveal delay={70}>
+              <h1 className="display sm:mt-4 max-w-[15ch] !text-[clamp(2rem,2.6vw+1.35rem,4rem)]">Intelligent software for the businesses that run India.</h1>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-4 max-w-xl text-[1rem] leading-relaxed text-ink-2 sm:mt-5 sm:text-[1.06rem] md:text-[1.18rem]">
+                AI-powered products for pharmacies, schools and hotels, and custom software for companies that need their own.
+              </p>
+            </Reveal>
+            <Reveal delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
+              <WhatsAppButton short="Talk to STDN" />
+              <a href="#products" className="btn btn-ghost"><span className="sm:hidden">Explore</span><span className="hidden sm:inline">Explore products</span></a>
+            </Reveal>
+          </div>
+          <Reveal delay={160}>
+            <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager />
+            <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
           </Reveal>
-          <Reveal delay={140}>
-            <p className="lede mx-auto mt-7 max-w-2xl">
-              We build AI-powered products for pharmacies, schools and hotels, and custom software for companies that need their own.
-            </p>
-          </Reveal>
-          <Reveal delay={210} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <WhatsAppButton />
-            <a href="#products" className="btn btn-ghost">Explore products</a>
-          </Reveal>
-        </div>
-        <div className="wrap mt-16 md:mt-24">
-          <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, purchases, expiring stock and today’s bills (demo shop)" zoom eager phoneCrop />
-          <p className="mt-4 text-center text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
         </div>
       </section>
 
       {/* Products */}
-      <section id="products" className="pt-32 md:pt-44">
+      <section id="products" className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="Products" title="Software we build, ship and support." lede="Three products, each made for one kind of business and the way it actually runs." />
-          <div className="mt-16 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.name} delay={i * 90}>
                 <Link to={p.to} className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-sand transition-colors hover:bg-sand-2">
@@ -131,7 +133,7 @@ export default function Home() {
       </section>
 
       {/* MedDesk sticky story */}
-      <section className="pt-32 md:pt-44">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead
             eyebrow="Spotlight · MedDesk"
@@ -148,51 +150,51 @@ export default function Home() {
       </section>
 
       {/* Built on demand */}
-      <section className="mt-32 bg-ink py-28 text-paper md:mt-44 md:py-40">
+      <section className="mt-20 bg-sand py-20 md:mt-28 md:py-28">
         <div className="wrap">
           <div className="max-w-3xl">
-            <Reveal><p className="eyebrow !text-[#f0a37f]">Built on demand</p></Reveal>
+            <Reveal><p className="eyebrow">Built on demand</p></Reveal>
             <Reveal delay={60}><h2 className="h2 mt-4">When nothing off the shelf fits, we build the one that does.</h2></Reveal>
             <Reveal delay={120}>
-              <p className="lede mt-5 !text-paper/75">
+              <p className="lede mt-5">
                 Websites, web apps, mobile apps and AI systems for businesses that need their own. The team that built MedDesk’s bill reader builds yours.
               </p>
             </Reveal>
           </div>
-          <ul className="mt-16 grid gap-px overflow-hidden rounded-[22px] bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-[22px] bg-line sm:grid-cols-2 lg:grid-cols-4">
             {buildTiles.map((t, i) => (
-              <Reveal as="li" key={t.title} delay={i * 70} className="bg-ink p-7 md:p-8">
+              <Reveal as="li" key={t.title} delay={i * 70} className="bg-paper p-7 md:p-8">
                 <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em]">{t.title}</h3>
-                <p className="mt-3 leading-relaxed text-paper/70">{t.text}</p>
+                <p className="mt-3 leading-relaxed text-ink-2">{t.text}</p>
               </Reveal>
             ))}
           </ul>
-          <div className="mt-20 grid gap-10 border-t border-white/15 pt-12 md:grid-cols-[1fr_2fr]">
+          <div className="mt-14 grid gap-10 border-t border-line pt-10 md:grid-cols-[1fr_2fr]">
             <Reveal>
               <h3 className="text-[1.5rem] font-semibold tracking-[-0.025em]">Proof, not promises.</h3>
-              <p className="mt-3 text-paper/70">Our products are where we show what we can build.</p>
+              <p className="mt-3 text-ink-2">Our products are where we show what we can build.</p>
             </Reveal>
             <ul className="grid gap-8 sm:grid-cols-2">
               {proof.map(([t, d], i) => (
                 <Reveal as="li" key={t} delay={i * 60}>
                   <p className="font-semibold">{t}</p>
-                  <p className="mt-1.5 text-paper/70">{d}</p>
+                  <p className="mt-1.5 text-ink-2">{d}</p>
                 </Reveal>
               ))}
             </ul>
           </div>
           <Reveal className="mt-14 flex flex-wrap gap-3">
-            <WhatsAppButton label="Discuss your project" message="Hi STDN, I want to build" className="!bg-paper !text-ink hover:!bg-white" />
-            <Link to="/services" className="btn text-paper shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)] hover:bg-white/10">How we build</Link>
+            <WhatsAppButton label="Discuss your project" message="Hi STDN, I want to build" />
+            <Link to="/services" className="btn btn-ghost">How we build</Link>
           </Reveal>
         </div>
       </section>
 
       {/* How we work */}
-      <section className="pt-32 md:pt-44">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <SectionHead eyebrow="How we work" title="Simple, from first message to launch." />
-          <ol className="mt-16 grid gap-10 md:grid-cols-4">
+          <ol className="mt-12 grid gap-10 md:grid-cols-4">
             {[
               ['Talk', 'Message us on WhatsApp. Describe the problem in your own words, in English or Hindi.'],
               ['Plan', 'We come back with a clear scope, a timeline and a quote.'],
@@ -210,7 +212,7 @@ export default function Home() {
       </section>
 
       {/* Talk to STDN */}
-      <section className="pt-32 md:pt-44">
+      <section className="pt-20 md:pt-28">
         <div className="wrap">
           <div className="grid items-center gap-12 rounded-[28px] bg-sand p-8 md:grid-cols-[auto_1fr] md:gap-16 md:p-14">
             <Reveal>

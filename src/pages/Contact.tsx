@@ -21,7 +21,7 @@ export default function Contact() {
   const field = 'mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-[1rem] outline-none transition focus:border-ink'
 
   return (
-    <section className="pb-28 pt-14 md:pb-40 md:pt-24">
+    <section className="pb-20 pt-10 md:pb-28 md:pt-16">
       <div className="wrap grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
         <div>
           <Reveal><p className="eyebrow">Contact</p></Reveal>
@@ -30,7 +30,7 @@ export default function Contact() {
           <Reveal delay={200} className="mt-10"><WhatsAppButton /></Reveal>
           <Reveal delay={240}>
             <ul className="mt-12 space-y-5 text-[1.02rem]">
-              <li className="flex items-center gap-3"><Mail size={20} className="text-ink-3" aria-hidden="true" /><a href={`mailto:${SITE.email}`} className="hover:text-ember">{SITE.email}</a></li>
+              <li className="flex items-center gap-3"><Mail size={20} className="text-ink-3" aria-hidden="true" /><a href={`mailto:${SITE.email}`} className="inline-flex min-h-11 items-center hover:text-ember">{SITE.email}</a></li>
               <li className="flex items-center gap-3"><MapPin size={20} className="text-ink-3" aria-hidden="true" />{SITE.place}, India</li>
             </ul>
           </Reveal>

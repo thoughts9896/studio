@@ -16,8 +16,8 @@ const NAV = [
 function LaunchBanner() {
   return (
     <Link to="/meddesk" className="group block bg-ink text-paper">
-      <div className="wrap flex h-10 items-center justify-center gap-2 text-[0.85rem]">
-        <span className="rounded-full bg-ember px-2 py-0.5 text-[0.7rem] font-semibold tracking-wide text-white">NEW</span>
+      <div className="wrap flex h-11 items-center justify-center gap-2 text-[0.85rem]">
+        <span className="rounded-full bg-ember px-2 py-0.5 text-[0.75rem] font-semibold tracking-wide text-white">NEW</span>
         <span className="truncate">
           <span className="font-semibold">MedDesk</span>
           <span className="text-paper/75"> — pharmacy software that reads your supplier bills.</span>
@@ -49,7 +49,7 @@ function Nav() {
   return (
     <header className={`sticky top-0 z-40 transition-[background-color,box-shadow] duration-300 ${scrolled || open ? 'bg-paper/85 shadow-[0_1px_0_var(--color-line)] backdrop-blur-xl' : 'bg-paper'}`}>
       <nav className="wrap flex h-16 items-center justify-between" aria-label="Main">
-        <Link to="/" aria-label="STDN Technologies, home"><Logo /></Link>
+        <Link to="/" aria-label="STDN Technologies, home" className="-ml-1 inline-flex min-h-11 items-center px-1"><Logo /></Link>
         <ul className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (
             <li key={n.to}>
@@ -60,7 +60,7 @@ function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink hidden !h-10 !px-4 text-[0.9rem] sm:inline-flex">
+          <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink hidden !h-11 !px-4 text-[0.9rem] sm:inline-flex">
             <WhatsAppIcon size={16} /> WhatsApp
           </a>
           <button
@@ -101,7 +101,7 @@ function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-ink-2">Intelligent software for the businesses that run India.</p>
-          <a href={waLink()} target="_blank" rel="noopener" className="mt-6 inline-flex items-center gap-2 font-medium text-ink hover:text-ember">
+          <a href={waLink()} target="_blank" rel="noopener" className="mt-4 inline-flex min-h-11 items-center gap-2 font-medium text-ink hover:text-ember">
             <WhatsAppIcon size={18} /> Message us on WhatsApp
           </a>
         </div>
@@ -121,9 +121,9 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
   return (
     <div>
       <p className="text-[0.82rem] font-semibold text-ink">{title}</p>
-      <ul className="mt-4 space-y-3">
+      <ul className="mt-2">
         {links.map(([to, label]) => (
-          <li key={to}><Link to={to} className="text-[0.94rem] text-ink-2 hover:text-ink">{label}</Link></li>
+          <li key={to}><Link to={to} className="inline-flex min-h-11 items-center text-[0.94rem] text-ink-2 hover:text-ink">{label}</Link></li>
         ))}
       </ul>
     </div>
@@ -137,7 +137,7 @@ function WhatsAppFab() {
       target="_blank"
       rel="noopener"
       aria-label="Chat with STDN on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-14 items-center gap-2 rounded-full bg-wa pl-4 pr-5 text-white shadow-[0_10px_30px_-6px_rgba(20,113,58,0.55)] transition-transform hover:scale-[1.03] active:scale-95 md:bottom-7 md:right-7"
+      className="fixed bottom-5 right-5 z-50 flex h-14 lg:hidden items-center gap-2 rounded-full bg-wa pl-4 pr-5 text-white shadow-[0_10px_30px_-6px_rgba(20,113,58,0.55)] transition-transform hover:scale-[1.03] active:scale-95"
     >
       <WhatsAppIcon size={24} />
       <span className="text-[0.95rem] font-semibold">Chat</span>
