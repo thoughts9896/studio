@@ -4,7 +4,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "md-dashboard": {
     "w": 2600,
     "h": 1140,
-    "v": "3833d4bd",
+    "v": "e473a0cb",
     "ws": [
       960,
       1600,
@@ -77,7 +77,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "md-stock": {
     "w": 2600,
     "h": 1210,
-    "v": "96323e09",
+    "v": "02eef0d7",
     "ws": [
       960,
       1600,
@@ -87,12 +87,12 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "m": {
       "w": 1576,
       "h": 1020,
-      "v": "361e2880",
+      "v": "5f202644",
       "ws": [
         800,
         1200
       ],
-      "ph": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAgCdASoUAA0APt1cpkyopSOlsAgBEBuJaQAAe/QAAP7w1B/v+HEiHg4Bv49gEHAAAA=="
+      "ph": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAgCdASoUAA0APt1apkyopSOiMAgBEBuJaQAAe/QAAP7w1B/vy3xgpvgtdC0iYcAAAA=="
     }
   },
   "md-pnl": {
@@ -322,7 +322,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "ov-today": {
     "w": 1170,
     "h": 2532,
-    "v": "f5cfc662",
+    "v": "7826d5ee",
     "ws": [
       500,
       800,
@@ -333,7 +333,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "ov-stock": {
     "w": 1170,
     "h": 2532,
-    "v": "6d917ca2",
+    "v": "9c2b37c7",
     "ws": [
       500,
       800,
@@ -344,13 +344,13 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "ov-dues": {
     "w": 1170,
     "h": 2532,
-    "v": "76d7d7bd",
+    "v": "e1383c80",
     "ws": [
       500,
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwBACdASoUACsAPt1cpkyopSOiMAgBEBuJZwDNSB7H2GsodK5vfLCIuL9dpbRIAP7tYaZgKZxBSZC+XuummVXoM/vIf/vyzvwvsja4d5kSIvrdWoEtbCZ8+nWpV+WACRG7uTpOOA1gAA=="
+    "ph": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoUACsAPt1cpUyopSOiMAgBEBuJZwDNSB7H2GsodK5vfK9XddSzZuo9V8N6OAAA/u1hpmApnEFJkL5e66aZPwp3vUZpLrJmFRkAczoms6tLDwsYEJssnwQA06zv/412ZRwgr8Z3tAAAAA=="
   },
   "bill": {
     "w": 1600,
