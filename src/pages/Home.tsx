@@ -245,7 +245,7 @@ export default function Home() {
 /* ── Phones (below 768px): phone-first hero, swipe rails, detail cards, the bill-scan story ── */
 
 const mProducts = [
-  { to: '/meddesk', tone: 'med' as const, name: 'MedDesk', kind: 'Pharmacy ERP', badge: <Badge tone="new">Launching now</Badge>, text: 'Billing, stock, expiry and GST. Snap a bill, stock fills itself.', visual: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" /> },
+  { to: '/meddesk', tone: 'med' as const, name: 'MedDesk', kind: 'Pharmacy ERP', badge: <Badge tone="new">Launching now</Badge>, text: 'Billing, stock, expiry and GST. Snap a bill, stock fills itself.', visual: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /> },
   { to: '/school-erp', tone: 'sch' as const, name: 'School ERP', kind: 'Fees & students', badge: <Badge>Live</Badge>, text: 'Fee ledgers, online payments and a parent portal.', visual: <Detail name="d-school-dues" alt="School ERP tile: 57 pending dues (demo school)" /> },
   { to: '/hotel-erp', tone: 'htl' as const, name: 'Hotel ERP', kind: 'Rooms & restaurant', badge: <Badge>Live</Badge>, text: 'Room board, table orders, KOT and GST bills.', visual: <Detail name="d-hotel-room-top" alt="Hotel ERP room tile: Room 101, occupied, ₹1,200 a night (demo data)" /> },
 ]
@@ -307,7 +307,7 @@ function MobileHome() {
             <Rail label="MedDesk features">
               <Tile tone="med" kicker="Billing" title="Counter speed." text="Strips or loose. Cash, UPI or udhaar."><BillingCard /></Tile>
               <Tile tone="med" kicker="Expiry" title="See it before it costs you." text="Near-expiry and dead stock, every morning."><ExpiryCard /></Tile>
-              <Tile tone="med" kicker="Profit" title="Know your margin. Daily." text="Revenue, cost and profit for any period."><Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,316.97, margin 23.84% (demo shop)" /></Tile>
+              <Tile tone="med" kicker="Profit" title="Know your margin. Daily." text="Revenue, cost and profit for any period."><Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,109.18, margin 24.17% (demo shop)" /></Tile>
             </Rail>
           </div>
           <div className="mt-6"><ArrowLink to="/meddesk">Everything MedDesk does</ArrowLink></div>

@@ -115,11 +115,14 @@ const chip = 'rounded-full px-2 py-0.5 text-[0.75rem] font-semibold tracking-wid
 /** MedDesk dashboard, "Expiring soon" (demo shop). */
 export function ExpiryCard() {
   const rows: [string, string, number][] = [
-    ['COUGH RELIEF SYRUP 100ML', 'COU2407', 46],
-    ['ORS ORANGE SACHET', 'ORS2406', 46],
-    ['ORS ORANGE SACHET', 'ORS2507', 77],
-    ['DICLOFENAC GEL 30G', 'DIC2510', 77],
+    ['COUGH RELIEF SYRUP 100ML', 'COU2405', 15],
+    ['DICLOFENAC GEL 30G', 'DIC2407', 15],
+    ['ORS ORANGE SACHET', 'ORS2404', 46],
+    ['MULTIVITAMIN SYRUP 200ML', 'MUL2414', 77],
   ]
+  // Same thresholds and colours as MedDesk's Expiring Soon list.
+  const tone = (d: number) => d <= 30 ? ['text-[#b42318]', 'bg-[#fdecec] text-[#b42318]', 'CRITICAL']
+    : d < 60 ? ['text-[#c2410c]', 'bg-[#fdf1d8] text-[#854d0e]', 'SOON'] : ['text-[#9a5b0a]', 'bg-[#dff3f1] text-med', 'WATCH']
   return (
     <div className="tile-img" role="img" aria-label="MedDesk Expiring Soon list: four batches with days left (demo shop)">
       <CardHead icon={<span className="grid h-6 w-6 place-items-center rounded-md bg-[#fdecec] text-[0.8rem] text-[#c0392b]">!</span>} title="Expiring soon" right={<span className="text-[0.8rem] font-medium text-med">View all</span>} />
@@ -131,8 +134,8 @@ export function ExpiryCard() {
               <p className="text-[0.75rem] text-ink-3">Batch {b}</p>
             </div>
             <div className="flex shrink-0 items-center gap-2">
-              <span className={`text-[0.86rem] font-semibold ${d < 60 ? 'text-[#c2410c]' : 'text-[#9a5b0a]'}`}>{d}d</span>
-              <span className={`${chip} ${d < 60 ? 'bg-[#fdf1d8] text-[#854d0e]' : 'bg-[#dff3f1] text-med'}`}>{d < 60 ? 'SOON' : 'WATCH'}</span>
+              <span className={`text-[0.86rem] font-semibold ${tone(d)[0]}`}>{d}d</span>
+              <span className={`${chip} ${tone(d)[1]}`}>{tone(d)[2]}</span>
             </div>
           </li>
         ))}

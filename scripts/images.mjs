@@ -25,8 +25,9 @@ const DETAIL = [640, 1000]
 const shots = [
   ['meddesk/dashboard.png', 'md-dashboard', box(424, 90, 3024, 1230), box(1700, 560, 3000, 1205)],
   ['meddesk/dashboard.png', 'md-expiry', box(1700, 560, 3000, 1205)],
-  // Scan result: the total check and the extracted table only (no stats banner, no debug panel).
-  ['meddesk/scan-3.png', 'md-scan', box(330, 441, 2690, 1436), box(330, 441, 1640, 1436)],
+  // Scan result: the total check and the extracted table, every row linked to the shop's stock
+  // (no stats banner, no debug panel, no payment footer).
+  ['meddesk/scan-3.png', 'md-scan', box(330, 470, 2690, 1400), box(330, 470, 1640, 1400)],
   ['meddesk/sale-cart.png', 'md-billing', box(424, 90, 3024, 1290), box(424, 60, 1560, 800)],
   ['meddesk/stock.png', 'md-stock', box(424, 90, 3024, 1300), box(424, 350, 2000, 1370)],
   ['meddesk/revenue.png', 'md-pnl', box(424, 90, 3024, 1500), box(424, 270, 2000, 970)],

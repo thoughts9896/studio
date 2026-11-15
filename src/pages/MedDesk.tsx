@@ -28,7 +28,7 @@ const steps = [
     shot: 'md-dashboard',
     alt: 'MedDesk dashboard (demo shop)',
     short: 'Today’s sales, low stock and expiry, first thing.',
-    detail: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" />,
+    detail: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" />,
   },
   {
     kicker: 'Billing',
@@ -55,7 +55,7 @@ const steps = [
     shot: 'md-reports',
     alt: 'MedDesk sales report for this month',
     short: 'Profit, GST and Excel for your CA.',
-    detail: <Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,316.97, margin 23.84% (demo shop)" />,
+    detail: <Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,109.18, margin 24.17% (demo shop)" />,
   },
 ]
 
@@ -73,7 +73,7 @@ export default function MedDesk() {
           <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">Billing, stock, expiry and GST, plus AI that reads your supplier bills.</p>
           <div className="mt-6"><WhatsAppButton label="WhatsApp pe demo book karein" message={DEMO_MSG} className="!h-[52px] w-full justify-center" /></div>
           <div className="tile mt-9 bg-med-soft px-5 pb-7 pt-6">
-            <div className="mx-auto max-w-[250px] -rotate-2"><Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,306.10 from 9 bills (demo shop)" /></div>
+            <div className="mx-auto max-w-[250px] -rotate-2"><Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /></div>
             <div className="relative -mt-3"><ExpiryCard /></div>
           </div>
           <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk with a demo shop.</p>
