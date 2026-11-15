@@ -22,6 +22,20 @@ async function icon(file, size, pad) {
 }
 await sharp(Buffer.from(mark()), { density: 400 }).resize(32).png().toFile(path.join(pub, 'favicon-32.png'))
 await icon('apple-touch-icon.png', 180, 22)
+
+// favicon.ico (16/32/48 px PNG entries) for browsers and crawlers that only ask for /favicon.ico
+const icoSizes = [16, 32, 48]
+const pngs = await Promise.all(icoSizes.map((s) => sharp(Buffer.from(mark()), { density: 600 }).resize(s).png().toBuffer()))
+const header = Buffer.alloc(6); header.writeUInt16LE(0, 0); header.writeUInt16LE(1, 2); header.writeUInt16LE(pngs.length, 4)
+let offset = 6 + 16 * pngs.length
+const dir = pngs.map((png, i) => {
+  const e = Buffer.alloc(16)
+  e.writeUInt8(icoSizes[i], 0); e.writeUInt8(icoSizes[i], 1); e.writeUInt8(0, 2); e.writeUInt8(0, 3)
+  e.writeUInt16LE(1, 4); e.writeUInt16LE(32, 6); e.writeUInt32LE(png.length, 8); e.writeUInt32LE(offset, 12)
+  offset += png.length
+  return e
+})
+fs.writeFileSync(path.join(pub, 'favicon.ico'), Buffer.concat([header, ...dir, ...pngs]))
 await icon('icon-192.png', 192, 24)
 await icon('icon-512.png', 512, 64)
 fs.writeFileSync(path.join(pub, 'site.webmanifest'), JSON.stringify({
