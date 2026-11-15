@@ -126,6 +126,8 @@ body {
 @media (max-width: 640px) { .pic-m { background-image: var(--mph); } }
 html.js .pic img { opacity: 0; transition: opacity 0.45s var(--ease-out); animation: pic-show 0s 4s forwards; }
 html.js .pic img.ok { opacity: 1; animation: none; }
+/* Above-the-fold (eager) images paint as they arrive, over the placeholder: no fade, no wait. */
+html.js .pic img.now { opacity: 1; animation: none; transition: none; }
 @keyframes pic-show { to { opacity: 1; } }
 
 /* ── Mobile layer (below 768px) ─────────────────────────────────────────── */
@@ -184,11 +186,13 @@ html.js .float { animation: float 7s ease-in-out infinite; }
 .scan-line { display: none; }
 html.js .scan-run {
   --p: 0;
-  --s: clamp(0, calc((var(--p) - 0.04) / 0.34), 1);   /* scan line sweeps the bill */
-  --a: clamp(0, calc((var(--p) - 0.34) / 0.2), 1);    /* bill steps back */
-  --b: clamp(0, calc((var(--p) - 0.44) / 0.16), 1);   /* result card arrives */
-  --t: clamp(0, calc((var(--p) - 0.8) / 0.08), 1);    /* total check */
-  height: 270vh;
+  /* Phases overlap so something moves on every scroll step (no blank scrolling);
+     a short hold at the end lets the finished table sit before the page moves on. */
+  --s: clamp(0, calc(var(--p) / 0.28), 1);             /* scan line sweeps the bill */
+  --a: clamp(0, calc((var(--p) - 0.24) / 0.16), 1);   /* bill steps back */
+  --b: clamp(0, calc((var(--p) - 0.3) / 0.14), 1);    /* result card arrives */
+  --t: clamp(0, calc((var(--p) - 0.68) / 0.1), 1);    /* total check */
+  height: 195vh;
 }
 html.js .scan-run .scan-sticky { position: sticky; top: 64px; height: calc(100svh - 64px - 76px - env(safe-area-inset-bottom)); display: flex; flex-direction: column; justify-content: center; gap: 22px; overflow: hidden; }
 html.js .scan-run .scan-stage { grid-template-areas: 'x'; place-items: center; gap: 0; }
@@ -215,33 +219,35 @@ html.js .scan-run .scan-row {
 html.js .scan-run .scan-total { opacity: var(--t); transform: scale(calc(0.9 + var(--t) * 0.1)); }
 html.js .scan-run .scan-caps { display: grid; grid-template-areas: 'x'; }
 html.js .scan-run .scan-caps > * { grid-area: x; }
-html.js .scan-run .cap-0 { opacity: calc(1 - clamp(0, calc((var(--p) - 0.26) * 14), 1)); }
-html.js .scan-run .cap-1 { opacity: min(clamp(0, calc((var(--p) - 0.3) * 14), 1), calc(1 - clamp(0, calc((var(--p) - 0.62) * 14), 1))); }
-html.js .scan-run .cap-2 { opacity: clamp(0, calc((var(--p) - 0.66) * 14), 1); }
+html.js .scan-run .cap-0 { opacity: calc(1 - clamp(0, calc((var(--p) - 0.19) * 14), 1)); }
+html.js .scan-run .cap-1 { opacity: min(clamp(0, calc((var(--p) - 0.265) * 14), 1), calc(1 - clamp(0, calc((var(--p) - 0.58) * 14), 1))); }
+html.js .scan-run .cap-2 { opacity: clamp(0, calc((var(--p) - 0.655) * 14), 1); }
 
 /* TODO chip: visible on purpose until the founder fills the value */
 .todo { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: #8a5a00; background: #fff6db; border: 1px dashed #e0b44c; padding: 3px 10px; border-radius: 999px; }
 
 /* ── Motion ───────────────────────────────────────────────────────────────
    Content is visible by default (prerendered HTML, slow networks, no JS).
-   Only when JS has run (html.js) do we hide-then-reveal. */
-html.js [data-reveal] {
+   Only once the page script runs (html.anim, set in useReveal) is anything below the fold
+   hidden-then-revealed; what is already on screen at that point stays as it is. */
+html.anim [data-reveal] {
   opacity: 0;
   transform: translate3d(0, 28px, 0);
   transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
   transition-delay: var(--d, 0ms);
 }
-html.js [data-reveal].in { opacity: 1; transform: none; }
+html.anim [data-reveal].in { opacity: 1; transform: none; }
+html.anim [data-reveal].now, html.anim [data-zoom].now { transition: none; }
 
-html.js [data-zoom] {
+html.anim [data-zoom] {
   transform: scale(0.92) translate3d(0, 24px, 0);
   opacity: 0.6;
   transition: transform 1.3s var(--ease-out), opacity 1.1s var(--ease-out);
 }
-html.js [data-zoom].in { transform: none; opacity: 1; }
+html.anim [data-zoom].in { transform: none; opacity: 1; }
 
 @supports (animation-timeline: view()) {
-  html.js [data-zoom] {
+  html.anim [data-zoom] {
     transition: none; opacity: 1;
     animation: zoom-in linear both;
     animation-timeline: view();
@@ -262,7 +268,7 @@ html.js [data-zoom].in { transform: none; opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  html.js [data-reveal], html.js [data-zoom] { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+  html.anim [data-reveal], html.anim [data-zoom] { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
   .story-shot { transition: none !important; transform: none !important; }
   .btn { transition: none; }
   html.js .pic img { transition: none; }

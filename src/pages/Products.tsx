@@ -14,9 +14,9 @@ export default function Products() {
     <>
       <section className="pt-10 md:pt-16">
         <div className="wrap">
-          <Reveal><p className="eyebrow">Products</p></Reveal>
-          <Reveal delay={70}><h1 className="display mt-5 max-w-[14ch]">Software that runs real businesses.</h1></Reveal>
-          <Reveal delay={140}><p className="lede mt-7 max-w-2xl">Each STDN product is built for one kind of business, around how its day actually goes.</p></Reveal>
+          <Reveal now><p className="eyebrow">Products</p></Reveal>
+          <Reveal now delay={70}><h1 className="display mt-5 max-w-[14ch]">Software that runs real businesses.</h1></Reveal>
+          <Reveal now delay={140}><p className="lede mt-7 max-w-2xl">Each STDN product is built for one kind of business, around how its day actually goes.</p></Reveal>
         </div>
       </section>
       <section className="pt-14 md:pt-28">

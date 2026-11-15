@@ -87,21 +87,21 @@ export default function Home() {
       <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
         <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
           <div>
-            <Reveal className="hidden sm:block"><p className="eyebrow">STDN Technologies</p></Reveal>
-            <Reveal delay={70}>
+            <Reveal now className="hidden sm:block"><p className="eyebrow">STDN Technologies</p></Reveal>
+            <Reveal now delay={70}>
               <h1 className="display sm:mt-4 max-w-[15ch] !text-[clamp(2rem,2.6vw+1.35rem,4rem)]">Intelligent software for the businesses that run India.</h1>
             </Reveal>
-            <Reveal delay={140}>
+            <Reveal now delay={140}>
               <p className="mt-4 max-w-xl text-[1rem] leading-relaxed text-ink-2 sm:mt-5 sm:text-[1.06rem] md:text-[1.18rem]">
                 AI-powered products for pharmacies, schools and hotels, and custom software for companies that need their own.
               </p>
             </Reveal>
-            <Reveal delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
+            <Reveal now delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
               <WhatsAppButton short="Talk to STDN" />
               <a href="#products" className="btn btn-ghost"><span className="sm:hidden">Explore</span><span className="hidden sm:inline">Explore products</span></a>
             </Reveal>
           </div>
-          <Reveal delay={160}>
+          <Reveal now delay={160}>
             <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
             <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
           </Reveal>

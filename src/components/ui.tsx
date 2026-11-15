@@ -58,7 +58,9 @@ export function ArrowLink({ to, children, className = '' }: { to: string; childr
 }
 
 /** Fades/slides in when scrolled into view (see useReveal). */
-export function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: { children: ReactNode; delay?: number; className?: string; as?: 'div' | 'li' | 'section' | 'p' | 'h2' }) {
+// `now`: above the fold (page heroes). Rendered visible from the first paint, never faded in.
+export function Reveal({ children, delay = 0, className = '', as: Tag = 'div', now = false }: { children: ReactNode; delay?: number; className?: string; as?: 'div' | 'li' | 'section' | 'p' | 'h2'; now?: boolean }) {
+  if (now) return <Tag className={className}>{children}</Tag>
   return (
     <Tag data-reveal="" className={className} style={{ '--d': `${delay}ms` } as CSSProperties}>
       {children}
@@ -101,8 +103,8 @@ export function Pic({ name, alt, sizes, eager = false, only, phoneCrop = false, 
           width={f.w}
           height={f.h}
           loading={eager ? 'eager' : 'lazy'}
-          decoding="async"
-          {...(eager ? { fetchPriority: 'high' as const } : {})}
+          decoding={eager ? 'sync' : 'async'}
+          {...(eager ? { fetchPriority: 'high' as const, className: 'now' } : {})}
           ref={markIfLoaded}
           onLoad={markLoaded}
           onError={markLoaded}

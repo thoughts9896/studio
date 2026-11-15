@@ -42,14 +42,14 @@ export default function Services() {
     <>
       <section className="pt-10 md:pt-16">
         <div className="wrap">
-          <Reveal><p className="eyebrow">Custom software</p></Reveal>
-          <Reveal delay={70}><h1 className="display mt-5 max-w-[14ch]">Your software, built properly.</h1></Reveal>
-          <Reveal delay={140}>
+          <Reveal now><p className="eyebrow">Custom software</p></Reveal>
+          <Reveal now delay={70}><h1 className="display mt-5 max-w-[14ch]">Your software, built properly.</h1></Reveal>
+          <Reveal now delay={140}>
             <p className="lede mt-7 max-w-2xl">
               Websites, web apps, mobile apps and AI systems for businesses that need something of their own. Built by the team behind MedDesk, School ERP and Hotel ERP.
             </p>
           </Reveal>
-          <Reveal delay={210} className="mt-10 flex flex-wrap gap-3">
+          <Reveal now delay={210} className="mt-10 flex flex-wrap gap-3">
             <WhatsAppButton label="Tell us what you need" message={MSG} />
           </Reveal>
         </div>

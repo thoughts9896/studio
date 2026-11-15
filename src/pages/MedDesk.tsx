@@ -73,7 +73,7 @@ export default function MedDesk() {
           <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">Billing, stock, expiry and GST, plus AI that reads your supplier bills.</p>
           <div className="mt-6"><WhatsAppButton label="WhatsApp pe demo book karein" message={DEMO_MSG} className="!h-[52px] w-full justify-center" /></div>
           <div className="tile mt-9 bg-med-soft px-5 pb-7 pt-6">
-            <div className="mx-auto max-w-[250px] -rotate-2"><Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /></div>
+            <div className="mx-auto max-w-[250px] -rotate-2"><Detail eager name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /></div>
             <div className="relative -mt-3"><ExpiryCard /></div>
           </div>
           <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk with a demo shop.</p>
@@ -84,24 +84,24 @@ export default function MedDesk() {
       <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
         <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
           <div>
-            <Reveal className="flex items-center gap-3">
+            <Reveal now className="flex items-center gap-3">
               <span className="text-[0.95rem] font-semibold">MedDesk</span>
               <Badge tone="new">Now launching</Badge>
             </Reveal>
-            <Reveal delay={70}>
+            <Reveal now delay={70}>
               <h1 className="display mt-4 max-w-[13ch] !text-[clamp(2rem,2.6vw+1.35rem,4rem)]">Your medical store, finally in order.</h1>
             </Reveal>
-            <Reveal delay={140}>
+            <Reveal now delay={140}>
               <p className="mt-4 max-w-xl text-[1rem] leading-relaxed text-ink-2 sm:mt-5 sm:text-[1.06rem] md:text-[1.18rem]">
                 Billing, stock, expiry, purchases and GST in one fast Windows app, plus an AI that reads your supplier’s bill so you don’t have to type it.
               </p>
             </Reveal>
-            <Reveal delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
+            <Reveal now delay={210} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7">
               <WhatsAppButton label="WhatsApp pe demo book karein" short="Demo book karein" message={DEMO_MSG} />
               <a href="#features" className="btn btn-ghost"><span className="sm:hidden">Explore</span><span className="hidden sm:inline">See features</span></a>
             </Reveal>
           </div>
-          <Reveal delay={160}>
+          <Reveal now delay={160}>
             <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
           </Reveal>
         </div>
@@ -129,15 +129,15 @@ export default function MedDesk() {
             <Reveal>
               <figure>
                 <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_rgba(15,15,13,0.08),0_20px_50px_-15px_rgba(15,15,13,0.25)] [transform:rotate(-1.5deg)]">
-                  <Pic name="bill" sizes="(min-width: 1024px) 400px, 92vw" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" />
+                  <Pic name="bill" sizes="(min-width: 1024px) 400px, 92vw" alt="A printed supplier tax invoice with five medicine lines (demo bill)" />
                 </div>
-                <figcaption className="mt-4 text-[0.82rem] text-ink-3">The photo: a synthetic test bill.</figcaption>
+                <figcaption className="mt-4 text-[0.82rem] text-ink-3">Demo bill.</figcaption>
               </figure>
             </Reveal>
             <Reveal delay={100} className="hidden text-[2rem] text-ink-3 lg:block" aria-hidden="true">→</Reveal>
             <Reveal delay={160}>
               <figure>
-                <Shot name="md-scan" alt="MedDesk Import Bill: 5 items found, lines add up to the bill’s printed grand total of ₹3291" sizes="(min-width: 1024px) 780px, 92vw" />
+                <Shot name="md-scan" alt="MedDesk Import Bill: 5 items found, all matched to stock, lines add up to the bill’s printed grand total of ₹3291" sizes="(min-width: 1024px) 780px, 92vw" />
                 <figcaption className="mt-4 text-[0.82rem] text-ink-3">The result in MedDesk: 5 lines read, and they add up to the printed total.</figcaption>
               </figure>
             </Reveal>

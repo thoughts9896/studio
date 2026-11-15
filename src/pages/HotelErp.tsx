@@ -10,7 +10,7 @@ export default function HotelErp() {
       badge={<Badge>Live</Badge>}
       tone="htl"
       shortLede="Check-ins, the room board, table orders, kitchen tickets and GST bills."
-      heroDetail={<div className="mx-auto max-w-[260px]"><Detail name="d-hotel-room" alt="Hotel ERP room tile: Room 101 occupied, guest, nights and estimated bill (demo data)" /></div>}
+      heroDetail={<div className="mx-auto max-w-[260px]"><Detail eager name="d-hotel-room" alt="Hotel ERP room tile: Room 101 occupied, guest, nights and estimated bill (demo data)" /></div>}
       title="Rooms, restaurant and billing. One desk."
       lede="A Windows app for hotels with a restaurant: check-ins, the room board, table orders, kitchen tickets and GST-correct bills."
       heroShot="hotel-rooms"

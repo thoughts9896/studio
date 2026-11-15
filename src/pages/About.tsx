@@ -6,9 +6,9 @@ export default function About() {
     <>
       <section className="pt-10 md:pt-16">
         <div className="wrap">
-          <Reveal><p className="eyebrow">About</p></Reveal>
-          <Reveal delay={70}><h1 className="display mt-5 max-w-[15ch]">Serious software for everyday business.</h1></Reveal>
-          <Reveal delay={140}>
+          <Reveal now><p className="eyebrow">About</p></Reveal>
+          <Reveal now delay={70}><h1 className="display mt-5 max-w-[15ch]">Serious software for everyday business.</h1></Reveal>
+          <Reveal now delay={140}>
             <p className="lede mt-7 max-w-2xl">
               STDN Technologies builds intelligent products and AI systems for Indian businesses. We start from the counter, the classroom and the front desk, and build software that works there every day.
             </p>

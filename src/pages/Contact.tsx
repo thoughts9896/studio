@@ -24,11 +24,11 @@ export default function Contact() {
     <section className="pb-20 pt-10 md:pb-28 md:pt-16">
       <div className="wrap grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
         <div>
-          <Reveal><p className="eyebrow">Contact</p></Reveal>
-          <Reveal delay={70}><h1 className="display mt-5 max-w-[12ch]">Let’s talk.</h1></Reveal>
-          <Reveal delay={140}><p className="lede mt-7 max-w-md">WhatsApp is the fastest way to reach us. Write in English or Hindi and our team will get back to you. If it helps, an STDN expert will call you.</p></Reveal>
-          <Reveal delay={200} className="mt-10"><WhatsAppButton /></Reveal>
-          <Reveal delay={240}>
+          <Reveal now><p className="eyebrow">Contact</p></Reveal>
+          <Reveal now delay={70}><h1 className="display mt-5 max-w-[12ch]">Let’s talk.</h1></Reveal>
+          <Reveal now delay={140}><p className="lede mt-7 max-w-md">WhatsApp is the fastest way to reach us. Write in English or Hindi and our team will get back to you. If it helps, an STDN expert will call you.</p></Reveal>
+          <Reveal now delay={200} className="mt-10"><WhatsAppButton /></Reveal>
+          <Reveal now delay={240}>
             <ul className="mt-12 space-y-5 text-[1.02rem]">
               <li className="flex items-center gap-3"><Mail size={20} className="text-ink-3" aria-hidden="true" /><a href={`mailto:${SITE.email}`} className="inline-flex min-h-11 items-center hover:text-ember">{SITE.email}</a></li>
               <li className="flex items-center gap-3"><MapPin size={20} className="text-ink-3" aria-hidden="true" />{SITE.place}, India</li>
@@ -36,7 +36,7 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        <Reveal delay={120}>
+        <Reveal now delay={120}>
           <form onSubmit={submit} className="rounded-[24px] bg-sand p-6 md:p-10">
             <h2 className="text-[1.35rem] font-semibold tracking-[-0.02em]">Write it here, send it on WhatsApp</h2>
             <p className="mt-2 text-[0.92rem] text-ink-3">This opens WhatsApp with your message ready. This website doesn’t store it.</p>

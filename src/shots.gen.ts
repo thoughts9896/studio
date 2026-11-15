@@ -322,35 +322,35 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
   "ov-today": {
     "w": 1170,
     "h": 2532,
-    "v": "33dfe27d",
+    "v": "f5cfc662",
     "ws": [
       500,
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADQBQCdASoUACsAPt1opU8opiMiKrgMARAbiUAYmwFF9GEA9P5gwT6UHJ/sAz9z5K82flxTkEeMAP7tYaaKx2IJ6+L3M3RJkAHAYyZwByj9PNkk70PgDKZI4+cMPmtYrJNTYYQ/17Bhc3B/xfmJFF6e0UBJWt6H++X3atiZb+s1nVngl/XZvMRisGUzZUuQHXADBRKbH7rMdEBcqsG5JWpSAAA="
+    "ph": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADwBQCdASoUACsAPt1ipE4opaMiKqwBEBuJQBgbgovpPTG78/jGIcd8OD8Drf9S6gK19tyIDxLZAAD+7WGmisdiCevi8SdKp/ZrzHFCUYUREbdh2QP3VV8R/7RjICHCs6erGmhGyPvt7bMmkYhIF+slqQlsa5a8FAsFC3hcSmEf972zdOWDplp2rGktbqLt/f3WXCEhRvGjyrYrL/AAAA=="
   },
   "ov-stock": {
     "w": 1170,
     "h": 2532,
-    "v": "d8c0ffa2",
+    "v": "6d917ca2",
     "ws": [
       500,
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBQCdASoUACsAPt1cpUyopSOiMAgBEBuJZ2llWpmTjcj0PgpcPmhV+3LEdUFKEotgAP7wgXg50fdb2Q8UE5/1tag2G5diyLC9AasbuHHqFE+ltOO6hqSgK+E/qIO6/+UWLntPsyAPZUGaRMqVsbD4WQ8/M9/pSziaAAAA"
+    "ph": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADwBACdASoUACsAPt1cpUyopSOiMAgBEBuJZwDImC0Hl42bBQMl6yDRUExNcLEjKuAA/vCYJJGfhK6/1I9xirfn1nmMIGnZOBg29rYY3bav9PCM9Hkza5sRggbbf8FiFYJMQWrP002RyODHWY08ZszjAAAAAA=="
   },
   "ov-dues": {
     "w": 1170,
     "h": 2532,
-    "v": "aede090f",
+    "v": "76d7d7bd",
     "ws": [
       500,
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwBACdASoUACsAPt1cpEyopSOiMAgBEBuJZwDNSB7H2GrxS5za+nL2xfv/oj8V7IAA/u1hpokw4AROP0KpDRFM2b++v+Jt1nQrjduJe8JxAnhC2RJ0ZGhhwksG6i2GGyp1kXKAekPAtWj2k0AAAA=="
+    "ph": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwBACdASoUACsAPt1cpkyopSOiMAgBEBuJZwDNSB7H2GsodK5vfLCIuL9dpbRIAP7tYaZgKZxBSZC+XuummVXoM/vIf/vyzvwvsja4d5kSIvrdWoEtbCZ8+nWpV+WACRG7uTpOOA1gAA=="
   },
   "bill": {
     "w": 1600,

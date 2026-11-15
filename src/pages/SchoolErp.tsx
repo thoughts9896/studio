@@ -10,7 +10,7 @@ export default function SchoolErp() {
       badge={<Badge>Live at erp.stdn.in</Badge>}
       tone="sch"
       shortLede="Fee ledgers, online payments, receipts and reminders, with a parent portal."
-      heroDetail={<div className="grid gap-3 px-2"><Detail name="d-school-dues" alt="School ERP: 57 pending dues (demo school)" /><Detail name="d-school-revenue" alt="School ERP: ₹91.7K revenue in November (demo school)" /></div>}
+      heroDetail={<div className="grid gap-3 px-2"><Detail eager name="d-school-dues" alt="School ERP: 57 pending dues (demo school)" /><Detail eager name="d-school-revenue" alt="School ERP: ₹91.7K revenue in November (demo school)" /></div>}
       title="School fees, collected on time."
       lede="Students, monthly fee ledgers, online payments, receipts and reminders, with a portal where parents see and pay their dues."
       heroShot="school-dashboard"

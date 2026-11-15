@@ -61,10 +61,10 @@ export function Tile({ tone = 'sand', kicker, title, text, children, className =
 }
 
 /** A zoomed-in crop of a real screen (demo data), framed like a floating card. */
-export function Detail({ name, alt }: { name: string; alt: string }) {
+export function Detail({ name, alt, eager = false }: { name: string; alt: string; eager?: boolean }) {
   return (
     <div className="tile-img">
-      <Pic name={name} alt={alt} sizes="(max-width: 767px) 80vw, 340px" only="mobile" />
+      <Pic name={name} alt={alt} sizes="(max-width: 767px) 80vw, 340px" only="mobile" eager={eager} />
     </div>
   )
 }
@@ -196,7 +196,7 @@ export function ScanResult({ className = '' }: { className?: string }) {
       />
       <ul className="divide-y divide-[#f1f2f0]">
         {SCAN_ROWS.map(([n, b, e, q, r], i) => (
-          <li key={b} className="scan-row flex items-center gap-3 px-4 py-2.5" style={{ '--st': 0.56 + i * 0.045 } as CSSProperties}>
+          <li key={b} className="scan-row flex items-center gap-3 px-4 py-2.5" style={{ '--st': 0.42 + i * 0.05 } as CSSProperties}>
             <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-med text-white"><Check size={12} strokeWidth={3} /></span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-[0.84rem] font-semibold">{n}</p>
@@ -257,12 +257,12 @@ export function BillScan() {
         </div>
         <div className="scan-stage">
           <div className="scan-bill">
-            <Pic name="bill" alt="A printed supplier tax invoice with five medicine lines (synthetic test bill)" sizes="80vw" only="mobile" />
+            <Pic name="bill" alt="A printed supplier tax invoice with five medicine lines (demo bill)" sizes="80vw" only="mobile" />
             <span className="scan-line" aria-hidden="true" />
           </div>
           <ScanResult className="scan-result" />
         </div>
-        <p className="text-[0.78rem] text-ink-3">Synthetic test bill. The result is simplified from MedDesk’s Import Bill screen.</p>
+        <p className="text-[0.78rem] text-ink-3">Demo bill.</p>
       </div>
     </div>
   )
