@@ -1,6 +1,6 @@
 # STDN Technologies
 
-> STDN Technologies (stdn.in) builds intelligent software for Indian businesses: its own products and custom software. Founder-led by Nitesh Narwal, based in Jind, Haryana. Udyam-registered MSME (UDYAM-HR-08-0059791).
+> STDN Technologies (stdn.in) builds intelligent software for Indian businesses: its own products and custom software. Based in Jind, Haryana. Udyam-registered MSME (UDYAM-HR-08-0059791).
 
 ## Products
 - [MedDesk](https://www.stdn.in/meddesk): pharmacy ERP for Windows. Billing, batch-wise stock and expiry, purchases and returns, GST reports, backups, and AI that reads supplier bills from a photo. Now launching.

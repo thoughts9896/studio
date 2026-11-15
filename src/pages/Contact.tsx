@@ -26,7 +26,7 @@ export default function Contact() {
         <div>
           <Reveal><p className="eyebrow">Contact</p></Reveal>
           <Reveal delay={70}><h1 className="display mt-5 max-w-[12ch]">Let’s talk.</h1></Reveal>
-          <Reveal delay={140}><p className="lede mt-7 max-w-md">WhatsApp is the fastest way to reach us. Write in English or Hindi and you’ll hear back from the founder.</p></Reveal>
+          <Reveal delay={140}><p className="lede mt-7 max-w-md">WhatsApp is the fastest way to reach us. Write in English or Hindi and our team will get back to you. If it helps, an STDN expert will call you.</p></Reveal>
           <Reveal delay={200} className="mt-10"><WhatsAppButton /></Reveal>
           <Reveal delay={240}>
             <ul className="mt-12 space-y-5 text-[1.02rem]">

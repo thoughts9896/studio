@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-import { ArrowLink, Badge, FinalCta, Reveal, SectionHead, Shot, WhatsAppButton } from '../components/ui'
+import { ArrowLink, Badge, FinalCta, Mark, Reveal, SectionHead, Shot, WhatsAppButton } from '../components/ui'
 import { Story } from '../components/Story'
-import { SITE } from '../site'
 
 const products = [
   {
@@ -210,26 +209,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founder */}
+      {/* Talk to STDN */}
       <section className="pt-32 md:pt-44">
         <div className="wrap">
           <div className="grid items-center gap-12 rounded-[28px] bg-sand p-8 md:grid-cols-[auto_1fr] md:gap-16 md:p-14">
             <Reveal>
-              <div className="grid h-36 w-36 place-items-center rounded-full bg-ink text-[2.6rem] font-semibold tracking-[-0.04em] text-paper md:h-44 md:w-44" role="img" aria-label="Nitesh Narwal">
-                NN
-              </div>
+              <Mark size={88} className="md:h-44 md:w-44" />
             </Reveal>
             <div>
-              <Reveal><p className="eyebrow">Founder</p></Reveal>
-              <Reveal delay={60}><h2 className="h3 mt-3 !text-[clamp(1.6rem,2.4vw+0.8rem,2.6rem)]">You talk to the person who builds it.</h2></Reveal>
+              <Reveal><p className="eyebrow">Talk to STDN</p></Reveal>
+              <Reveal delay={60}><h2 className="h3 mt-3 !text-[clamp(1.6rem,2.4vw+0.8rem,2.6rem)]">Real people, one message away.</h2></Reveal>
               <Reveal delay={120}>
                 <p className="mt-5 max-w-2xl text-[1.08rem] leading-relaxed text-ink-2">
-                  STDN is founder-led. {SITE.founder} designs and writes the software, from MedDesk’s bill reader to the School ERP’s payments. When you message STDN, you reach Nitesh directly. No hand-offs.
+                  Message STDN on WhatsApp, in English or Hindi. Our team will get back to you, and an STDN expert will call to understand how your business runs and show you a demo. After go-live, the same team stays with you for help and updates.
                 </p>
               </Reveal>
-              <Reveal delay={180} className="mt-7">
-                <p className="font-semibold">{SITE.founder}</p>
-                <p className="text-ink-3">Founder & engineer, {SITE.name} · {SITE.place}</p>
+              <Reveal delay={180} className="mt-8">
+                <WhatsAppButton label="Talk to STDN" message="Hi STDN, I would like to talk about" />
               </Reveal>
             </div>
           </div>

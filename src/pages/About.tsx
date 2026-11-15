@@ -7,7 +7,7 @@ export default function About() {
       <section className="pt-14 md:pt-24">
         <div className="wrap">
           <Reveal><p className="eyebrow">About</p></Reveal>
-          <Reveal delay={70}><h1 className="display mt-5 max-w-[15ch]">Small team. Serious software.</h1></Reveal>
+          <Reveal delay={70}><h1 className="display mt-5 max-w-[15ch]">Serious software for everyday business.</h1></Reveal>
           <Reveal delay={140}>
             <p className="lede mt-7 max-w-2xl">
               STDN Technologies builds intelligent products and AI systems for Indian businesses. We start from the counter, the classroom and the front desk, and build software that works there every day.
@@ -17,22 +17,15 @@ export default function About() {
       </section>
 
       <section className="pt-24 md:pt-36">
-        <div className="wrap grid gap-12 md:grid-cols-[auto_1fr] md:gap-20">
-          <Reveal>
-            <div className="grid h-48 w-48 place-items-center rounded-full bg-ink text-[3.2rem] font-semibold tracking-[-0.04em] text-paper md:h-60 md:w-60" role="img" aria-label="Nitesh Narwal">NN</div>
+        <div className="wrap grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
+          <Reveal><h2 className="h2">Products and people, together.</h2></Reveal>
+          <Reveal delay={80}>
+            <div className="max-w-2xl space-y-5 text-[1.08rem] leading-relaxed text-ink-2">
+              <p>STDN started with the businesses most software forgets: the medical store, the school office, the hotel front desk. Every product is designed around how that business actually runs.</p>
+              <p>The same team that builds MedDesk, School ERP and Hotel ERP builds custom websites, apps and AI systems. When you talk to STDN, an STDN expert learns your setup, shows you a demo, and stays with you after go-live.</p>
+            </div>
+            <div className="mt-10"><WhatsAppButton label="Talk to STDN" message="Hi STDN," /></div>
           </Reveal>
-          <div>
-            <Reveal><p className="eyebrow">Founder</p></Reveal>
-            <Reveal delay={60}><h2 className="h2 mt-3">{SITE.founder}</h2></Reveal>
-            <Reveal delay={100}><p className="mt-2 text-[1.1rem] text-ink-3">Founder & engineer</p></Reveal>
-            <Reveal delay={140}>
-              <div className="mt-8 max-w-2xl space-y-5 text-[1.08rem] leading-relaxed text-ink-2">
-                <p>Nitesh founded STDN to build software for the businesses most software forgets: the medical store, the school office, the hotel front desk.</p>
-                <p>Nitesh designs and writes STDN’s products, from MedDesk’s AI bill reader to the School ERP’s payments. Clients work with the person building their software, so decisions are quick and nothing gets lost in a hand-off.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={200} className="mt-10"><WhatsAppButton label="Message Nitesh on WhatsApp" message="Hi Nitesh," /></Reveal>
-          </div>
         </div>
       </section>
 
@@ -50,6 +43,7 @@ export default function About() {
               </Reveal>
             ))}
           </div>
+          <p className="mt-5 text-[0.85rem] text-ink-3">Founded by {SITE.founder}.</p>
           <Reveal className="mt-20 flex items-start gap-5">
             <Mark size={40} className="mt-1 shrink-0" />
             <p className="max-w-2xl text-[1.08rem] leading-relaxed text-ink-2">

@@ -20,13 +20,13 @@ npm run preview    # serve dist/ like Vercel does (clean URLs, 404, redirects): 
 
 | Route | Page |
 |-------|------|
-| `/` | Home: hero, products, MedDesk spotlight, custom software, how we work, founder |
+| `/` | Home: hero, products, MedDesk spotlight, custom software, how we work, talk to STDN |
 | `/meddesk` | MedDesk launch page: AI bill scan, features, Owner View (coming soon), pricing (TODO), FAQ |
 | `/school-erp` | School ERP (live at erp.stdn.in) |
 | `/hotel-erp` | Hotel ERP (live) |
 | `/products` | All products |
 | `/services` | Custom software: websites, web apps, mobile apps, AI systems |
-| `/about` | Company and founder |
+| `/about` | Company |
 | `/contact` | WhatsApp, email, and a form that opens WhatsApp prefilled (nothing is stored) |
 | `/privacy-policy`, `/terms` | Legal |
 

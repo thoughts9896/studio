@@ -83,7 +83,7 @@ function Nav() {
               </li>
             ))}
             <li className="pt-8">
-              <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink w-full justify-center"><WhatsAppIcon /> Talk to us on WhatsApp</a>
+              <a href={waLink()} target="_blank" rel="noopener" className="btn btn-ink w-full justify-center"><WhatsAppIcon /> Talk to STDN on WhatsApp</a>
             </li>
           </ul>
           <style>{`@keyframes menuIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion: reduce){li{animation:none!important}}`}</style>
@@ -107,7 +107,7 @@ function Footer() {
         </div>
         <FooterCol title="Products" links={[['/meddesk', 'MedDesk'], ['/school-erp', 'School ERP'], ['/hotel-erp', 'Hotel ERP'], ['/products', 'All products']]} />
         <FooterCol title="Build with us" links={[['/services', 'Custom software'], ['/services#ai', 'AI systems'], ['/contact', 'Contact']]} />
-        <FooterCol title="Company" links={[['/about', 'About & founder'], ['/privacy-policy', 'Privacy'], ['/terms', 'Terms']]} />
+        <FooterCol title="Company" links={[['/about', 'About'], ['/privacy-policy', 'Privacy'], ['/terms', 'Terms']]} />
       </div>
       <div className="wrap flex flex-col gap-2 border-t border-line py-6 text-[0.82rem] text-ink-3 md:flex-row md:items-center md:justify-between">
         <p>© {year} {SITE.name} · {SITE.place}, India</p>

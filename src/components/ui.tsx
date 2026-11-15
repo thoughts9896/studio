@@ -32,7 +32,7 @@ export function WhatsAppIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-export function WhatsAppButton({ label = 'Talk to us on WhatsApp', message, className = '' }: { label?: string; message?: string; className?: string }) {
+export function WhatsAppButton({ label = 'Talk to STDN on WhatsApp', message, className = '' }: { label?: string; message?: string; className?: string }) {
   return (
     <a href={waLink(message)} target="_blank" rel="noopener" className={`btn btn-ink ${className}`}>
       <WhatsAppIcon /> {label}
@@ -142,7 +142,7 @@ export function FeatureList({ items, cols = 3 }: { items: { title: string; text:
   )
 }
 
-export function FinalCta({ title = 'Have something to build?', text = 'Tell us on WhatsApp. You will hear back from the person who builds it.', message }: { title?: string; text?: string; message?: string }) {
+export function FinalCta({ title = 'Have something to build?', text = 'Tell us on WhatsApp. The STDN team will get back to you.', message }: { title?: string; text?: string; message?: string }) {
   return (
     <section className="py-28 md:py-40">
       <div className="wrap text-center">

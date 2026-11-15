@@ -21,7 +21,6 @@ const org = {
   alternateName: 'STDN',
   url: SITE.url,
   logo: `${SITE.url}/icon-512.png`,
-  founder: { '@type': 'Person', name: SITE.founder, jobTitle: 'Founder & engineer' },
   address: { '@type': 'PostalAddress', addressLocality: 'Jind', addressRegion: 'Haryana', addressCountry: 'IN' },
   email: SITE.email,
 }
@@ -90,7 +89,7 @@ export const routes: RouteDef[] = [
   {
     path: '/about',
     Component: About,
-    meta: { title: 'About STDN Technologies and founder Nitesh Narwal', description: 'STDN Technologies is a founder-led software company in Jind, Haryana, building intelligent products and AI systems for Indian businesses.' },
+    meta: { title: 'About STDN Technologies', description: 'STDN Technologies is a software company in Jind, Haryana, building intelligent products and AI systems for Indian businesses.' },
   },
   {
     path: '/contact',

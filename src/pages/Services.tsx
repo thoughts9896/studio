@@ -108,7 +108,7 @@ export default function Services() {
               </Reveal>
             ))}
           </ol>
-          <Reveal className="mt-12"><ArrowLink to="/about">Who you’ll work with</ArrowLink></Reveal>
+          <Reveal className="mt-12"><ArrowLink to="/about">About STDN</ArrowLink></Reveal>
         </div>
       </section>
 

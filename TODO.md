@@ -1,4 +1,4 @@
-# Before this goes live: things only the founder can fill in
+# Before this goes live: things only STDN can fill in
 
 Everything here is marked `TODO` in the code. Nothing on the site is invented: no stats, clients, logos, reviews or team members.
 
@@ -15,7 +15,8 @@ Everything here is marked `TODO` in the code. Nothing on the site is invented: n
 
 ## Should do
 
-- **Founder photo.** Home and About show an "NN" monogram. Add a photo (square, at least 600 px) and swap it into `src/pages/Home.tsx` and `src/pages/About.tsx`.
+- **Team photos.** None are shown on purpose. Add real photos only when real people can be named.
+- **"Local STDN expert".** Copy says "an STDN expert will call you". Add "local" once city/region teams exist (`src/pages/Home.tsx`, `About.tsx`, `Contact.tsx`).
 - **Review the Privacy Policy and Terms** (`src/pages/Legal.tsx`). They describe what the site actually does today (no cookies, no analytics, the contact form only opens WhatsApp) and say that School ERP data is held on servers STDN operates. Have someone check them before launch.
 - **MedDesk "Now launching"** badge and the NEW top banner: change the wording once the launch date is fixed (`src/components/Layout.tsx`, `src/pages/MedDesk.tsx`).
 - **Hotel ERP is labelled "Live"**, because installers were built for a client hotel (v1.4.5). The client's name is never shown, and it is blurred in the screenshots. If you'd rather not call it live, change the badge in `src/pages/HotelErp.tsx`, `Home.tsx` and `Products.tsx`.
