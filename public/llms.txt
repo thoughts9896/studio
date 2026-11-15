@@ -1,27 +1,14 @@
-# Studio — stdn.in
+# STDN Technologies
 
-> Indian digital studio building websites, AI tools, and business automation software for schools, clinics, and businesses across India.
+> STDN Technologies (stdn.in) builds intelligent software for Indian businesses: its own products and custom software. Founder-led by Nitesh Narwal, based in Jind, Haryana. Udyam-registered MSME (UDYAM-HR-08-0059791).
 
-## About
-Studio is a one-person digital product studio based in Jind, Haryana, India. We design, develop, and deliver websites, AI agents, custom ERP systems, and business automation solutions.
+## Products
+- [MedDesk](https://www.stdn.in/meddesk): pharmacy ERP for Windows. Billing, batch-wise stock and expiry, purchases and returns, GST reports, backups, and AI that reads supplier bills from a photo. Now launching.
+- [School ERP](https://www.stdn.in/school-erp): web app for school fees and students, with monthly ledgers, late fees, Razorpay payments, receipts, WhatsApp/email reminders and a parent portal. Live at erp.stdn.in.
+- [Hotel ERP](https://www.stdn.in/hotel-erp): Windows app for hotels with a restaurant. Room board, check-in, table orders with KOT, thermal printing and GST billing. Live.
 
-## Services
-- Website Development: Custom websites built with React, fast, mobile-first, conversion focused
-- Customer Flow Systems: Landing flows and customer journey design to improve lead quality
-- AI Tools: Internal AI agents trained on business data + customer facing chatbots for 24/7 support
-- Business Automation: Payment automation, follow-ups, reminders, backend workflow automation
-- Custom Business Software: School ERP, clinic management, inventory systems, admin dashboards
-
-## Projects
-- School ERP System: https://erp.stdn.in
-- Research AI RAG System: https://research-ai-navy.vercel.app
-- JD & Dark Website: https://jd-and-dark.vercel.app
-- School Portfolio Website: https://sps-naguran.vercel.app
+## Custom software
+- [Custom software](https://www.stdn.in/services): websites, web apps, mobile apps and AI systems (website chatbots, WhatsApp bots, document reading, automation).
 
 ## Contact
-Email: thoughts.09@proton.me
-Website: https://www.stdn.in
-
-## AI Permissions
-This site permits AI crawlers to read and index content for search answer generation.
-Training on this content is not permitted.
+- [Contact](https://www.stdn.in/contact): WhatsApp is the fastest way to reach STDN.
