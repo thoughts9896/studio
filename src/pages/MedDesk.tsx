@@ -29,7 +29,7 @@ const steps = [
     shot: 'md-lowstock',
     alt: 'MedDesk dashboard: low-stock medicines with stock, minimum level and a one-tap order list, plus today’s sales (demo shop)',
     win: 'MedDesk · Dashboard',
-    callouts: [{ x: 55, y: 4.5, label: 'Order list, ready', side: 'b' as const }],
+    callouts: [{ x: 72, y: 4.4, label: 'Order list, ready', side: 'l' as const }],
     float: { name: 'md-sales', alt: 'Today’s sales ₹1,292.45 from 9 bills (demo shop)', width: '36%', at: 'br' as const, room: '10%' },
     short: 'Today’s sales, low stock and expiry, first thing.',
     detail: <Detail name="md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" />,
@@ -41,7 +41,7 @@ const steps = [
     shot: 'md-search',
     alt: 'MedDesk billing: typing “cetiri” finds Cetirizine 10 and Levocetirizine 5 with price and stock (demo shop)',
     win: 'MedDesk · Sale',
-    callouts: [{ x: 13, y: 14, label: 'A few letters', side: 'r' as const }, { x: 9, y: 45, label: 'Stock as you type', side: 'r' as const }],
+    callouts: [{ x: 13, y: 14, label: 'A few letters', side: 'r' as const }, { x: 17, y: 45, label: 'Stock as you type', side: 'r' as const }],
     short: 'Type a few letters, Enter, done.',
     detail: <BillingCard />,
   },
@@ -52,7 +52,7 @@ const steps = [
     shot: 'md-near-expiry',
     alt: 'MedDesk stock filtered to Near Expiry: six medicines with their nearest expiry in days (demo shop)',
     win: 'MedDesk · Stock',
-    callouts: [{ x: 38, y: 10, label: 'Near expiry, one tap', side: 'b' as const }, { x: 86, y: 45, label: '11 days left', side: 'l' as const }],
+    callouts: [{ x: 28.5, y: 5, label: 'Near expiry, one tap', side: 't' as const }],
     short: 'Every batch with its expiry, flagged early.',
     detail: <ExpiryCard />,
   },
@@ -63,7 +63,7 @@ const steps = [
     shot: 'md-topmeds',
     alt: 'MedDesk Revenue and P&L: top medicines by revenue with cost, profit and margin, and the GST summary by slab (demo shop)',
     win: 'MedDesk · Revenue & P&L',
-    float: { name: 'md-gst', alt: 'GST summary by slab: 5%, 12% and 18%, with taxable value and GST (demo shop)', width: '46%', at: 'br' as const, room: '14%', callout: { x: 30, y: 6, label: 'GST, by slab', side: 'b' as const } },
+    float: { name: 'md-gst', alt: 'GST summary by slab: 5%, 12% and 18%, with taxable value and GST (demo shop)', width: '46%', at: 'br' as const, room: '14%', callout: { x: 34, y: 11, label: 'GST, by slab', side: 'r' as const } },
     short: 'Profit, GST and Excel for your CA.',
     detail: <Detail name="md-gst" alt="MedDesk GST summary by slab with taxable value and GST (demo shop)" />,
   },
@@ -122,8 +122,8 @@ export default function MedDesk() {
               reveal={false}
               only="desktop"
               sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 90vw"
-              callouts={[{ x: 55, y: 8, label: 'Name, generic or batch', side: 'b' }, { x: 14, y: 89, label: 'Batch & expiry, picked for you', side: 'b' }]}
-              float={{ name: 'md-netpay', alt: 'Payment mode cash, UPI, card or credit, and the bill total ₹278 (demo shop)', width: '36%', room: '26%', callout: { x: 26, y: 30, label: 'F1–F4 to pay', side: 'r' } }}
+              callouts={[{ x: 86, y: 8, label: 'Name, generic or batch', side: 't' }, { x: 14, y: 93, label: 'Batch & expiry, picked for you', side: 'b' }]}
+              float={{ name: 'md-netpay', alt: 'Payment mode cash, UPI, card or credit, and the bill total ₹278 (demo shop)', width: '36%', room: '26%', callout: { x: 38, y: 3, label: 'F1–F4 to pay', side: 'r' } }}
             />
           </Reveal>
         </div>

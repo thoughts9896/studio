@@ -37,7 +37,7 @@ const shots = [
   ['meddesk-v3/sale.png', 'md-netpay', box(2194, 1150, 2866, 1784), [400, 672]],
   ['meddesk-v3/sale-search.png', 'md-search', box(420, 225, 2196, 745), W],
   ['meddesk-v3/stock.png', 'md-stock', box(430, 470, 2010, 1300), W],
-  ['meddesk-v3/stock-exp.png', 'md-near-expiry', box(430, 470, 2010, 1130), W],
+  ['meddesk-v3/stock-exp.png', 'md-near-expiry', box(430, 470, 2075, 1130), W],
   ['meddesk-v3/revenue.png', 'md-profit', box(430, 390, 1900, 960), W],
   ['meddesk-v3/revenue2.png', 'md-chart', box(430, 100, 2040, 885), W],
   ['meddesk-v3/revenue2.png', 'md-pnl-statement', box(2055, 100, 2866, 885), [480, 811]],
@@ -79,9 +79,9 @@ const phones = ['ov-today', 'ov-stock', 'ov-dues']
 
 const hash = (buf) => crypto.createHash('sha256').update(buf).digest('hex').slice(0, 8)
 
-// A ~20px-wide, pre-blurred webp as a data URI: shown under the image until it loads.
+// A ~12px-wide, pre-blurred webp as a data URI: shown under the image until it loads.
 async function placeholder(buf) {
-  const b = await sharp(buf).resize({ width: 20 }).blur(0.8).webp({ quality: 45 }).toBuffer()
+  const b = await sharp(buf).resize({ width: 12 }).blur(0.6).webp({ quality: 40 }).toBuffer()
   return `data:image/webp;base64,${b.toString('base64')}`
 }
 
@@ -120,8 +120,12 @@ for (const name of phones) {
 // The synthetic test bill used for the scan demo (made-up supplier, marked "synthetic test data").
 const bill = '/Users/apple/MedDeskData/synthetic-bills/S01-busy-intra.jpg'
 if (fs.existsSync(bill)) {
-  // Just the printed part of the page (header, the five lines and the totals).
-  sizes.bill = await emit(await sharp(fs.readFileSync(bill)).extract(box(0, 0, 1600, 600)).toBuffer(), 'bill', [600, 1000, 1600])
+  // Just the printed part of the page (header, the five lines and the totals). For the demo the
+  // cream's expiry (line 3, "03/28") is left blank, the way a faint or missed print looks, so the
+  // scan has one value it genuinely can't read and asks the shop to check.
+  const blank = Buffer.from('<svg width="56" height="24"><rect width="56" height="24" fill="rgb(251,250,246)"/></svg>')
+  const printed = await sharp(fs.readFileSync(bill)).composite([{ input: blank, left: 756, top: 296 }]).toBuffer()
+  sizes.bill = await emit(await sharp(printed).extract(box(0, 0, 1600, 600)).toBuffer(), 'bill', [600, 1000, 1600])
   console.log('ok bill')
 }
 

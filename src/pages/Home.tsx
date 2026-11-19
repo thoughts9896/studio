@@ -17,7 +17,7 @@ const products = [
     tone: 'med' as const,
     win: 'MedDesk · Sale',
     w: '270px',
-    callout: { x: 26, y: 30, label: 'F1–F4 to pay', side: 'r' as const },
+    callout: { x: 38, y: 3, label: 'F1–F4 to pay', side: 'r' as const },
   },
   {
     to: '/school-erp',
@@ -30,7 +30,7 @@ const products = [
     tone: 'sch' as const,
     win: 'School ERP · Payments',
     w: '300px',
-    callout: { x: 82, y: 30, label: 'Paid online', side: 'b' as const },
+    callout: { x: 86, y: 96, label: 'Paid online', side: 'b' as const, len: 22 },
   },
   {
     to: '/hotel-erp',
@@ -43,7 +43,7 @@ const products = [
     tone: 'htl' as const,
     win: 'Hotel ERP · Rooms',
     w: '232px',
-    callout: { x: 80, y: 86, label: 'Running bill', side: 't' as const },
+    callout: { x: 97, y: 74, label: 'Running bill', side: 't' as const, len: 118 },
   },
 ]
 
@@ -55,7 +55,7 @@ const story = [
     shot: 'md-scan',
     alt: 'MedDesk Import Bill: five items read from a bill photo, lines add up to the printed grand total',
     win: 'MedDesk · Import bill',
-    callouts: [{ x: 34, y: 5, label: 'Matches the printed total', side: 'b' as const }, { x: 26.5, y: 30, label: 'Linked to your stock', side: 'r' as const }],
+    callouts: [{ x: 40, y: 5, label: 'Matches the printed total', side: 'r' as const }],
   },
   {
     kicker: 'Billing',
@@ -64,7 +64,7 @@ const story = [
     shot: 'md-cart',
     alt: 'MedDesk billing: the search box and three medicines in the current bill, each with batch, expiry and strips or loose (demo shop)',
     win: 'MedDesk · Sale',
-    callouts: [{ x: 55, y: 8, label: 'Name, generic or batch', side: 'b' as const }, { x: 72.5, y: 88, label: 'Strips or loose', side: 'l' as const }],
+    callouts: [{ x: 86, y: 8, label: 'Name, generic or batch', side: 't' as const }, { x: 66.5, y: 83, label: 'Strips or loose', side: 'b' as const, len: 30 }],
   },
   {
     kicker: 'Stock & expiry',
@@ -73,7 +73,7 @@ const story = [
     shot: 'md-stock',
     alt: 'MedDesk stock: each medicine with stock, fast mover or dead stock, and its nearest expiry (demo shop)',
     win: 'MedDesk · Stock',
-    callouts: [{ x: 63, y: 51, label: 'Dead stock, flagged', side: 'l' as const }, { x: 86, y: 29, label: 'Days to expiry', side: 'l' as const }],
+    callouts: [{ x: 95.5, y: 6.5, label: 'Dead stock, flagged', side: 't' as const }, { x: 85.4, y: 97.5, label: 'Days to expiry', side: 'b' as const, len: 14 }],
   },
   {
     kicker: 'Revenue & P&L',
@@ -82,7 +82,7 @@ const story = [
     shot: 'md-chart',
     alt: 'MedDesk Revenue and P&L: revenue, cost of goods and profit for every day this month (demo shop)',
     win: 'MedDesk · Revenue & P&L',
-    callouts: [{ x: 58, y: 70, label: 'Profit, every day', side: 't' as const }],
+    callouts: [{ x: 53, y: 93.5, label: 'Profit, every day', side: 'b' as const, len: 26 }],
   },
 ]
 
@@ -134,8 +134,7 @@ export default function Home() {
               reveal={false}
               only="desktop"
               sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 90vw"
-              callouts={[{ x: 16, y: 37, label: 'Today’s sales', side: 'b' }]}
-              float={{ name: 'md-expiry-top', alt: 'MedDesk Expiring Soon: the four nearest expiries by batch with days left (demo shop)', width: '58%', room: '13%', callout: { x: 70, y: 46, label: '11 days left', side: 't' } }}
+              float={{ name: 'md-expiry-top', alt: 'MedDesk Expiring Soon: the four nearest expiries by batch with days left (demo shop)', width: '58%', room: '13%', callout: { x: 77.5, y: 44, ly: 8, label: '11 days left', side: 't' } }}
             />
             <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
           </Reveal>

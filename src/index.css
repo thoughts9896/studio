@@ -234,7 +234,7 @@ html.anim [data-zoom].in { transform: none; opacity: 1; }
     radial-gradient(60% 65% at 92% 96%, var(--st-b), transparent 72%),
     radial-gradient(40% 40% at 70% 20%, rgba(255, 255, 255, 0.7), transparent 70%);
 }
-.stage-body { position: relative; perspective: 2200px; }
+.stage-body { position: relative; perspective: 2200px; padding-bottom: var(--hang, 0px); }
 .stage-body.has-float[data-at='br'], .stage-body.has-float[data-at='bl'] { padding-bottom: var(--room, 7%); }
 .stage-body.has-float[data-at='br'] .stage-win { margin-right: 9%; }
 .stage-body.has-float[data-at='bl'] .stage-win { margin-left: 9%; }
@@ -255,15 +255,16 @@ html.anim [data-zoom].in { transform: none; opacity: 1; }
 .stage-bar i { width: 9px; height: 9px; border-radius: 99px; background: #dedad0; display: block; }
 .stage-bar span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11.5px; font-weight: 560; color: #8a877e; letter-spacing: -0.005em; pointer-events: none; }
 .stage-shot { position: relative; }
-.stage-win > .stage-shot { border-radius: 0 0 14px 14px; overflow: hidden; }
-.stage-win > .stage-shot .co { z-index: 2; }
+/* Only the picture is clipped to the window's corners; callouts may run past the window edge */
+.stage-win > .stage-shot > .pic { display: block; border-radius: 0 0 14px 14px; overflow: hidden; }
+.stage-shot .co { z-index: 4; }
 .stage-shot .pic img { display: block; width: 100%; height: auto; }
 .stage-float {
   position: absolute; width: var(--fw); z-index: 3; border-radius: 14px; background: #fff;
   box-shadow: 0 0 0 1px rgba(15, 15, 13, 0.07), 0 30px 60px -18px rgba(15, 40, 35, 0.45), 0 10px 20px -10px rgba(15, 15, 13, 0.2);
   transition: transform 1.1s var(--ease-out);
 }
-.stage-float > .stage-shot { border-radius: 14px; overflow: hidden; }
+.stage-float > .stage-shot > .pic { display: block; border-radius: 14px; overflow: hidden; }
 .stage-float[data-at='br'] { right: 0; bottom: 0; }
 .stage-float[data-at='bl'] { left: 0; bottom: 0; }
 .stage-float[data-at='tr'] { right: 0; top: 0; }
@@ -278,26 +279,40 @@ html.anim [data-zoom].in { transform: none; opacity: 1; }
   color: #fff; background: rgba(15, 15, 13, 0.9); padding: 7px 11px; border-radius: 99px;
   box-shadow: 0 8px 20px -8px rgba(15, 15, 13, 0.5); backdrop-filter: blur(6px);
 }
-.co[data-side='r'] b { left: 16px; top: 0; transform: translateY(-50%); }
-.co[data-side='l'] b { right: 16px; top: 0; transform: translateY(-50%); }
-.co[data-side='t'] b { left: 0; bottom: 16px; transform: translateX(-50%); }
-.co[data-side='b'] b { left: 0; top: 16px; transform: translateX(-50%); }
+.co[data-side='r'] b { left: var(--len, 16px); top: 0; transform: translateY(-50%); }
+.co[data-side='l'] b { right: var(--len, 16px); top: 0; transform: translateY(-50%); }
+.co[data-side='t'] b { left: 0; bottom: var(--len, 16px); transform: translateX(-50%); }
+.co[data-side='b'] b { left: 0; top: var(--len, 16px); transform: translateX(-50%); }
+/* Leader line from the dot to a label set further out */
+.co s { position: absolute; background: color-mix(in srgb, var(--st-ink) 70%, #0f0f0d); border-radius: 2px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85); }
+.co[data-side='r'] s { left: 0; top: -1px; height: 2px; width: var(--len); }
+.co[data-side='l'] s { right: 0; top: -1px; height: 2px; width: var(--len); }
+.co[data-side='t'] s { left: -1px; bottom: 0; width: 2px; height: var(--len); }
+.co[data-side='b'] s { left: -1px; top: 0; width: 2px; height: var(--len); }
+/* Span callouts: the box runs from the dot to the label's own y (in % of the screen) */
+.co[data-span] { height: var(--h); }
+.co[data-span] s { height: 100%; }
+.co[data-span][data-side='t'] i { top: auto; bottom: -6px; }
+.co[data-span][data-side='t'] b { bottom: auto; top: 0; transform: translate(-50%, -50%); }
+.co[data-span][data-side='b'] b { top: 100%; transform: translate(-50%, -50%); }
 @media (max-width: 640px) {
   .stage { border-radius: 22px; padding: 14px; }
   .stage-bar { height: 20px; gap: 4px; padding: 0 8px; }
   .stage-bar i { width: 6px; height: 6px; }
   .stage-bar span { font-size: 9px; }
   .co b { font-size: 10.5px; padding: 5px 8px; }
+  .co[data-span][data-side='t'] i { bottom: -4.5px; }
   .co i { width: 9px; height: 9px; left: -4.5px; top: -4.5px; box-shadow: 0 0 0 2px #fff, 0 0 0 5px color-mix(in srgb, var(--st-ink) 22%, transparent); }
 }
 /* Callouts pop in once the stage is on screen (only when JS runs and motion is allowed) */
-html.anim .stage[data-reveal] .co b, html.anim .stage[data-reveal] .co i { opacity: 0; transition: opacity 0.6s var(--ease-out), translate 0.7s var(--ease-out); transition-delay: calc(500ms + var(--i, 0) * 180ms); translate: 0 6px; }
-html.anim .stage[data-reveal].in .co b, html.anim .stage[data-reveal].in .co i { opacity: 1; translate: 0 0; }
+html.anim .stage[data-reveal] .co b, html.anim .stage[data-reveal] .co i, html.anim .stage[data-reveal] .co s { opacity: 0; transition: opacity 0.6s var(--ease-out), translate 0.7s var(--ease-out); transition-delay: calc(500ms + var(--i, 0) * 180ms); translate: 0 6px; }
+html.anim .stage[data-reveal].in .co b, html.anim .stage[data-reveal].in .co i, html.anim .stage[data-reveal].in .co s { opacity: 1; translate: 0 0; }
 html.anim .stage[data-reveal].now .co b, html.anim .stage[data-reveal].now .co i { transition: none; }
 
 /* ── AI bill scan (ScanDemo) ───────────────────────────────────────────────
    Final state is the default (no JS, reduced motion, prerendered HTML). With JS, `.armed`
    hides what will animate and `.play` (set when it scrolls into view) runs one timeline. */
+.scan2-box { container-type: inline-size; }
 .scan2 {
   --t-row: 1.5s; --gap: 0.42s;
   position: relative; isolation: isolate; overflow: hidden; border-radius: 28px; background: #eef6f3;
@@ -326,18 +341,21 @@ html.anim .stage[data-reveal].now .co b, html.anim .stage[data-reveal].now .co i
 @keyframes dot { 50% { opacity: 0.2; } }
 .s-done { background: var(--color-med-soft); color: var(--color-med); }
 .scan2-table { padding: 4px 8px 6px; font-variant-numeric: tabular-nums; }
-.scan2-tr { display: grid; grid-template-columns: minmax(0, 2.4fr) 1fr 0.7fr 0.45fr 0.55fr 0.75fr 0.75fr; gap: 10px; align-items: center; padding: 0 10px; }
+.scan2-tr { display: grid; grid-template-columns: minmax(13.5rem, 2.6fr) minmax(5.2rem, 1fr) minmax(4.2rem, 0.8fr) minmax(2rem, 0.45fr) minmax(3.6rem, 0.75fr) minmax(3.6rem, 0.75fr); gap: 10px; align-items: center; padding: 0 10px; }
 .scan2-th { height: 34px; font-size: 0.68rem; font-weight: 650; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-ink-3); border-bottom: 1px solid #f0f1ef; }
 .scan2-row { height: 50px; font-size: 0.86rem; border-bottom: 1px solid #f3f4f2; }
-.scan2-row:last-child { border-bottom: 0; }
+.scan2-table > div:last-child .scan2-row { border-bottom: 0; }
 .scan2-row > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .scan2-row .c-n b { font-weight: 620; font-size: 0.84rem; letter-spacing: -0.01em; display: block; overflow: hidden; text-overflow: ellipsis; }
 .scan2-row .c-n small { display: none; }
 .scan2-tr .num { text-align: right; }
-.scan2-row .ask { overflow: visible; position: relative; }
-.scan2-row .ask em { font-style: normal; font-weight: 700; color: #92400e; display: inline-grid; place-items: center; min-width: 34px; height: 30px; padding: 0 8px; border-radius: 8px; background: #fef3c7; box-shadow: inset 0 0 0 1.5px #f59e0b; }
-.ask-pill { position: absolute; z-index: 4; right: -6px; bottom: calc(100% + 8px); white-space: nowrap; font-size: 0.72rem; font-weight: 650; color: #fff; background: #0f0f0d; padding: 6px 10px; border-radius: 99px; box-shadow: 0 10px 22px -10px rgba(15, 15, 13, 0.6); }
-.ask-pill::after { content: ''; position: absolute; right: 18px; top: 100%; border: 5px solid transparent; border-top-color: #0f0f0d; }
+.scan2-row .ask em { font-style: normal; font-weight: 700; font-size: 0.8rem; color: #92400e; display: inline-grid; place-items: center; height: 28px; padding: 0 10px; border-radius: 8px; background: #fef3c7; box-shadow: inset 0 0 0 1.5px #f59e0b; }
+.scan2-row .ask { overflow: visible; }
+/* The note under the asked row: its own band of space, so it never covers another value */
+.scan2-note { height: 40px; border-bottom: 1px solid #f3f4f2; }
+.scan2-row.has-ask { border-bottom: 0; }
+.ask-pill { grid-column: 3 / -1; justify-self: start; position: relative; white-space: nowrap; font-size: 0.74rem; font-weight: 650; color: #fff; background: #0f0f0d; padding: 6px 11px; border-radius: 99px; box-shadow: 0 10px 22px -10px rgba(15, 15, 13, 0.6); }
+.ask-pill::after { content: ''; position: absolute; left: 25px; bottom: 100%; border: 5px solid transparent; border-bottom-color: #0f0f0d; }
 .scan2-total { display: flex; align-items: center; gap: 8px; margin: 4px 14px 14px; padding: 11px 14px; border-radius: 12px; background: #e7f5ec; color: #14713a; font-size: 0.86rem; font-weight: 600; }
 .scan2-replay { position: absolute; right: 16px; bottom: 14px; z-index: 5; display: none; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 99px; background: rgba(255, 255, 255, 0.85); box-shadow: 0 0 0 1px rgba(15, 15, 13, 0.08); font-size: 0.78rem; font-weight: 600; color: var(--color-ink-2); }
 .scan2-replay:hover { background: #fff; }
@@ -361,21 +379,42 @@ html.anim .stage[data-reveal].now .co b, html.anim .stage[data-reveal].now .co i
 @keyframes s2-pop { from { opacity: 0; transform: translate3d(0, 6px, 0) scale(0.92); } to { opacity: 1; transform: none; } }
 @keyframes s2-pulse { 0%, 100% { box-shadow: inset 0 0 0 1.5px #f59e0b, 0 0 0 0 rgba(245, 158, 11, 0.45); } 50% { box-shadow: inset 0 0 0 1.5px #f59e0b, 0 0 0 7px rgba(245, 158, 11, 0); } }
 
-/* Narrow: bill on top, the table below with fewer columns (the asked cell stays) */
-@media (max-width: 900px) {
-  .scan2 { grid-template-areas: none; grid-template-columns: 1fr; padding: 16px 14px 18px; border-radius: 24px; }
+/* Not wide enough for the bill beside the window: bill on top, the whole table below.
+   Container queries, so it holds wherever the demo is placed (no column is ever cut). */
+@container (max-width: 980px) {
+  .scan2 { grid-template-areas: none; grid-template-columns: 1fr; padding: 20px 20px 22px; }
   .scan2 > .scan2-bill, .scan2 > .scan2-win { grid-area: auto; }
-  .scan2-bill { width: auto; margin: 6px 6% -8% 4%; }
+  .scan2-bill { width: auto; max-width: 620px; margin: 6px 6% -6% 3%; }
   .scan2-win { width: auto; margin-top: 0; justify-self: stretch; }
   .scan2-bill figcaption { display: none; }
-  .scan2-tr { grid-template-columns: minmax(0, 1fr) 2.2rem 2.6rem 3.4rem; gap: 8px; padding: 0 6px; }
-  .scan2-tr .c-b, .scan2-tr .c-e, .scan2-tr .c-m { display: none; }
-  .scan2-row { height: 52px; font-size: 0.82rem; }
+  .scan2 { padding-bottom: 60px; }
+  .scan2-replay { right: 20px; bottom: 16px; height: 30px; }
+}
+/* Phone: fewer columns (the asked cell stays), batch moves under the name */
+@container (max-width: 600px) {
+  .scan2 { padding: 16px 14px 18px; border-radius: 24px; }
+  .scan2-tr { grid-template-columns: minmax(0, 1fr) 3.9rem 1.6rem 3.3rem; gap: 8px; padding: 0 6px; }
+  .scan2-tr .c-b, .scan2-tr .c-m { display: none; }
+  .scan2-row { font-size: 0.82rem; }
   .scan2-row .c-n small { display: block; font-size: 0.7rem; color: var(--color-ink-3); margin-top: 2px; }
+  .scan2-row .ask em { padding: 0 8px; font-size: 0.76rem; }
+  .ask-pill { grid-column: 1 / 3; justify-self: end; }
+  .ask-pill::after { left: auto; right: 30px; }
+  .scan2-row { height: auto; min-height: 56px; padding-block: 8px; }
+  .scan2-row .c-n b { white-space: normal; overflow: visible; }
   .scan2-head { padding: 12px 12px; gap: 10px; }
   .scan2-sub { display: none; }
   .scan2-total { margin: 4px 10px 10px; font-size: 0.8rem; }
-  .scan2-replay { right: 12px; top: 12px; bottom: auto; height: 28px; }
+  .scan2 { padding-bottom: 56px; }
+  .scan2-replay { right: 14px; bottom: 14px; }
+}
+
+/* Smallest phones: long names may break, and the note spans the row so it always fits */
+@container (max-width: 340px) {
+  .scan2-row .c-n b { overflow-wrap: anywhere; font-size: 0.8rem; }
+  .scan2-tr { gap: 6px; }
+  .ask-pill { grid-column: 1 / -1; font-size: 0.7rem; padding: 6px 9px; }
+  .ask-pill::after { right: calc(1.6rem + 3.3rem + 12px + 6px + 1.4rem); }
 }
 
 /* Owner View phones (coming soon), fanned out */

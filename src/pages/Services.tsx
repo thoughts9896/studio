@@ -79,7 +79,7 @@ export default function Services() {
           <SectionHead eyebrow="Proof" title="Our own products are the portfolio." lede="Each one solves a problem you may have too: reading documents, taking payments, running offline, automating reminders." />
           <div className="tile mt-8 bg-med-soft p-5 md:hidden"><ScanResult /></div>
           <div className="mt-14 hidden md:block">
-            <Stage name="md-scan" alt="MedDesk reading a supplier bill with AI: five lines found, each linked to stock, and they match the printed total" title="MedDesk · Import bill" tone="med" tilt="r" only="desktop" sizes="(min-width: 1200px) 1040px, 92vw" callouts={[{ x: 34, y: 5, label: 'Matches the printed total', side: 'b' }]} />
+            <Stage name="md-scan" alt="MedDesk reading a supplier bill with AI: five lines found, each linked to stock, and they match the printed total" title="MedDesk · Import bill" tone="med" tilt="r" only="desktop" sizes="(min-width: 1200px) 1040px, 92vw" callouts={[{ x: 40, y: 5, label: 'Matches the printed total', side: 'r' }]} />
           </div>
           <ul className="mt-12 grid gap-6 md:grid-cols-3">
             {work.map((w, i) => (

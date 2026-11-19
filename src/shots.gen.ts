@@ -10,7 +10,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1600,
       2400
     ],
-    "ph": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAABQAwCdASoUAAkAPt1apkyopSOiMAgBEBuJZyzAAAGEWIKOQAD+7jUVsLPt6cbNwkuAAgFy26YNQVzH75eAAA=="
+    "ph": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoMAAUAA4BaJZwAApY2oAD+8/kxDrHOlCM324AAAAA="
   },
   "md-expiry": {
     "w": 1216,
@@ -21,7 +21,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAgCdASoUAAsAPt1apkyopSOiMAgBEBuJaQAAfj4AAP7xB30A43nh5GKMxgXPigE2amDAK0CgAAAA"
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAACQAQCdASoMAAcAA4BaJaQAAud7WCAA/vZNpwAA"
   },
   "md-expiry-top": {
     "w": 1216,
@@ -32,7 +32,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAAAQAwCdASoUAAYAPt1cp0yrpSOiMAgBcBuJZwAAetFYbQAA/vDmGssrJsVDcT/mEmEvAAAA"
+    "ph": "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAACQAQCdASoMAAQAA4BaJZwAAudGFyYA/vZN/KryUgA="
   },
   "md-sales": {
     "w": 482,
@@ -41,7 +41,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       480
     ],
-    "ph": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoUAAoAPt1cqUyopSQiMAgBEBuJZgCsLwABkFa3oZ0QcgAAyTEttXB16jiXPz8ND8jPf435r2RlhofvCZQWBNDzZ2Wlqpv9V7RjkKhF+AAAAA=="
+    "ph": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoMAAYAA4BaJbACdADbgfJOQADMHSibOcUhjxJ0ECikjYJpsgf+A/jJ/z1hSAAA"
   },
   "md-lowstock": {
     "w": 1210,
@@ -52,7 +52,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADQAgCdASoUAAsAPt1apkyrpSOiMAgBcBuJaQAAe/QAAP7wwOn6DCOHAAA="
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAcAA4BaJaQAA3AA/vPSaMZ4cAAA"
   },
   "md-cart": {
     "w": 1776,
@@ -63,7 +63,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAgCdASoUAAkAPt1cpkyopSOiMAgBEBuJaQAAl1AAAP7xNQRzudL1j2LD1L9dzIAAAA=="
+    "ph": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoMAAUAA4BaJZwAA3AA/vRmAAA="
   },
   "md-pay": {
     "w": 672,
@@ -73,7 +73,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       400,
       672
     ],
-    "ph": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoUAB8APtVYo0yoJSMiN/VYAQAaiWNokwBjSbCeovtyGeIAAP70SXl181+jPHFEO1yfiR9Q4Yh8Jyp74J7WEBc0vDyQ2D/rYTxfNEBPE5y6Y+evSS9AY8XvIQAAAA=="
+    "ph": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAwAwCdASoMABMAPu1kqk4ppaQiMAgBMB2JSvPgEU3ZB/UQAP76dqjBHnNvIc7qMWRhmn4oe9Eh4qOLa/+k5bVWYTc6ebd8pgA="
   },
   "md-netpay": {
     "w": 672,
@@ -83,7 +83,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       400,
       672
     ],
-    "ph": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoUABMAPs1SoUynpKMiN/qoAPAZiWMAvzg3FNSYlT/LMUvn1jgA/vFCU9enwacm53HbQJvVl9ZBRVg1g96xxfUPAs0GiWtswFTRM7RHWgJo7ZoYWtGUsl1zd7ytjAAA"
+    "ph": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAAAQAgCdASoMAAsAA4BaJbAC7AEf/p9kL+MAAP72J+2AB/z+cd5S6Lxcr4nIh4Nrc9pAAAAA"
   },
   "md-search": {
     "w": 1776,
@@ -94,7 +94,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAYAPt1apkyrpSOoMAgBcBuJaQAAetDDQAD+8Ret+/20ijQ+AAAA"
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAQAA4BaJaQAA3AA/vR1m0ggaUAA"
   },
   "md-stock": {
     "w": 1580,
@@ -105,18 +105,18 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAgCdASoUAAsAPt1cpkyopSOiMAgBEBuJaQAAeyAA/vDmGqEYh4OAg+DbG8h0CAA="
+    "ph": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAwAQCdASoMAAYAA4BaJaQAA3AA/vQParAqRe17IeZgAA=="
   },
   "md-near-expiry": {
-    "w": 1580,
+    "w": 1645,
     "h": 660,
-    "v": "cea90460",
+    "v": "e342833c",
     "ws": [
       700,
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACwAgCdASoUAAgAPt1cpkyopSOiMAgBEBuJZwAAeyAA/vDmGqFCsX5dlri2tDLS0vAAAA=="
+    "ph": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAwAQCdASoMAAUAA4BaJaQAA3AA/vRH9G6Ei9r2Q8zAAA=="
   },
   "md-profit": {
     "w": 1470,
@@ -127,7 +127,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAgCdASoUAAgAPt1cp0yopSOiMAgBEBuJaWUFADdYAAD+8NL+G2ORyaiharXsvys7Mma6N/uUf4AA"
+    "ph": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoMAAUAA4BaJaVefAGIAAD+89XLtq/X0THHw0ugAAA="
   },
   "md-chart": {
     "w": 1610,
@@ -138,7 +138,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAAoAPt1cpkyopSOiMAgBEBuJZwAAW7OfSf0WK7gAAP7zeFj3o6eu/jdlYcYElbAv7+WeX82idLidGWs46cAA"
+    "ph": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoMAAYAA4BaJZQCdAEOumsAAP72JVU4X9j+/ysFuLX+F7XeAAA="
   },
   "md-pnl-statement": {
     "w": 811,
@@ -148,7 +148,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       480,
       811
     ],
-    "ph": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAABQAwCdASoUABMAPt1orFEopaQiqAgBEBuJaQAALnWauuRCAAD+8iOrcFB7FYm+z0bSJRomW/dIAA=="
+    "ph": "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAAAwAQCdASoMAAwAA4BaJaQAA3AA/vR1+YoUcfyUAAA="
   },
   "md-gst": {
     "w": 811,
@@ -158,7 +158,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       480,
       811
     ],
-    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAQAwCdASoUAAsAPt1cpkyopSOiMAgBEBuJaQAAetFHalYA/vDzBB7G2p5LQGJERb7WK8CAAAA="
+    "ph": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAABwAQCdASoMAAcAA4BaJaWDrAGIAAD+883AzYffbZNfYgAA"
   },
   "md-topmeds": {
     "w": 1610,
@@ -169,7 +169,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAgCdASoUAAsAPt1apkyopSOiMAgBEBuJaQAAeyAA/vDlC72IeDgDCX3PF1ThAAA="
+    "ph": "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAAAwAQCdASoMAAcAA4BaJaQAA3AA/vOY1qqReJfjgAA="
   },
   "md-purchases": {
     "w": 1880,
@@ -180,7 +180,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAsAPt1cp0yopSOisAgBEBuJaQAAeyAA/vEGp3Rldl4A"
+    "ph": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAAAwAQCdASoMAAYAA4BaJaQAA3AA/vQ4MwAAAA=="
   },
   "md-scan": {
     "w": 2060,
@@ -191,7 +191,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAgCdASoUAAkAPt1apkyrpSOiMAgBcBuJaQAAeyAA/vD3h2rMhFwAAAA="
+    "ph": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAAAwAQCdASoMAAUAA4BaJaQAA3AA/vR/engAAA=="
   },
   "school-dash": {
     "w": 1898,
@@ -202,7 +202,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAQAwCdASoUAA4APt1epkyopSOiMAgBEBuJZwAAelXzRAAA/vDzRX1oTtxakecw1fxRv3ReS21/J8+4AAA="
+    "ph": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAACwAQCdASoMAAgAA4BaJZwAAxal+AigAP73I6SYTpRQAA=="
   },
   "school-insights": {
     "w": 1190,
@@ -213,7 +213,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       800,
       1190
     ],
-    "ph": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAYAPt1apkyopSOiMAgBEBuJZwC/OC1yAAD+8QTHbBSyPREcAAAA"
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABwAQCdASoMAAQAA4BaJZwCw7FAAAD+9HrswggA"
   },
   "school-ledgers": {
     "w": 1870,
@@ -224,7 +224,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAA4APt1apkyopSOiMAgBEBuJaQAAetEDAAD+8QUI8Swi5sjpFAAA"
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAkAA4BaJaQAA3AA/vR1krFKDgAA"
   },
   "school-payments": {
     "w": 1710,
@@ -235,7 +235,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUABAAPt1cpkyopSOiMAgBEBuJaQAAetEDAAD+8PbgMmzu0frbYCAA"
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAoAA4BaJaQAA3AA/vR9s3pfuoAA"
   },
   "school-students": {
     "w": 1470,
@@ -246,7 +246,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAQAwCdASoUABMAPt1orlEopiQiqAgBEBuJaQDOdBbISMAA/vD0PFHhwPjik3mB6nRoR6AQAAA="
+    "ph": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoMAAsAA4BaJaQAA3AA/vP1AAA="
   },
   "school-fees": {
     "w": 1870,
@@ -257,7 +257,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAwCdASoUAA8APt1gp00opaOiMAgBEBuJZWVuADswwAAA/vD2yZxdjzWHfF89Qo7K3dvDuEGqAYMXRTfBwMZIUAA="
+    "ph": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACQAQCdASoMAAkAA4BaJZwAAxbIsEAA/vckFx9pX6LQFQYJIAA="
   },
   "hotel-dashboard": {
     "w": 2500,
@@ -268,7 +268,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1600,
       2400
     ],
-    "ph": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAABwAwCdASoUAAcAPt1gqU2opaQiMAgBEBuJQBOj+AErU0VgdAAA+yPMBPMbz87/fzSexekXi++FcCc7RSSeAlzbp2/VgN3p3/y6Lv04pa2yAAAA"
+    "ph": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoMAAQAA4BaJZQCdAEO9p5AAPy0+BfpYtVesBiOt8vHTZQAAAA="
   },
   "hotel-rooms": {
     "w": 1870,
@@ -279,7 +279,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAwCdASoUAAoAPt1ep00opSOiMAgBEBuJYwC7G1/AWJ4RJ8G9B3qAAP7hpdx4xmfO8NezOJHYH7XS4XgkVFrWYbSHyCxToUc6sQR3C1bun1+HBVX7gQAA"
+    "ph": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoMAAYAA4BaJZwAAud9okwAAP7tjqpvp+7NjezES2IHAAAA"
   },
   "hotel-restaurant": {
     "w": 1900,
@@ -290,7 +290,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAAAQAwCdASoUAA0APt1apkyopSOiMAgBEBuJZwAAetFaTewA/vC81ptNJxjNng5MSBzkgAAA"
+    "ph": "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAABQAQCdASoMAAgAA4BaJZwABAAAAP7zm3unbZneAAA="
   },
   "hotel-bookings": {
     "w": 1930,
@@ -301,7 +301,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAAAQAwCdASoUAAkAPt1cpkyopSOiMAgBEBuJaQAAetCg8YAA/vEG4RMwe6tYpy8AAAA="
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAUAA4BaJaQAA3AA/vREk677wgAA"
   },
   "hotel-checkins": {
     "w": 2500,
@@ -312,7 +312,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       1100,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADQAgCdASoUAAgAPt1cpkyopSOiMAgBEBuJaQAAlYgAAP7xLbgYvkwAAAA="
+    "ph": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAAAwAQCdASoMAAUAA4BaJaQAA3AA/vSyfkAAAA=="
   },
   "d-md-profit": {
     "w": 780,
@@ -322,7 +322,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       640,
       1000
     ],
-    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAgCdASoUAAYAPt1apkyopSOiMAgBEBuJZwDImC0kAAD+8OWmq1OpP1ODa3oXNW9jFVfuoAA="
+    "ph": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAAAwAQCdASoMAAQAA4BaJZQAA3AA/vQQxdZ47mNJsPef4AAA"
   },
   "d-hotel-room": {
     "w": 594,
@@ -331,7 +331,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       640
     ],
-    "ph": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoUABgAPt1YpU0opKOiMBgMARAbiWQAtuju3AAg8X+/mtFgnnaNyxTdEAkNIAD+lT3YKuuLVnriotW9JO5okUKYkaJ67tteC+gRutm6YnfmgvpYn/MHmm7Pxb7VkgWk9LoAxDkIKOIA18HNZJZIbX6GLMiMvtbkEYqzAjMXCXKN4YDEy7EVDvE/5VouMdl3Danwm0/ec8gAAA=="
+    "ph": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAQCdASoMAA4AA4BaJQBWACBu9ldkAP6aEqjSp0rC2A0Ijzrk1Ns25GWMbNFxx2BsfauQRFSgXmL9CuxLwohOsC6hFDFmS8wObJ05v5wRJAAA"
   },
   "d-hotel-room-top": {
     "w": 594,
@@ -340,7 +340,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       640
     ],
-    "ph": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwAwCdASoUAA8APt1cp00opSOiMAgBEBuJZQCsABI+mlZE8AkhAAD90xtirEIFEau+JmMIs0UIEYSClOQOPuT39S4kvPecd4GVb8oMPqR1N8sVV2RVeldUAAA="
+    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoMAAkAA4BaJZQC7AE2LWOVIgAA/poQfKw/5z8P3SdIzo7xE9Cy8VzryobIq0tY8AA="
   },
   "d-hotel-tables": {
     "w": 894,
@@ -350,7 +350,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       640,
       1000
     ],
-    "ph": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAwAwCdASoUAA0APt1apkyopSOiMAgBEBuJZQDCgC0HgCMAAP7wzvjfxsRaJS73S5icpJT1sX5fjgAA"
+    "ph": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAABwAQCdASoMAAgAA4BaJZQC7AFAAAD+89IeMLRy2Vm4AAAA"
   },
   "d-hotel-occupied": {
     "w": 600,
@@ -359,7 +359,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       640
     ],
-    "ph": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAgCdASoUAAgAPt1cpkyopSOiMAgBEBuJaQAAlYgAAP7xPbOu4AAA"
+    "ph": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoMAAUAA4BaJaQAA3AA/vSwuAA="
   },
   "d-school-dues": {
     "w": 540,
@@ -368,7 +368,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       640
     ],
-    "ph": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADQAgCdASoUAAoAPt1cpkyopSOiMAgBEBuJaQAAlYgAAP7xQf0ULgXwz2AAAA=="
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAAAwAQCdASoMAAYAA4BaJaQAA3AA/vS2B7dPxgAA"
   },
   "d-school-revenue": {
     "w": 540,
@@ -377,7 +377,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
     "ws": [
       640
     ],
-    "ph": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAACwAgCdASoUAAoAPt1apkyopSOiMAgBEBuJaQAAeyAA/vEIWJbloVjCBFiAAA=="
+    "ph": "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAAAwAQCdASoMAAYAA4BaJaQAA3AA/vS3SMd7CwYAAAA="
   },
   "d-school-pay": {
     "w": 860,
@@ -387,7 +387,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       640,
       1000
     ],
-    "ph": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAAAQAwCdASoUABAAPt1apkyopSOiMAgBEBuJaQAAetFFIwAA/vDhRyjIk7zQFVh5AAA="
+    "ph": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoMAAkAA4BaJZwABAAAAP70C9Q3WwAA"
   },
   "ov-today": {
     "w": 1170,
@@ -398,7 +398,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADwBQCdASoUACsAPt1ipE4opaMiKqwBEBuJQBgbgovpPTG78/jGIcd8OD8Drf9S6gK19tyIDxLZAAD+7WGmisdiCevi8SdKp/ZrzHFCUYUREbdh2QP3VV8R/7RjICHCs6erGmhGyPvt7bMmkYhIF+slqQlsa5a8FAsFC3hcSmEf972zdOWDplp2rGktbqLt/f3WXCEhRvGjyrYrL/AAAA=="
+    "ph": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACQAwCdASoMABoAPu1iqU2ppaQiMAgBMB2JYwAAW1aqMlQY3AgAAP7gqo1EV66l7NxNP324MmEDhrcLTzjKL136F5f9O7CwpSDC4Sujd6aIIthnFcZLAItvA6u0hl/E6sAAAA=="
   },
   "ov-stock": {
     "w": 1170,
@@ -409,7 +409,7 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADwBACdASoUACsAPt1cpUyopSOiMAgBEBuJZwDImC0Hl42bBQMl6yDRUExNcLEjKuAA/vCYJJGfhK6/1I9xirfn1nmMIGnZOBg29rYY3bav9PCM9Hkza5sRggbbf8FiFYJMQWrP002RyODHWY08ZszjAAAAAA=="
+    "ph": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACQAwCdASoMABoAPu1yrU+pp6QiMAgBMB2JZQC7AGlhS1c5FjAAAP76uQfWyfA/JOrBbgJWkNxFvouEhLh/NoJuIAA="
   },
   "ov-dues": {
     "w": 1170,
@@ -420,17 +420,17 @@ export const SHOTS: Record<string, ShotFile & { m?: ShotFile }> = {
       800,
       1170
     ],
-    "ph": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoUACsAPt1cpUyopSOiMAgBEBuJZwDNSB7H2GsodK5vfK9XddSzZuo9V8N6OAAA/u1hpmApnEFJkL5e66aZPwp3vUZpLrJmFRkAczoms6tLDwsYEJssnwQA06zv/412ZRwgr8Z3tAAAAA=="
+    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACwAQCdASoMABoAA4BaJZwC7AFbc+HAAP7zH/utCPk9C6eJ11UBmrfd7oe0A1DMS9NyadpWgAA="
   },
   "bill": {
     "w": 1600,
     "h": 600,
-    "v": "05190d06",
+    "v": "a0936d01",
     "ws": [
       600,
       1000,
       1600
     ],
-    "ph": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAwAwCdASoUAAgAPt1cpkyopSOiMAgBEBuJaWJJWFKTjZYAAP7w0LZTwvqq+wtd36LIRBHe0AA="
+    "ph": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAwAQCdASoMAAUAA4BaJZwAA3AA/vNZrASJYaVnAgAAAA=="
   }
 }
