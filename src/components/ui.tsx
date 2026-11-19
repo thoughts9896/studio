@@ -114,22 +114,6 @@ export function Pic({ name, alt, sizes, eager = false, only, phoneCrop = false, 
   )
 }
 
-export function Shot({ name, alt, sizes = '(min-width: 1200px) 1100px, 100vw', zoom = false, eager = false, frame = true, phoneCrop = true, only, className = '' }: {
-  name: string; alt: string; sizes?: string; zoom?: boolean; eager?: boolean; frame?: boolean; phoneCrop?: boolean; only?: 'mobile' | 'desktop'; className?: string
-}) {
-  const pic = <Pic name={name} alt={alt} sizes={sizes} eager={eager} only={only} phoneCrop={phoneCrop} />
-  return (
-    <div {...(zoom ? { 'data-zoom': '' } : {})} className={className}>
-      {frame ? (
-        <div className="window">
-          <div className="window-bar" aria-hidden="true"><i /><i /><i /></div>
-          {pic}
-        </div>
-      ) : pic}
-    </div>
-  )
-}
-
 export function Todo({ children }: { children: ReactNode }) {
   return <span className="todo">TODO · {children}</span>
 }

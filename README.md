@@ -5,7 +5,8 @@ The company site: light, fast and prerendered. It covers the products (MedDesk, 
 - **Stack:** Vite + React 19 + React Router + Tailwind CSS 4, Inter (self-hosted).
 - **Prerendered:** every route is rendered to static HTML at build time (`scripts/prerender.mjs`), with its own title, meta, canonical, Open Graph image and JSON-LD. React then hydrates it.
 - **Motion:** CSS only, plus one IntersectionObserver. Sections fade and slide in, product windows scale in on scroll (CSS scroll-driven animations where supported), and the product story is a sticky crossfade. All of it switches off with `prefers-reduced-motion`. Content is visible without JS.
-- **Images:** real product screenshots, taken on **demo data only**, as AVIF/WebP at 960/1600/2400 px (plus phone crops) in `public/shots`. They are built by `npm run images` from `../raw-captures`.
+- **Images:** real product screenshots, taken on **demo data only** at a small window and 2x scale, cropped to the one thing each section talks about, as AVIF/WebP in `public/shots` (content-hashed names). They are built by `npm run images` from `../raw-captures` (`meddesk-v3`, `school-v2`, `ashoka`).
+- **Product visuals** (`src/components/visual.tsx`): `Stage` puts a crop in an app window on a soft product-colour backdrop with depth, a slight tilt and callout labels; `ScanDemo` is the AI bill-scan animation (plays once in view, Replay button, static under reduced motion); `OwnerPhones` shows Owner View (coming soon). Sections below the fold use `content-visibility: auto`.
 
 ## Run locally
 

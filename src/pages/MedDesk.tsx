@@ -1,6 +1,7 @@
-import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton, Pic } from '../components/ui'
+import { Badge, FeatureList, FinalCta, Reveal, SectionHead, Todo, WhatsAppButton } from '../components/ui'
+import { OwnerPhones, ScanDemo, Stage } from '../components/visual'
 import { Story } from '../components/Story'
-import { BillScan, BillingCard, Detail, ExpiryCard, FeatureRail, Phone, Rail } from '../components/mobile'
+import { BillingCard, Detail, ExpiryCard, FeatureRail, Phone, Rail } from '../components/mobile'
 import { PRICES } from '../site'
 
 const DEMO_MSG = 'Namaste STDN, mujhe MedDesk ka demo chahiye. Shop name:'
@@ -25,17 +26,22 @@ const steps = [
     kicker: 'Dashboard',
     title: 'Aaj ki dukaan, ek nazar mein.',
     text: 'Today’s sales, purchases, low stock and medicines expiring soon, all on the first screen you see.',
-    shot: 'md-dashboard',
-    alt: 'MedDesk dashboard (demo shop)',
+    shot: 'md-lowstock',
+    alt: 'MedDesk dashboard: low-stock medicines with stock, minimum level and a one-tap order list, plus today’s sales (demo shop)',
+    win: 'MedDesk · Dashboard',
+    callouts: [{ x: 55, y: 4.5, label: 'Order list, ready', side: 'b' as const }],
+    float: { name: 'md-sales', alt: 'Today’s sales ₹1,292.45 from 9 bills (demo shop)', width: '36%', at: 'br' as const, room: '10%' },
     short: 'Today’s sales, low stock and expiry, first thing.',
-    detail: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" />,
+    detail: <Detail name="md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" />,
   },
   {
     kicker: 'Billing',
     title: 'Customer wait nahi karega.',
     text: 'Type a few letters, press Enter, set the quantity. The bill totals, GST and payment mode are on the same screen.',
-    shot: 'md-billing',
-    alt: 'MedDesk billing with three items in the bill',
+    shot: 'md-search',
+    alt: 'MedDesk billing: typing “cetiri” finds Cetirizine 10 and Levocetirizine 5 with price and stock (demo shop)',
+    win: 'MedDesk · Sale',
+    callouts: [{ x: 13, y: 14, label: 'A few letters', side: 'r' as const }, { x: 9, y: 45, label: 'Stock as you type', side: 'r' as const }],
     short: 'Type a few letters, Enter, done.',
     detail: <BillingCard />,
   },
@@ -43,8 +49,10 @@ const steps = [
     kicker: 'Stock',
     title: 'Expiry se pehle pata chalega.',
     text: 'Every batch with its expiry, plus near-expiry and dead-stock filters and stock value at cost and MRP.',
-    shot: 'md-expiry',
-    alt: 'MedDesk Expiring Soon list: medicine, batch, days left and status (demo shop)',
+    shot: 'md-near-expiry',
+    alt: 'MedDesk stock filtered to Near Expiry: six medicines with their nearest expiry in days (demo shop)',
+    win: 'MedDesk · Stock',
+    callouts: [{ x: 38, y: 10, label: 'Near expiry, one tap', side: 'b' as const }, { x: 86, y: 45, label: '11 days left', side: 'l' as const }],
     short: 'Every batch with its expiry, flagged early.',
     detail: <ExpiryCard />,
   },
@@ -52,10 +60,12 @@ const steps = [
     kicker: 'Reports',
     title: 'Hisaab saaf.',
     text: 'Sales, purchases, stock, expiry and GST reports, with Excel export for your CA.',
-    shot: 'md-reports',
-    alt: 'MedDesk sales report for this month',
+    shot: 'md-topmeds',
+    alt: 'MedDesk Revenue and P&L: top medicines by revenue with cost, profit and margin, and the GST summary by slab (demo shop)',
+    win: 'MedDesk · Revenue & P&L',
+    float: { name: 'md-gst', alt: 'GST summary by slab: 5%, 12% and 18%, with taxable value and GST (demo shop)', width: '46%', at: 'br' as const, room: '14%', callout: { x: 30, y: 6, label: 'GST, by slab', side: 'b' as const } },
     short: 'Profit, GST and Excel for your CA.',
-    detail: <Detail name="d-md-profit" alt="MedDesk Revenue and P&L: net profit ₹2,109.18, margin 24.17% (demo shop)" />,
+    detail: <Detail name="md-gst" alt="MedDesk GST summary by slab with taxable value and GST (demo shop)" />,
   },
 ]
 
@@ -73,7 +83,7 @@ export default function MedDesk() {
           <p className="mt-4 text-[1.06rem] leading-snug text-ink-2">Billing, stock, expiry and GST, plus AI that reads your supplier bills.</p>
           <div className="mt-6"><WhatsAppButton label="WhatsApp pe demo book karein" message={DEMO_MSG} className="!h-[52px] w-full justify-center" /></div>
           <div className="tile mt-9 bg-med-soft px-5 pb-7 pt-6">
-            <div className="mx-auto max-w-[250px] -rotate-2"><Detail eager name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /></div>
+            <div className="mx-auto max-w-[250px] -rotate-2"><Detail eager name="md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /></div>
             <div className="relative -mt-3"><ExpiryCard /></div>
           </div>
           <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk with a demo shop.</p>
@@ -82,7 +92,7 @@ export default function MedDesk() {
 
       {/* Hero */}
       <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
-        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
+        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,11fr)_minmax(0,13fr)] lg:gap-12">
           <div>
             <Reveal now className="flex items-center gap-3">
               <span className="text-[0.95rem] font-semibold">MedDesk</span>
@@ -102,47 +112,42 @@ export default function MedDesk() {
             </Reveal>
           </div>
           <Reveal now delay={160}>
-            <Shot name="md-dashboard" alt="MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
+            <Stage
+              name="md-cart"
+              className="hero-stage"
+              alt="MedDesk billing: the search box and three medicines in the current bill, each with batch, expiry and strips or loose (demo shop)"
+              title="MedDesk · Sale"
+              tone="med"
+              eager
+              reveal={false}
+              only="desktop"
+              sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 90vw"
+              callouts={[{ x: 55, y: 8, label: 'Name, generic or batch', side: 'b' }, { x: 14, y: 89, label: 'Batch & expiry, picked for you', side: 'b' }]}
+              float={{ name: 'md-netpay', alt: 'Payment mode cash, UPI, card or credit, and the bill total ₹278 (demo shop)', width: '36%', room: '26%', callout: { x: 26, y: 30, label: 'F1–F4 to pay', side: 'r' } }}
+            />
           </Reveal>
         </div>
       </section>
 
-      {/* Phones: the bill-scan story */}
-      <section className="pt-16 md:hidden">
+      {/* Bill scan: one section for every width (the demo itself adapts) */}
+      <section className="pt-16 md:pt-28">
         <div className="wrap">
-          <p className="eyebrow">AI bill scan</p>
-          <h2 className="h2 mt-3">Bill ki photo lo. Baaki MedDesk sambhaal lega.</h2>
-          <div className="mt-4"><BillScan /></div>
-          <p className="mt-6 text-[0.95rem] text-ink-2">Anything unclear is marked yellow for you to check. Also reads PDF, Excel and CSV.</p>
-        </div>
-      </section>
-
-      {/* Bill scan */}
-      <section className="hidden md:block md:pt-28">
-        <div className="wrap">
-          <SectionHead
-            eyebrow="AI bill scan"
-            title={<>Bill ki photo lo.<br />Baaki MedDesk sambhaal lega.</>}
-            lede="Typing a 30-line supplier bill takes time and invites mistakes. With MedDesk you take a photo and check the result."
-          />
-          <div className="mt-12 grid items-center gap-8 lg:grid-cols-[minmax(0,3fr)_auto_minmax(0,8fr)]">
-            <Reveal>
-              <figure>
-                <div className="overflow-hidden rounded-[14px] shadow-[0_0_0_1px_rgba(15,15,13,0.08),0_20px_50px_-15px_rgba(15,15,13,0.25)] [transform:rotate(-1.5deg)]">
-                  <Pic name="bill" sizes="(min-width: 1024px) 400px, 92vw" alt="A printed supplier tax invoice with five medicine lines (demo bill)" />
-                </div>
-                <figcaption className="mt-4 text-[0.82rem] text-ink-3">Demo bill.</figcaption>
-              </figure>
-            </Reveal>
-            <Reveal delay={100} className="hidden text-[2rem] text-ink-3 lg:block" aria-hidden="true">→</Reveal>
-            <Reveal delay={160}>
-              <figure>
-                <Shot name="md-scan" alt="MedDesk Import Bill: 5 items found, all matched to stock, lines add up to the bill’s printed grand total of ₹3291" sizes="(min-width: 1024px) 780px, 92vw" />
-                <figcaption className="mt-4 text-[0.82rem] text-ink-3">The result in MedDesk: 5 lines read, and they add up to the printed total.</figcaption>
-              </figure>
-            </Reveal>
+          <Reveal now className="md:hidden">
+            <p className="eyebrow">AI bill scan</p>
+            <h2 className="h2 mt-3">Bill ki photo lo. Baaki MedDesk sambhaal lega.</h2>
+          </Reveal>
+          <div className="hidden md:block">
+            <SectionHead
+              eyebrow="AI bill scan"
+              title={<>Bill ki photo lo.<br />Baaki MedDesk sambhaal lega.</>}
+              lede="Typing a 30-line supplier bill takes time and invites mistakes. With MedDesk you take a photo and check the result."
+            />
           </div>
-          <ul className="mt-12 grid gap-8 md:grid-cols-3">
+          <Reveal className="mt-5 md:mt-12">
+            <ScanDemo />
+          </Reveal>
+          <p className="mt-6 text-[0.95rem] text-ink-2 md:hidden">Anything unclear is marked yellow for you to check. Also reads PDF, Excel and CSV.</p>
+          <ul className="mt-12 hidden gap-8 md:grid md:grid-cols-3">
             {[
               ['Reads every column', 'Medicine, batch, expiry, quantity, pack, free, MRP, rate, GST and discount, for every line.'],
               ['Checks the maths', 'The lines are matched against the bill’s printed grand total before you save.'],
@@ -154,7 +159,7 @@ export default function MedDesk() {
               </Reveal>
             ))}
           </ul>
-          <Reveal className="mt-8">
+          <Reveal className="mt-8 hidden md:block">
             <p className="text-ink-3">Also imports bills as PDF, Excel or CSV.</p>
           </Reveal>
         </div>
@@ -200,15 +205,19 @@ export default function MedDesk() {
       <section className="hidden md:block md:pt-28">
         <div className="wrap">
           <Reveal>
-            <div className="grid gap-8 rounded-[28px] bg-ink p-8 text-paper md:grid-cols-[1fr_auto] md:items-center md:p-14">
-              <div>
+            <div className="ov-band grid items-center gap-10 overflow-hidden rounded-[28px] bg-ink p-8 text-paper md:p-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-6 lg:py-0">
+              <div className="lg:py-16">
                 <Badge tone="soon">Coming soon</Badge>
                 <h2 className="h3 mt-5 !text-[clamp(1.6rem,2.4vw+0.8rem,2.6rem)]">Owner View. Your shop, on your phone.</h2>
                 <p className="mt-4 max-w-xl text-[1.05rem] leading-relaxed text-paper/75">
                   Check today’s sales, stock and expiry from anywhere, without calling the counter.
                 </p>
+                <div className="mt-8"><WhatsAppButton label="Notify me" message="Hi STDN, please tell me when MedDesk Owner View is ready." className="!bg-paper !text-ink" /></div>
+                <p className="mt-6 text-[0.8rem] text-paper/50">Shown with a demo shop. Screens may change before launch.</p>
               </div>
-              <WhatsAppButton label="Notify me" message="Hi STDN, please tell me when MedDesk Owner View is ready." className="!bg-paper !text-ink" />
+              <div className="relative lg:pt-14">
+                <OwnerPhones />
+              </div>
             </div>
           </Reveal>
         </div>

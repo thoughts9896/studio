@@ -213,61 +213,6 @@ export function ScanResult({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Signature scroll (phones): the bill photo is scanned, steps back, and MedDesk's clean table
- * takes its place. Scroll position becomes --p (0..1) and CSS does the rest (transform/opacity).
- * No JS or reduced motion: the photo and the result simply stack.
- */
-export function BillScan() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let raf = 0
-    const update = () => {
-      raf = 0
-      const r = el.getBoundingClientRect()
-      const sticky = el.firstElementChild as HTMLElement
-      const run = el.offsetHeight - sticky.offsetHeight
-      const p = Math.min(1, Math.max(0, (64 - r.top) / (run || 1)))
-      el.style.setProperty('--p', p.toFixed(4))
-    }
-    const on = () => { if (!raf) raf = requestAnimationFrame(update) }
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { addEventListener('scroll', on, { passive: true }); addEventListener('resize', on); on() }
-      else { removeEventListener('scroll', on); removeEventListener('resize', on) }
-    })
-    io.observe(el)
-    return () => { io.disconnect(); removeEventListener('scroll', on); removeEventListener('resize', on); cancelAnimationFrame(raf) }
-  }, [])
-  const caps = [
-    ['1', 'Take a photo of the supplier’s bill.'],
-    ['2', 'MedDesk reads every line: batch, expiry, quantity, rate.'],
-    ['3', 'It checks the lines add up to the printed total.'],
-  ]
-  return (
-    <div ref={ref} className="scan-run">
-      <div className="scan-sticky">
-        <div className="scan-caps min-h-[3.2rem]">
-          {caps.map(([n, t], i) => (
-            <p key={n} className={`cap-${i} flex items-start gap-3 text-[1.08rem] font-semibold leading-snug tracking-[-0.015em]`}>
-              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ink text-[0.78rem] text-paper">{n}</span>{t}
-            </p>
-          ))}
-        </div>
-        <div className="scan-stage">
-          <div className="scan-bill">
-            <Pic name="bill" alt="A printed supplier tax invoice with five medicine lines (demo bill)" sizes="80vw" only="mobile" />
-            <span className="scan-line" aria-hidden="true" />
-          </div>
-          <ScanResult className="scan-result" />
-        </div>
-        <p className="text-[0.78rem] text-ink-3">Demo bill.</p>
-      </div>
-    </div>
-  )
-}
-
 /* ── Sticky WhatsApp bar ──────────────────────────────────────────────────── */
 
 const BAR: Record<string, [string, string]> = {

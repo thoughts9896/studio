@@ -4,7 +4,7 @@
 // Usage: node scripts/images.mjs
 //
 // Every crop stays inside the app's content area: no sidebars (user names, versions, client
-// branding) and no dev-only panels. Raw desktop captures are 3024x1890 (1512x945 @2x).
+// branding) and no dev-only panels. Captures are taken at 2x (see the list below).
 // Owner View captures are 1170x2532 (390x844 @3x) of the real phone page with a demo shop.
 import sharp from 'sharp'
 import fs from 'node:fs'
@@ -18,42 +18,60 @@ fs.mkdirSync(OUT, { recursive: true })
 
 const box = (x0, y0, x1, y1) => ({ left: x0, top: y0, width: x1 - x0, height: y1 - y0 })
 const DESK = [960, 1600, 2400]
-const PHONE = [800, 1200]
 const DETAIL = [640, 1000]
 
-// Full product shots: [source, name, desktop crop, phone crop (optional)]
+// Every capture is the app at a small window and 2x scale (MedDesk 1440x900, School ERP
+// 1200x760; Hotel ERP 1512x945), so a crop shown at ~700px keeps its text at real size.
+// Each crop is the one thing a section talks about; nothing is shown twice on a page.
+// [source, name, crop, widths]
+const W = [700, 1100, 1600]
 const shots = [
-  ['meddesk/dashboard.png', 'md-dashboard', box(424, 90, 3024, 1230), box(1700, 560, 3000, 1205)],
-  ['meddesk/dashboard.png', 'md-expiry', box(1700, 560, 3000, 1205)],
-  // Scan result: the total check and the extracted table, every row linked to the shop's stock
-  // (no stats banner, no debug panel, no payment footer).
-  ['meddesk/scan-3.png', 'md-scan', box(330, 470, 2690, 1400), box(330, 470, 1640, 1400)],
-  ['meddesk/sale-cart.png', 'md-billing', box(424, 90, 3024, 1290), box(424, 60, 1560, 800)],
-  ['meddesk/stock.png', 'md-stock', box(424, 90, 3024, 1300), box(424, 350, 2000, 1370)],
-  ['meddesk/revenue.png', 'md-pnl', box(424, 90, 3024, 1500), box(424, 270, 2000, 970)],
-  ['meddesk/reports.png', 'md-reports', box(424, 90, 3024, 1500)],
-  ['ashoka/dashboard.png', 'hotel-dashboard', box(450, 110, 3024, 1890)],
-  ['ashoka/rooms.png', 'hotel-rooms', box(450, 110, 3024, 1500), box(450, 250, 1750, 1270)],
-  ['ashoka/restaurant.png', 'hotel-restaurant', box(450, 110, 3024, 1500)],
-  ['ashoka/bookings.png', 'hotel-bookings', box(450, 110, 3024, 1100)],
-  ['school/dashboard.png', 'school-dashboard', box(450, 110, 3024, 1560), box(450, 150, 1780, 1170)],
-  ['school/ledgers.png', 'school-ledgers', box(450, 110, 3024, 1560)],
-  ['school/payments.png', 'school-payments', box(450, 110, 3024, 1560)],
-  ['school/students.png', 'school-students', box(450, 110, 3024, 1560)],
+  // MedDesk: demo shop "Shree Balaji Medical Store", captured 19 Nov 2026 (meddesk-v3)
+  ['meddesk-v3/dash.png', 'md-dash', box(0, 0, 2880, 1250), DESK],
+  ['meddesk-v3/dash.png', 'md-expiry', box(1650, 574, 2866, 1236), W],
+  ['meddesk-v3/dash.png', 'md-expiry-top', box(1650, 574, 2866, 950), W],
+  ['meddesk-v3/dash.png', 'md-sales', box(432, 222, 914, 462), [480]],
+  ['meddesk-v3/dash.png', 'md-lowstock', box(432, 574, 1642, 1236), W],
+  ['meddesk-v3/sale.png', 'md-cart', box(420, 230, 2196, 1000), W],
+  ['meddesk-v3/sale.png', 'md-pay', box(2194, 740, 2866, 1784), [400, 672]],
+  ['meddesk-v3/sale.png', 'md-netpay', box(2194, 1150, 2866, 1784), [400, 672]],
+  ['meddesk-v3/sale-search.png', 'md-search', box(420, 225, 2196, 745), W],
+  ['meddesk-v3/stock.png', 'md-stock', box(430, 470, 2010, 1300), W],
+  ['meddesk-v3/stock-exp.png', 'md-near-expiry', box(430, 470, 2010, 1130), W],
+  ['meddesk-v3/revenue.png', 'md-profit', box(430, 390, 1900, 960), W],
+  ['meddesk-v3/revenue2.png', 'md-chart', box(430, 100, 2040, 885), W],
+  ['meddesk-v3/revenue2.png', 'md-pnl-statement', box(2055, 100, 2866, 885), [480, 811]],
+  ['meddesk-v3/revenue2.png', 'md-gst', box(2055, 1310, 2866, 1765), [480, 811]],
+  ['meddesk-v3/revenue2.png', 'md-topmeds', box(430, 905, 2040, 1780), W],
+  ['meddesk-v3/purchase-recent.png', 'md-purchases', box(430, 330, 2310, 1330), W],
+  // The AI scan result as MedDesk shows it (the synthetic test bill, all five lines linked)
+  ['meddesk/scan-3.png', 'md-scan', box(330, 470, 2390, 1410), W],
+  // School ERP: local copy with a demo school and made-up students (school-v2)
+  ['school-v2/dash.png', 'school-dash', box(462, 110, 2360, 1450), W],
+  ['school-v2/dash.png', 'school-insights', box(530, 1080, 1720, 1440), [480, 800, 1190]],
+  ['school-v2/ledgers.png', 'school-ledgers', box(490, 150, 2360, 1500), W],
+  ['school-v2/payments.png', 'school-payments', box(490, 150, 2200, 1520), W],
+  ['school-v2/students.png', 'school-students', box(490, 150, 1960, 1520), W],
+  ['school-v2/fee-structures.png', 'school-fees', box(490, 150, 2360, 1520), W],
+  // Hotel ERP: demo guests and rooms; crops stay right of the sidebar (client branding)
+  ['ashoka/dashboard.png', 'hotel-dashboard', box(470, 170, 2970, 1100), DESK],
+  ['ashoka/rooms.png', 'hotel-rooms', box(470, 150, 2340, 1130), W],
+  ['ashoka/restaurant.png', 'hotel-restaurant', box(470, 150, 2370, 1340), W],
+  ['ashoka/bookings.png', 'hotel-bookings', box(470, 150, 2400, 1000), W],
+  ['ashoka/dashboard.png', 'hotel-checkins', box(470, 780, 2970, 1790), W],
 ]
 
 // Detail cards for phones: one meaningful element, zoomed in so it reads at phone size.
 // (Tables too dense to crop readably, like the expiry list, are drawn as HTML cards instead.)
 const details = [
-  ['meddesk/dashboard.png', 'd-md-sales', box(430, 218, 940, 464)],
-  ['meddesk/revenue.png', 'd-md-profit', box(436, 395, 1330, 640)],
+  ['meddesk-v3/revenue.png', 'd-md-profit', box(430, 390, 1210, 640)],
   ['ashoka/rooms.png', 'd-hotel-room', box(494, 380, 1088, 1096)],
   ['ashoka/rooms.png', 'd-hotel-room-top', box(494, 380, 1088, 830)],
   ['ashoka/restaurant.png', 'd-hotel-tables', box(494, 380, 1388, 946)],
   ['ashoka/dashboard.png', 'd-hotel-occupied', box(1118, 804, 1718, 1042)],
-  ['school/dashboard.png', 'd-school-dues', box(1748, 354, 2358, 686)],
-  ['school/dashboard.png', 'd-school-revenue', box(2372, 354, 2976, 686)],
-  ['school/payments.png', 'd-school-pay', box(500, 500, 1300, 990)],
+  ['school-v2/dash.png', 'd-school-dues', box(520, 742, 1060, 1010)],
+  ['school-v2/dash.png', 'd-school-revenue', box(1450, 742, 1990, 1010)],
+  ['school-v2/payments.png', 'd-school-pay', box(490, 580, 1350, 1250)],
 ]
 
 // Owner View (coming soon): the real phone page, rendered with a made-up demo shop.
@@ -86,10 +104,8 @@ async function emit(buf, base, widths) {
 
 const read = (src) => fs.readFileSync(path.join(RAW, src))
 const sizes = {}
-for (const [src, name, crop, phone] of shots) {
-  const raw = read(src)
-  sizes[name] = await emit(await sharp(raw).extract(crop).toBuffer(), name, DESK)
-  if (phone) sizes[name].m = await emit(await sharp(raw).extract(phone).toBuffer(), `${name}-m`, PHONE)
+for (const [src, name, crop, widths] of shots) {
+  sizes[name] = await emit(await sharp(read(src)).extract(crop).toBuffer(), name, widths)
   console.log('ok', name)
 }
 for (const [src, name, crop] of details) {
@@ -104,7 +120,8 @@ for (const name of phones) {
 // The synthetic test bill used for the scan demo (made-up supplier, marked "synthetic test data").
 const bill = '/Users/apple/MedDeskData/synthetic-bills/S01-busy-intra.jpg'
 if (fs.existsSync(bill)) {
-  sizes.bill = await emit(fs.readFileSync(bill), 'bill', [700, 1200])
+  // Just the printed part of the page (header, the five lines and the totals).
+  sizes.bill = await emit(await sharp(fs.readFileSync(bill)).extract(box(0, 0, 1600, 600)).toBuffer(), 'bill', [600, 1000, 1600])
   console.log('ok bill')
 }
 

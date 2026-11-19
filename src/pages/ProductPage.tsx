@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import { FeatureList, FinalCta, Reveal, SectionHead, Shot, Todo, WhatsAppButton } from '../components/ui'
+import { FeatureList, FinalCta, Reveal, SectionHead, Todo, WhatsAppButton } from '../components/ui'
+import { Stage, type Callout, type FloatCard } from '../components/visual'
 import { Story, type StoryStep } from '../components/Story'
 import { FeatureRail } from '../components/mobile'
 import { TONE, type Tone } from '../tones'
@@ -15,6 +16,9 @@ export type ProductProps = {
   heroDetail: ReactNode
   heroShot: string
   heroAlt: string
+  heroWin?: string
+  heroCallouts?: Callout[]
+  heroFloat?: FloatCard
   heroNote?: ReactNode
   secondary?: ReactNode
   storyTitle: string
@@ -49,7 +53,7 @@ export function ProductPage(p: ProductProps) {
       </section>
 
       <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
-        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
+        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,11fr)_minmax(0,13fr)] lg:gap-12">
           <div>
             <Reveal now className="flex flex-wrap items-center gap-3">
               <span className="text-[0.95rem] font-semibold">{p.name}</span>
@@ -63,7 +67,7 @@ export function ProductPage(p: ProductProps) {
             </Reveal>
           </div>
           <Reveal now delay={160}>
-            <Shot name={p.heroShot} alt={p.heroAlt} sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
+            <Stage className="hero-stage" name={p.heroShot} alt={p.heroAlt} title={p.heroWin} tone={p.tone === 'sand' ? 'med' : p.tone} eager reveal={false} only="desktop" callouts={p.heroCallouts} float={p.heroFloat} sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 90vw" />
             {p.heroNote && <p className="mt-3 text-[0.8rem] text-ink-3">{p.heroNote}</p>}
           </Reveal>
         </div>

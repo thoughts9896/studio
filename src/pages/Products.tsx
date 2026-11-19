@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
-import { Badge, FinalCta, Reveal, Shot } from '../components/ui'
+import { Badge, FinalCta, Reveal } from '../components/ui'
+import { Stage } from '../components/visual'
 import { Detail, ExpiryCard } from '../components/mobile'
 import { TONE, type Tone } from '../tones'
 
 const items = [
-  { to: '/meddesk', name: 'MedDesk', badge: <Badge tone="new">Launching now</Badge>, kind: 'Pharmacy ERP for Windows', text: 'Billing, stock, expiry, purchases and GST for medical stores, with AI that reads supplier bills.', shot: 'md-billing', alt: 'MedDesk billing screen (demo shop)', tone: 'med' as Tone, detail: <ExpiryCard /> },
-  { to: '/school-erp', name: 'School ERP', badge: <Badge>Live at erp.stdn.in</Badge>, kind: 'Web app for schools', text: 'Fee ledgers, online payments, receipts, reminders and a parent portal.', shot: 'school-ledgers', alt: 'School ERP fee ledgers (demo school)', tone: 'sch' as Tone, detail: <Detail name="d-school-pay" alt="School ERP payments: monthly fees paid by Razorpay and cash (demo students)" /> },
-  { to: '/hotel-erp', name: 'Hotel ERP', badge: <Badge>Live</Badge>, kind: 'Hotel & restaurant app for Windows', text: 'Rooms, check-ins, restaurant tables, kitchen tickets and GST billing.', shot: 'hotel-restaurant', alt: 'Hotel ERP restaurant floor plan (demo data)', tone: 'htl' as Tone, detail: <Detail name="d-hotel-tables" alt="Hotel ERP restaurant tables: available and occupied (demo data)" /> },
+  { to: '/meddesk', name: 'MedDesk', badge: <Badge tone="new">Launching now</Badge>, kind: 'Pharmacy ERP for Windows', text: 'Billing, stock, expiry, purchases and GST for medical stores, with AI that reads supplier bills.', shot: 'md-profit', win: 'MedDesk · Revenue & P&L', alt: 'MedDesk Revenue and P&L: net profit ₹2,703.40 at 24.21% margin, with revenue, cost of goods and gross profit (demo shop)', co: [{ x: 19, y: 33, label: 'Margin, this month', side: 'r' as const }], tone: 'med' as Tone, detail: <ExpiryCard /> },
+  { to: '/school-erp', name: 'School ERP', badge: <Badge>Live at erp.stdn.in</Badge>, kind: 'Web app for schools', text: 'Fee ledgers, online payments, receipts, reminders and a parent portal.', shot: 'school-fees', win: 'School ERP · Fee structures', alt: 'School ERP fee structures per class: base fee, late fee, due day and exam fees (demo school)', co: [{ x: 30, y: 30, label: 'Late fee, applied for you', side: 'r' as const }], tone: 'sch' as Tone, detail: <Detail name="d-school-pay" alt="School ERP payments: monthly fees paid by Razorpay and cash (demo students)" /> },
+  { to: '/hotel-erp', name: 'Hotel ERP', badge: <Badge>Live</Badge>, kind: 'Hotel & restaurant app for Windows', text: 'Rooms, check-ins, restaurant tables, kitchen tickets and GST billing.', shot: 'hotel-bookings', win: 'Hotel ERP · Bookings', alt: 'Hotel ERP active bookings with guest, room, nights, amount and advance (demo data)', co: [{ x: 89, y: 46, label: 'Advance taken', side: 'l' as const }], tone: 'htl' as Tone, detail: <Detail name="d-hotel-tables" alt="Hotel ERP restaurant tables: available and occupied (demo data)" /> },
 ]
 
 export default function Products() {
@@ -33,7 +34,7 @@ export default function Products() {
                 <Link to={it.to} className="btn btn-ink mt-6 md:mt-8">Explore {it.name}</Link>
               </Reveal>
               <div className={`tile ${TONE[it.tone].soft} p-5 md:hidden`}>{it.detail}</div>
-              <Shot name={it.shot} alt={it.alt} sizes="(min-width: 1024px) 700px, 100vw" zoom className="hidden md:block" />
+              <Stage name={it.shot} alt={it.alt} title={it.win} tone={it.tone === 'sand' ? 'med' : it.tone} tilt="r" callouts={it.co} only="desktop" className="hidden md:block" sizes="(min-width: 1200px) 640px, 90vw" />
             </div>
           ))}
         </div>

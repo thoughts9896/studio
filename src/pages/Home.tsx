@@ -1,7 +1,9 @@
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLink, Badge, FinalCta, Mark, Reveal, SectionHead, Shot, WhatsAppButton } from '../components/ui'
+import { ArrowLink, Badge, FinalCta, Mark, Reveal, SectionHead, WhatsAppButton } from '../components/ui'
+import { Stage, ScanDemo } from '../components/visual'
 import { Story } from '../components/Story'
-import { BillScan, BillingCard, Detail, ExpiryCard, Phone, Rail, Tile } from '../components/mobile'
+import { BillingCard, Detail, ExpiryCard, Phone, Rail, Tile } from '../components/mobile'
 
 const products = [
   {
@@ -10,8 +12,12 @@ const products = [
     kind: 'Pharmacy ERP · Windows',
     badge: <Badge tone="new">Launching now</Badge>,
     text: 'Billing, stock, expiry and GST for medical stores. Snap a supplier bill and the stock fills itself in.',
-    shot: 'md-dashboard',
-    alt: 'MedDesk dashboard with today’s sales, expiring stock and today’s bills (demo shop)',
+    shot: 'md-netpay',
+    alt: 'MedDesk billing: payment mode cash, UPI, card or credit, and the bill total ₹278 ready to save (demo shop)',
+    tone: 'med' as const,
+    win: 'MedDesk · Sale',
+    w: '270px',
+    callout: { x: 26, y: 30, label: 'F1–F4 to pay', side: 'r' as const },
   },
   {
     to: '/school-erp',
@@ -19,8 +25,12 @@ const products = [
     kind: 'Fees & students · Web',
     badge: <Badge>Live at erp.stdn.in</Badge>,
     text: 'Monthly fee ledgers, online payments, receipts and reminders, with a portal for parents.',
-    shot: 'school-dashboard',
-    alt: 'School ERP principal dashboard with students, pending dues and revenue (demo school)',
+    shot: 'd-school-pay',
+    alt: 'School ERP payments: monthly fees paid by Razorpay and cash (demo student)',
+    tone: 'sch' as const,
+    win: 'School ERP · Payments',
+    w: '300px',
+    callout: { x: 82, y: 30, label: 'Paid online', side: 'b' as const },
   },
   {
     to: '/hotel-erp',
@@ -28,8 +38,12 @@ const products = [
     kind: 'Rooms & restaurant · Windows',
     badge: <Badge>Live</Badge>,
     text: 'Check-ins, room board, restaurant tables and GST billing for a hotel with a restaurant.',
-    shot: 'hotel-rooms',
-    alt: 'Hotel ERP room board showing occupied and available rooms (demo data)',
+    shot: 'd-hotel-room',
+    alt: 'Hotel ERP room card: Room 101, occupied, guest, nights and running bill (demo data)',
+    tone: 'htl' as const,
+    win: 'Hotel ERP · Rooms',
+    w: '232px',
+    callout: { x: 80, y: 86, label: 'Running bill', side: 't' as const },
   },
 ]
 
@@ -40,27 +54,35 @@ const story = [
     text: 'Take a photo of the supplier’s bill. MedDesk reads every line, including batch, expiry, MRP, rate and GST, and checks that it adds up to the printed total before anything is saved.',
     shot: 'md-scan',
     alt: 'MedDesk Import Bill: five items read from a bill photo, lines add up to the printed grand total',
+    win: 'MedDesk · Import bill',
+    callouts: [{ x: 34, y: 5, label: 'Matches the printed total', side: 'b' as const }, { x: 26.5, y: 30, label: 'Linked to your stock', side: 'r' as const }],
   },
   {
     kicker: 'Billing',
     title: 'Billing at counter speed.',
     text: 'Keyboard-first billing. Sell full strips or loose tablets, hold a bill, and take cash, UPI, card or udhaar.',
-    shot: 'md-billing',
-    alt: 'MedDesk billing screen with three medicines in the current bill',
+    shot: 'md-cart',
+    alt: 'MedDesk billing: the search box and three medicines in the current bill, each with batch, expiry and strips or loose (demo shop)',
+    win: 'MedDesk · Sale',
+    callouts: [{ x: 55, y: 8, label: 'Name, generic or batch', side: 'b' as const }, { x: 72.5, y: 88, label: 'Strips or loose', side: 'l' as const }],
   },
   {
     kicker: 'Stock & expiry',
     title: 'See expiry before it costs you.',
     text: 'Near-expiry, dead stock, out-of-stock and stock value at cost and MRP. One screen, every morning.',
     shot: 'md-stock',
-    alt: 'MedDesk stock screen with health, nearest expiry and stock value per medicine',
+    alt: 'MedDesk stock: each medicine with stock, fast mover or dead stock, and its nearest expiry (demo shop)',
+    win: 'MedDesk · Stock',
+    callouts: [{ x: 63, y: 51, label: 'Dead stock, flagged', side: 'l' as const }, { x: 86, y: 29, label: 'Days to expiry', side: 'l' as const }],
   },
   {
     kicker: 'Revenue & P&L',
     title: 'Know your margin. Daily.',
     text: 'Revenue, cost of goods and profit for any period, with GST reports and Excel exports ready for your CA.',
-    shot: 'md-pnl',
-    alt: 'MedDesk Revenue and P&L with a daily revenue, cost and profit chart',
+    shot: 'md-chart',
+    alt: 'MedDesk Revenue and P&L: revenue, cost of goods and profit for every day this month (demo shop)',
+    win: 'MedDesk · Revenue & P&L',
+    callouts: [{ x: 58, y: 70, label: 'Profit, every day', side: 't' as const }],
   },
 ]
 
@@ -85,7 +107,7 @@ export default function Home() {
 
       {/* Hero: text, both actions and a product visual all sit above the fold */}
       <section className="hidden overflow-hidden md:block md:pt-12 lg:pt-14">
-        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-14">
+        <div className="wrap grid items-center gap-7 lg:grid-cols-[minmax(0,11fr)_minmax(0,13fr)] lg:gap-12">
           <div>
             <Reveal now className="hidden sm:block"><p className="eyebrow">STDN Technologies</p></Reveal>
             <Reveal now delay={70}>
@@ -102,7 +124,19 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal now delay={160}>
-            <Shot name="md-dashboard" alt="MedDesk pharmacy dashboard: today’s sales, expiring stock and today’s bills (demo shop)" sizes="(min-width: 1024px) 680px, 100vw" eager only="desktop" />
+            <Stage
+              name="md-dash"
+              className="hero-stage"
+              alt="MedDesk pharmacy dashboard: today’s sales, purchases, low stock, expiring medicines and today’s bills (demo shop)"
+              title="MedDesk · Dashboard"
+              tone="med"
+              eager
+              reveal={false}
+              only="desktop"
+              sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 90vw"
+              callouts={[{ x: 16, y: 37, label: 'Today’s sales', side: 'b' }]}
+              float={{ name: 'md-expiry-top', alt: 'MedDesk Expiring Soon: the four nearest expiries by batch with days left (demo shop)', width: '58%', room: '13%', callout: { x: 70, y: 46, label: '11 days left', side: 't' } }}
+            />
             <p className="mt-3 text-[0.8rem] text-ink-3">MedDesk, running on a demo shop.</p>
           </Reveal>
         </div>
@@ -115,7 +149,7 @@ export default function Home() {
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.name} delay={i * 90}>
-                <Link to={p.to} className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-sand transition-colors hover:bg-sand-2">
+                <Link to={p.to} className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-sand transition-colors hover:bg-sand-2" style={{ '--cw': p.w } as CSSProperties}>
                   <div className="p-7 pb-0 md:p-8 md:pb-0">
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-[0.85rem] text-ink-3">{p.kind}</p>
@@ -125,8 +159,8 @@ export default function Home() {
                     <p className="mt-3 text-ink-2 leading-relaxed">{p.text}</p>
                     <span className="link-arrow mt-5">Learn more <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></span>
                   </div>
-                  <div className="mt-8 translate-x-7 translate-y-1 transition-transform duration-700 [transition-timing-function:var(--ease-out)] group-hover:translate-x-5 md:translate-x-8">
-                    <Shot name={p.shot} alt={p.alt} sizes="(min-width: 1024px) 420px, 92vw" />
+                  <div className="flex flex-1 flex-col px-4 pb-4 pt-8 md:px-5 md:pb-5">
+                    <Stage name={p.shot} alt={p.alt} title={p.win} tone={p.tone} tilt="none" className="stage-card flex-1" callouts={[p.callout]} sizes="300px" only="desktop" />
                   </div>
                 </Link>
               </Reveal>
@@ -245,7 +279,7 @@ export default function Home() {
 /* ── Phones (below 768px): phone-first hero, swipe rails, detail cards, the bill-scan story ── */
 
 const mProducts = [
-  { to: '/meddesk', tone: 'med' as const, name: 'MedDesk', kind: 'Pharmacy ERP', badge: <Badge tone="new">Launching now</Badge>, text: 'Billing, stock, expiry and GST. Snap a bill, stock fills itself.', visual: <Detail name="d-md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /> },
+  { to: '/meddesk', tone: 'med' as const, name: 'MedDesk', kind: 'Pharmacy ERP', badge: <Badge tone="new">Launching now</Badge>, text: 'Billing, stock, expiry and GST. Snap a bill, stock fills itself.', visual: <Detail name="md-sales" alt="MedDesk dashboard tile: today’s sales ₹1,292.45 from 9 bills (demo shop)" /> },
   { to: '/school-erp', tone: 'sch' as const, name: 'School ERP', kind: 'Fees & students', badge: <Badge>Live</Badge>, text: 'Fee ledgers, online payments and a parent portal.', visual: <Detail name="d-school-dues" alt="School ERP tile: 57 pending dues (demo school)" /> },
   { to: '/hotel-erp', tone: 'htl' as const, name: 'Hotel ERP', kind: 'Rooms & restaurant', badge: <Badge>Live</Badge>, text: 'Room board, table orders, KOT and GST bills.', visual: <Detail name="d-hotel-room-top" alt="Hotel ERP room tile: Room 101, occupied, ₹1,200 a night (demo data)" /> },
 ]
@@ -300,8 +334,8 @@ function MobileHome() {
         <div className="wrap">
           <p className="eyebrow">Spotlight · MedDesk</p>
           <h2 className="h2 mt-3">Photo in. Stock up.</h2>
-          <p className="mt-3 text-[1.02rem] leading-snug text-ink-2">Scroll to watch MedDesk read a supplier bill.</p>
-          <div className="mt-4"><BillScan /></div>
+          <p className="mt-3 text-[1.02rem] leading-snug text-ink-2">Watch MedDesk read a supplier bill.</p>
+          <div className="mt-5"><ScanDemo /></div>
           <h3 className="mt-6 text-[1.4rem] font-semibold tracking-[-0.025em]">The rest of the day, sorted.</h3>
           <div className="mt-5">
             <Rail label="MedDesk features">

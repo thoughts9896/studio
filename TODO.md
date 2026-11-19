@@ -29,4 +29,5 @@ Everything here is marked `TODO` in the code. Nothing on the site is invented: n
 ## Mobile layer (phones under 768px)
 
 - **Owner View images** (`ov-today/stock/dues`) are the real phone page from the unreleased `feat/owner-view` branch, rendered with made-up data ("Shree Balaji Medical Store", "Demo Distributor A/B/C"). Retake them when Owner View ships, and keep the "Coming soon" label until then.
+- **AI scan animation** (`ScanDemo` in `src/components/visual.tsx`) redraws what MedDesk read from the synthetic test bill. It marks the cream's **pack size** in yellow ("Not on the bill. Asks you.") because the bill doesn't print it. Check this matches how MedDesk flags missing values before launch; change `ask` in `ROWS` if not.
 - **Expiry, billing and bill-scan cards** are HTML redraws of the same demo rows shown in MedDesk (the real tables are too dense to crop readably on a phone). If MedDesk's screens change, update `src/components/mobile.tsx`.
