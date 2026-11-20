@@ -4,7 +4,7 @@
 
 ## Products
 - [MedDesk](https://www.stdn.in/meddesk): pharmacy ERP for Windows. Billing, batch-wise stock and expiry, purchases and returns, GST reports, backups, and AI that reads supplier bills from a photo. Now launching.
-- [School ERP](https://www.stdn.in/school-erp): web app for school fees and students, with monthly ledgers, late fees, Razorpay payments, receipts, WhatsApp/email reminders and a parent portal. Live at erp.stdn.in.
+- [School ERP](https://www.stdn.in/school-erp): web app for school fees and students, with monthly ledgers, late fees, Razorpay payments, receipts, WhatsApp/email reminders and a parent portal.
 - [Hotel ERP](https://www.stdn.in/hotel-erp): Windows app for hotels with a restaurant. Room board, check-in, table orders with KOT, thermal printing and GST billing. Live.
 
 ## Custom software

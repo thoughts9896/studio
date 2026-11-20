@@ -7,7 +7,7 @@ export default function SchoolErp() {
   return (
     <ProductPage
       name="School ERP"
-      badge={<Badge>Live at erp.stdn.in</Badge>}
+      badge={<Badge>Live</Badge>}
       tone="sch"
       shortLede="Fee ledgers, online payments, receipts and reminders, with a parent portal."
       heroDetail={<div className="grid gap-3 px-2"><Detail eager name="d-school-dues" alt="School ERP: 57 pending dues (demo school)" /><Detail eager name="d-school-revenue" alt="School ERP: ₹91.7K revenue in November (demo school)" /></div>}
@@ -18,7 +18,6 @@ export default function SchoolErp() {
       heroWin="School ERP · Overview"
       heroCallouts={[{ x: 16, y: 62, label: 'Pending dues', side: 'r' }, { x: 66, y: 62, label: 'Collected in November', side: 'r' }]}
       heroNote="Shown with a demo school and made-up students."
-      secondary={<a href="https://erp.stdn.in" target="_blank" rel="noopener" className="btn btn-ghost">Open erp.stdn.in</a>}
       storyTitle="From admission to receipt."
       steps={[
         { kicker: 'Overview', title: 'The whole school, one screen.', text: 'Students, pending dues, this month’s collection and today’s activity, the moment the principal signs in.', shot: 'school-insights', alt: 'School ERP financial insights: 29 unpaid this month, ₹157.3K pending, 0 partial payments (demo school)', win: 'School ERP · Overview', callouts: [{ x: 12, y: 87, label: 'Unpaid this month', side: 'b', len: 22 }], short: 'Students, dues and collection, at sign-in.', detail: <Detail name="d-school-dues" alt="School ERP: 57 pending dues (demo school)" /> },

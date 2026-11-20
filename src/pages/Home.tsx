@@ -23,7 +23,7 @@ const products = [
     to: '/school-erp',
     name: 'School ERP',
     kind: 'Fees & students · Web',
-    badge: <Badge>Live at erp.stdn.in</Badge>,
+    badge: <Badge>Live</Badge>,
     text: 'Monthly fee ledgers, online payments, receipts and reminders, with a portal for parents.',
     shot: 'd-school-pay',
     alt: 'School ERP payments: monthly fees paid by Razorpay and cash (demo student)',

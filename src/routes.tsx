@@ -61,7 +61,7 @@ export const routes: RouteDef[] = [
     Component: SchoolErp,
     meta: {
       title: 'School ERP — Fees, students and online payments | STDN',
-      description: 'School ERP manages students, monthly fee ledgers, late fees, Razorpay payments, receipts, reminders and a parent portal. Live at erp.stdn.in.',
+      description: 'School ERP manages students, monthly fee ledgers, late fees, Razorpay payments, receipts, reminders and a parent portal.',
       image: '/og/school-erp.png',
       schema: [app('School ERP', 'School fee and student management with online payments and a parent portal.', 'Web', '/school-erp')],
     },
